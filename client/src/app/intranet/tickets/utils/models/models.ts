@@ -1,8 +1,8 @@
 export interface Ticket {
   id: number;
   ref: string;
-  // todo client:Client;
-  // todo materiel:Materiel;
+  client: Client;
+  materiel: Materiel;
   titre: string;
   resume: string;
   code: number;
@@ -24,10 +24,9 @@ export interface Client {
 
 export interface Materiel {
   id: number;
-  typeMateriel: string;
-  marque: string;
-  modele: string;
-  url: string;
+  typeMateriel: TypeMateriel;
+  marque: Marque;
+  modele: Modele;
   miseEnService: string;
   createdAt: string;
   updatedAt: string;
@@ -37,4 +36,20 @@ export interface Statut {
   id: number;
   code: number;
   label: string;
+}
+
+export interface TypeMateriel {
+  id: number;
+  type: string;
+}
+
+export interface Marque {
+  id: number;
+  marque: string;
+}
+
+export interface Modele {
+  id: number;
+  modele: string;
+  url: string;
 }

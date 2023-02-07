@@ -41,7 +41,6 @@ async function httpGetTickets(req, res) {
   try {
     let tickets = await getTickets(getPagination(+page, +limit), +limit);
     const total = await getTotalTickets();
-
     return res.status(200).json({
       message:
         tickets.length === 0 ? "liste vide" : "tickets récupérés avec succès",

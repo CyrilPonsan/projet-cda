@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PaginationService {
-  page = 0;
+  page = 1;
   max = 5;
   totalPages!: number;
   total!: number;

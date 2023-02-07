@@ -1,5 +1,3 @@
-const { off } = require("superagent");
-const { getPagination } = require("../../services/queryService");
 const {
   Ticket,
   Materiel,
