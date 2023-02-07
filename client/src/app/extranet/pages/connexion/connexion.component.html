@@ -1,6 +1,6 @@
 <main class="flex justify-center flex-col items-center gap-y-8 mb-8">
   <section *ngIf="!loader" class="w-64 md:w-96">
-    <h2 class="flex justify-start md:text-3xl text-xl font-bold">Connexion</h2>
+    <h2 class="flex justify-center md:text-3xl text-xl font-bold">Franciscode</h2>
     <h4 class="font-bold text-orange" *ngIf="hasError">Email ou mot de passe incorrect.</h4>
   </section>
   <section class="flex flex-col">
@@ -9,26 +9,24 @@
 
       <!-- email -->
       <label for="email">Email :</label>
-      <input
-        class="border-stone-300 border-2 w-full p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="username" formControlName="username" (blur)="emailBlurHandler()" [inputIsValid]="isEmailValid">
+      <div class="border-stone-300 border-2 flex pl-2 pr-4"> <input
+          class="w-full px-8 py-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username"
+          formControlName="username" (blur)="emailBlurHandler()" [inputIsValid]="isEmailValid"></div>
       <p *ngIf="!isEmailValid">Saississez une adresse email valide</p>
       <!-- password -->
       <label for="password">Mot de Passe :</label>
       <div class="border-stone-300 border-2 flex pl-2 pr-4">
-        <input class="w-full p-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password"
-          id="password" formControlName="password" (blur)="passwordBlurHandler()" [inputIsValid]="isPasswordValid"
-          toggle>
+        <input class="w-full px-8 py-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="password" id="password" formControlName="password" (blur)="passwordBlurHandler()"
+          [inputIsValid]="isPasswordValid" toggle>
       </div>
       <p *ngIf="!isPasswordValid">Le mot de passe doit contenir huit caractères, une majuscule, une minuscule, un
         chiffre et un caractère spécial</p>
 
       <!-- buttons -->
       <div class="flex justify-between items-baseline w-64 md:w-96 gap-y-5">
-        <span class="flex justify-center w-64 md:w-96">
+        <span class="w-64 md:w-96 flex flex-col items-center gap-y-4">
           <a routerLink="/password-reset" class="text-xs md:text-sm underline">Mot de passe oublié</a>
-        </span>
-        <span class="w-64 md:w-96 flex justify-end">
 
           <!--  <button
             class=" min-w-[75px] md:min-w-[100px] shadow-5xl select-none px-1 py-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 hover:brightness-125 focus:outline-none focus:shadow-outline text-sm bg-black text-white font-bold"
@@ -36,7 +34,9 @@
             connecter
           </button> -->
 
-          <button class="bg-black text-white" type="submit" (click)="submitLoginHandler()">Se Connecter
+          <button
+            class=" min-w-[75px] md:min-w-[100px] px-1 py-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 hover:bg-white hover:text-black hover:border-black hover:border focus:shadow-outline text-sm bg-black text-white font-bold"
+            type="submit" (click)="submitLoginHandler()">Se Connecter
           </button>
         </span>
       </div>

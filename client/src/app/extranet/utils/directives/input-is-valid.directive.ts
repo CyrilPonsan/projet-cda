@@ -10,17 +10,9 @@ export class InputIsValidDirective {
 
   @HostListener('focusout') onBlur() {
     if (this.value) {
-      this.elem.nativeElement.style.border = 'solid 1px green';
+      this.elem.nativeElement.parentNode.style.border = 'solid 1px green';
     } else {
-      this.elem.nativeElement.style.border = 'solid 1px red';
+      this.elem.nativeElement.parentNode.style.border = 'solid 1px red';
     }
   }
-  /*
-  @HostListener('keyup') onChange() {
-    if (this.value) {
-      this.elem.nativeElement.style.border = 'solid 1px green';
-    } else {
-      this.elem.nativeElement.style.border = 'solid 1px red';
-    }
-  } */
 }

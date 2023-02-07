@@ -1,14 +1,26 @@
-<header>
-  <nav>
-    <ul>
-      <li>Tickets</li>
-      <li>Materiels</li>
-      <li>Clients</li>
-      <li>Profil</li>
-      <li>Déconnexion</li>
-    </ul>
-  </nav>
-</header>
-<section>
-  <router-outlet></router-outlet>
-</section>
+<main class="flex flex-col items-center min-h-[100vh]">
+  <header class="flex justify-center items-center">
+    <nav flex justify-center items-center>
+      <ul>
+        <li>
+          <a routerLink="tickets" routerLinkActive="active">Tickets</a>
+        </li>
+        <li>
+          <a routerLink="materiel" routerLinkActive="active">Materiel</a>
+        </li>
+        <li>
+          <a routerLink="clients" routerLinkActive="active">Clients</a>
+        </li>
+        <li>
+          <a routerLink="profil" routerLinkActive="active">Profil</a>
+        </li>
+        <li>
+          <p class="cursor-pointer" (click)="conn.logout()">Déconnexion</p>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</main>

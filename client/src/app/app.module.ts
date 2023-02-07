@@ -8,6 +8,7 @@ import { ConnexionComponent } from './extranet/pages/connexion/connexion.compone
 import { InputIsValidDirective } from './extranet/utils/directives/input-is-valid.directive';
 import { PwdVisibilityDirective } from './extranet/utils/directives/pwd-visibility.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './extranet/security/interceptors';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

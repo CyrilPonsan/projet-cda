@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: IntranetHomeComponent,
     children: [
-      { path: '', component: ProfilComponent },
+      { path: '', redirectTo: 'profil', pathMatch: 'full' },
       { path: 'profil', component: ProfilComponent },
       {
         path: 'tickets',
