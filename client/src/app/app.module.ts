@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +9,8 @@ import { InputIsValidDirective } from './extranet/utils/directives/input-is-vali
 import { PwdVisibilityDirective } from './extranet/utils/directives/pwd-visibility.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './extranet/security/interceptors';
+import { registerLocaleData } from '@angular/common';
+import * as fr from '@angular/common/locales/fr';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,14 @@ import { httpInterceptorProviders } from './extranet/security/interceptors';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+}

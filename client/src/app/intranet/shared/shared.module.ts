@@ -14,9 +14,9 @@ import { NewInterventionFormComponent } from './components/new-intervention-form
     ModalComponent,
     ButtonComponent,
     PaginationComponent,
-    BtnPagesComponent,
+    BtnPagesComponent /*
     SearchComponent,
-    NewInterventionFormComponent,
+    NewInterventionFormComponent, */,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
@@ -24,9 +24,9 @@ import { NewInterventionFormComponent } from './components/new-intervention-form
     ModalComponent,
     ButtonComponent,
     PaginationComponent,
-    BtnPagesComponent,
+    BtnPagesComponent /*
     SearchComponent,
-    NewInterventionFormComponent,
+    NewInterventionFormComponent, */,
   ],
   providers: [PaginationService],
 })
