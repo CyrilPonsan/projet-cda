@@ -1,0 +1,11 @@
+header {
+  width: 100vw;
+  height: 6vh;
+
+  >nav {
+    >ul {
+      display: flex;
+      column-gap: 1vw;
+    }
+  }
+}
