@@ -13,9 +13,7 @@ const routes: Routes = [
       {
         path: 'tickets',
         loadChildren: () =>
-          import('./tickets/tickets-routing.module').then(
-            (m) => m.TicketsRoutingModule
-          ),
+          import('./tickets/tickets.module').then((m) => m.TicketsModule),
       },
     ],
   },

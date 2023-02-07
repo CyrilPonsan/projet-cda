@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ConnexionService } from '../../utils/services/connexion.service';
 import { RegexService } from '../../utils/services/regex.service';
 
