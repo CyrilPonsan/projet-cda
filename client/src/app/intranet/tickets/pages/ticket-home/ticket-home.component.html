@@ -1,28 +1,35 @@
-<section class="min-h-[94vh] flex flex-col justify-center">
-  <article>
-    <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="tck.statuts">
-      <thead>
-        <tr class="bg-black text-orange text-left">
-          <th class="p-2 md:px-4">Date</th>
-          <th class="p-2 md:px-4">Ref</th>
-          <th class="p-2 md:px-4">Statut</th>
-          <th class="p-2 md:px-4">Client</th>
-          <th class="p-2 md:px-4">Matériel</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="even:bg-stone-200 my-auto cursor-pointer hover:bg-black hover:text-white"
-          *ngFor="let item of tickets">
-          <td class="p-2 md:p-4 font-bold">{{item.date | date}}</td>
-          <td>{{item.ref}}</td>
-          <td>{{tck.statuts[item.code -1].label}}</td>
-          <td>{{item.materiel.client.nom}}</td>
-          <td>{{item.materiel.typeMateriel.type}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
-  <article class="flex justify-end">
-    <app-pagination (pageChanged)="pageChangedHandler()" (max)=" setLimiteHandler()"></app-pagination>
-  </article>
-</section>
+<main class="min-h-[94vh] flex flex-col justify-center gap-y-2">
+  <section class="p-8 shadow-lg">
+    <article class="flex justify-between items-center mb-4">
+      <h1 class="text-xl font-bold">Gestion des tickets</h1>
+      <app-search (submitEvent)="searchSubmitHandler($event)"></app-search>
+    </article>
+    <article>
+      <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="tck.statuts">
+        <thead>
+          <tr class="bg-black text-orange">
+            <th class="p-2 md:px-4 text-left">Date</th>
+            <th class="p-2 md:px-4 text-left">Ref</th>
+            <th class="p-2 md:px-4 text-left">Statut</th>
+            <th class="p-2 md:px-4 text-left">Client</th>
+            <th class="p-2 md:px-4 text-left">Matériel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-black hover:text-white"
+            (click)="searchSubmitHandler(item.ref)" *ngFor="let item of tickets">
+            <td class="p-2 font-bold">{{item.date | date}}</td>
+            <td>{{item.ref}}</td>
+            <td>{{tck.statuts[item.code -1].label}}</td>
+            <td>{{item.materiel.client.nom}}</td>
+            <td>{{item.materiel.typeMateriel.type}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+  <section class="flex justify-end">
+    <app-pagination (previous)="previousClickHandler()" (next)="nextClickHandler()"
+      (max)="setLimitHandler($event)"></app-pagination>
+  </section>
+</main>

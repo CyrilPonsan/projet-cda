@@ -6,6 +6,7 @@ export interface Ticket {
   resume: string;
   code: number;
   date: string;
+  interventions?: Array<Intervention>;
 }
 
 export interface Client {
@@ -14,10 +15,15 @@ export interface Client {
   nom: string;
   email: string;
   adresse: string;
-  codepostal: string;
+  codePostal: string;
   ville: string;
   createdAt: string;
   updatedAt: string;
+  raisonSociale: RaisonSociale;
+}
+
+export interface RaisonSociale {
+  id: number;
   raisonSociale: string;
 }
 
@@ -53,4 +59,20 @@ export interface Modele {
   id: number;
   modele: string;
   url: string;
+}
+
+export interface Intervention {
+  id: number;
+  date: Date;
+  description: string;
+  reponse: string;
+  statut: Statut;
+  conseiller: Conseiller;
+  titre: string;
+  lieuIntervention: string;
+}
+
+export interface Conseiller {
+  nom: string;
+  prenom: string;
 }

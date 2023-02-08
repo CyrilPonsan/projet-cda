@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class PaginationService {
   page = 1;
-  max = 5;
+  max = 10;
   totalPages!: number;
   total!: number;
   next!: string;
@@ -26,8 +26,7 @@ export class PaginationService {
    * boutons du système de pagination
    */
   setPrevious(): string {
-    let tmp: boolean = this.page > 1;
-    return this.testButtons(tmp);
+    return this.testButtons(this.page > 1);
   }
 
   /**
@@ -35,10 +34,8 @@ export class PaginationService {
    * @returns string : visible ou hidden, définit le style à appliquer aux
    * boutons du système de pagination
    */
-  setNext(size: number, total: number) {
-    let tmp: boolean = size >= this.max && size * (this.page + 1) !== total;
-
-    return this.testButtons(tmp);
+  setNext() {
+    return this.testButtons(this.page !== this.totalPages);
   }
 
   /**
@@ -60,6 +57,6 @@ export class PaginationService {
    */
   setButtonsStyle(size: number): void {
     this.previous = this.setPrevious();
-    this.next = this.setNext(size, this.total);
+    this.next = this.setNext();
   }
 }

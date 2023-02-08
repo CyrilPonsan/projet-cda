@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { debounce, debounceTime, map, Subject } from 'rxjs';
-import { RegexService } from '../../services/regex.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, map, Subject } from 'rxjs';
+import { RegexService } from 'src/app/extranet/utils/services/regex.service';
 
 @Component({
   selector: 'app-search',

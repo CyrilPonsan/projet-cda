@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { Ticket } from '../../utils/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
@@ -14,16 +14,45 @@ export class TicketHomeComponent implements OnInit {
 
   constructor(
     public tck: TicketsService,
-    public pagination: PaginationService
+    public pagination: PaginationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.pagination.page = 1;
     if (!this.tck.statuts) {
       this.tck.httpGetStatuts();
     }
+    this.getTickets();
+  }
+
+  nextClickHandler(): void {
+    this.pagination.page++;
+    this.getTickets();
+  }
+
+  previousClickHandler(): void {
+    this.pagination.page--;
+    this.getTickets();
+  }
+
+  setLimitHandler(value: any): void {
+    this.pagination.page = 1;
+    this.pagination.max = value;
+    this.getTickets();
+  }
+
+  searchSubmitHandler(value: string): void {
+    this.router.navigate(['/intranet/tickets', value]);
+  }
+
+  private getTickets(): void {
+    console.log('page', this.pagination.page);
+
     this.tck.httpGetTickets().subscribe({
       next: (response) => {
-        this.pagination.page = 1;
+        console.log(response);
+
         this.pagination.total = response.total;
         this.pagination.setPagesMax(response.total);
         this.pagination.setButtonsStyle(response.data.length);
