@@ -1,7 +1,6 @@
 export interface Ticket {
   id: number;
   ref: string;
-  client: Client;
   materiel: Materiel;
   titre: string;
   resume: string;
@@ -24,6 +23,8 @@ export interface Client {
 
 export interface Materiel {
   id: number;
+  ref: string;
+  client: Client;
   typeMateriel: TypeMateriel;
   marque: Marque;
   modele: Modele;

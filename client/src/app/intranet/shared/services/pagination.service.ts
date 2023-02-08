@@ -26,7 +26,7 @@ export class PaginationService {
    * boutons du système de pagination
    */
   setPrevious(): string {
-    let tmp: boolean = this.page > 0;
+    let tmp: boolean = this.page > 1;
     return this.testButtons(tmp);
   }
 
@@ -48,12 +48,6 @@ export class PaginationService {
    * toral de courriers trouvés après filtrage
    */
   setPagesMax(value: number): void {
-    let result;
-    if (value % this.max !== 0) {
-      result = value / this.max + 1;
-    } else {
-      result = value / this.max;
-    }
     this.totalPages =
       value % this.max !== 0
         ? Math.trunc(value / this.max) + 1

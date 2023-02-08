@@ -6,19 +6,20 @@ import { PaginationService } from '../../services/pagination.service';
   templateUrl: './pagination.component.html',
 })
 export class PaginationComponent {
-  @Output() previous = new EventEmitter<void>();
-  @Output() next = new EventEmitter<void>();
+  @Output() pageChanged = new EventEmitter<void>();
   @Output() max = new EventEmitter<number>();
   @Input() label!: string;
 
   constructor(public pagination: PaginationService) {}
 
   onClickPrevious() {
-    this.previous.emit();
+    this.pagination.page--;
+    this.pageChanged.emit();
   }
 
   onClickNext() {
-    this.next.emit();
+    this.pagination.page++;
+    this.pageChanged.emit();
   }
 
   onSetMax(value: any) {

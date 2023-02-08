@@ -17,7 +17,7 @@
   <div class="flex items-center gap-x-2 text-xs md:text-sm">
     <app-btn-pages [label]="'<'" [ngStyle]="{visibility: pagination.previous}" (click)="onClickPrevious()">
     </app-btn-pages>
-    <p class="text-xs">{{pagination.page + 1}} / {{pagination.totalPages}}</p>
+    <p class="text-xs">{{pagination.page}} / {{pagination.totalPages}}</p>
     <!--
             <button
                 class="border-2 py-1 px-2 bg-stone-300 text-black rounded cursor-pointer hover:bg-stone-200 active:translate-x-0.5 active:translate-y-0.5"
