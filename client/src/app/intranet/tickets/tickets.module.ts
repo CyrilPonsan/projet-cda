@@ -11,7 +11,14 @@ import { InterventionsListComponent } from './components/interventions-list/inte
 import { AddInterventionComponent } from './components/add-intervention/add-intervention.component';
 
 @NgModule({
-  declarations: [TicketHomeComponent, TicketDetailsComponent, InterventionComponent, TicketSummaryComponent, InterventionsListComponent, AddInterventionComponent],
+  declarations: [
+    TicketHomeComponent,
+    TicketDetailsComponent,
+    InterventionComponent,
+    TicketSummaryComponent,
+    InterventionsListComponent,
+    AddInterventionComponent,
+  ],
   imports: [CommonModule, TicketsRoutingModule, SharedModule],
   providers: [TicketsService],
 })

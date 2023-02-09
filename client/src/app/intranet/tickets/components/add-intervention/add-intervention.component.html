@@ -1,1 +1,18 @@
-<p>add-intervention works!</p>
+<form>
+  <div>
+    <span>
+      <label for="titre">Titre</label>
+      <input type="text" name="titre" formControlName="titre">
+    </span>
+    <span>
+      <label for="statut">Statut</label>
+      <select name="statut" id="statut" formControlName="statut">
+        <option value="{{tck.statuts[0].code}}">{{tck.statuts[0].label}}</option>
+        <option value="{{tck.statuts[1].code}}">{{tck.statuts[1].label}}</option>
+        <option value="{{tck.statuts[2].code}}">{{tck.statuts[2].label}}</option>
+        <option value="{{tck.statuts[3].code}}">{{tck.statuts[3].label}}</option>
+        <option value="{{tck.statuts[4].code}}">{{tck.statuts[4].label}}</option>
+      </select>
+    </span>
+  </div>
+</form>
