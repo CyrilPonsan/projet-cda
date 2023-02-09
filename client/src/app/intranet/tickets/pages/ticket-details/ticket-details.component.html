@@ -1,4 +1,4 @@
-<main class="w-[75vw] flex justify-start items-start gap-y-2 p-2 gap-x-8 mt-8">
+<main class="w-[75vw] flex justify-center items-start gap-y-2 p-2 gap-x-8 mt-8">
   <section class="w-50" *ngIf="ticket">
     <app-ticket-summary [ticket]="ticket" [openedDate]="openedDate"></app-ticket-summary>
   </section>
@@ -8,3 +8,4 @@
   </section>
 
 </main>
+<app-modal *ngIf="showModal" [modal]="modal" (modalRightClick)="modalRightBtnHandler()"></app-modal>

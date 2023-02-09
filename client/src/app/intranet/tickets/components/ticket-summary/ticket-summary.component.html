@@ -1,7 +1,15 @@
 <article class="bg-white p-8 shadow-lg flex flex-col gap-y-4 min-w-[30vw]">
-  <div class="flex">
+  <div class="flex border-b border-gray">
     <h1 class="text-xl font-bold">Réf: {{ticket.ref}} - Ouvert le:&nbsp;</h1>
     <h1 class="text-xl font-bold text-orange">{{openedDate | date}}</h1>
+  </div>
+  <div class="border-b border-gray pb-2">
+    <div>
+      {{ticket.titre}}
+    </div>
+    <div>
+      {{ticket.resume}}
+    </div>
   </div>
   <div>
     <app-client [client]="ticket.materiel.client"></app-client>

@@ -29,7 +29,6 @@
     </article>
   </section>
   <section class="flex justify-end">
-    <app-pagination (previous)="previousClickHandler()" (next)="nextClickHandler()"
-      (max)="setLimitHandler($event)"></app-pagination>
+    <app-pagination (pageChanged)="pageChangedHandler()" (max)="setLimitHandler($event)"></app-pagination>
   </section>
 </main>

@@ -8,9 +8,10 @@ import { TicketDetailsComponent } from './pages/ticket-details/ticket-details.co
 import { InterventionComponent } from './components/intervention/intervention.component';
 import { TicketSummaryComponent } from './components/ticket-summary/ticket-summary.component';
 import { InterventionsListComponent } from './components/interventions-list/interventions-list.component';
+import { AddInterventionComponent } from './components/add-intervention/add-intervention.component';
 
 @NgModule({
-  declarations: [TicketHomeComponent, TicketDetailsComponent, InterventionComponent, TicketSummaryComponent, InterventionsListComponent],
+  declarations: [TicketHomeComponent, TicketDetailsComponent, InterventionComponent, TicketSummaryComponent, InterventionsListComponent, AddInterventionComponent],
   imports: [CommonModule, TicketsRoutingModule, SharedModule],
   providers: [TicketsService],
 })

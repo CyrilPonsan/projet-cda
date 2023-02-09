@@ -12,8 +12,6 @@ export class TicketsService {
   constructor(private http: HttpClient, private pag: PaginationService) {}
 
   httpGetTickets(): Observable<any> {
-    console.log(this.pag.page);
-
     return this.http.get<any>(
       `${environment.baseUrl}/tickets?page=${this.pag.page}&lmt=${this.pag.max}`
     );
@@ -25,7 +23,6 @@ export class TicketsService {
       error: (err) => console.log(err),
       complete: () => {
         console.log('done');
-        console.table(this.statuts);
       },
     });
   }

@@ -26,18 +26,11 @@ export class TicketHomeComponent implements OnInit {
     this.getTickets();
   }
 
-  nextClickHandler(): void {
-    this.pagination.page++;
-    this.getTickets();
-  }
-
-  previousClickHandler(): void {
-    this.pagination.page--;
+  pageChangedHandler(): void {
     this.getTickets();
   }
 
   setLimitHandler(value: any): void {
-    this.pagination.page = 1;
     this.pagination.max = value;
     this.getTickets();
   }
@@ -47,12 +40,8 @@ export class TicketHomeComponent implements OnInit {
   }
 
   private getTickets(): void {
-    console.log('page', this.pagination.page);
-
     this.tck.httpGetTickets().subscribe({
       next: (response) => {
-        console.log(response);
-
         this.pagination.total = response.total;
         this.pagination.setPagesMax(response.total);
         this.pagination.setButtonsStyle(response.data.length);

@@ -13,6 +13,6 @@ export class MaterielComponent {
   constructor(private router: Router) {}
 
   urlHandle(): void {
-    this.router.navigateByUrl(this.materiel.modele.url);
+    window.open(this.materiel.modele.url, '_blank');
   }
 }

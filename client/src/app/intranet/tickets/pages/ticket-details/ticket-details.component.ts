@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Intervention, Ticket } from '../../utils/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
 
@@ -13,10 +13,17 @@ export class TicketDetailsComponent implements OnInit {
   ticket!: Ticket;
   interventions!: Intervention[] | undefined;
   openedDate!: string;
+  showModal!: boolean;
+  modal = {
+    titre: 'Ressource inexistante',
+    message: "Aucun ticket n'a été trouvé pour cette référence",
+    rightBtn: 'Retour aux tickets',
+  };
 
   constructor(
     private ticketsService: TicketsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,8 +31,6 @@ export class TicketDetailsComponent implements OnInit {
     if (ref) {
       this.ticketsService.httpGetTicketDetail(ref!).subscribe({
         next: (response) => {
-          console.log(response);
-
           this.ticket = response;
           this.interventions = this.ticket.intervention;
           if (this.interventions?.length !== 0) {
@@ -34,11 +39,16 @@ export class TicketDetailsComponent implements OnInit {
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status === 404) {
-            console.log('dans le cul lulu');
+            this.showModal = true;
           }
         },
         complete: () => {},
       });
     }
+  }
+
+  modalRightBtnHandler(): void {
+    this.showModal = false;
+    this.router.navigateByUrl('/intranet/tickets');
   }
 }
