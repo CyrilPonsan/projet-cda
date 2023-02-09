@@ -1,17 +1,15 @@
-<main>
-  <article class="p-8 shadow-lg flex flex-col gap-y-4 min-w-[30vw]">
-    <div class="flex">
-      <h1 class="text-xl font-bold">Réf: {{ticket.ref}} - Ouvert le:&nbsp;</h1>
-      <h1 class="text-xl font-bold text-orange">{{openedDate | date}}</h1>
-    </div>
-    <div>
-      <app-client [client]="ticket.materiel.client"></app-client>
-    </div>
-    <div>
-      <app-materiel [materiel]="ticket.materiel"></app-materiel>
-    </div>
-    <div class="flex justify-end mt-4">
-      <app-button [label]="'Nouvelle intervention'"></app-button>
-    </div>
-  </article>
-</main>
+<article class="bg-white p-8 shadow-lg flex flex-col gap-y-4 min-w-[30vw]">
+  <div class="flex">
+    <h1 class="text-xl font-bold">Réf: {{ticket.ref}} - Ouvert le:&nbsp;</h1>
+    <h1 class="text-xl font-bold text-orange">{{openedDate | date}}</h1>
+  </div>
+  <div>
+    <app-client [client]="ticket.materiel.client"></app-client>
+  </div>
+  <div>
+    <app-materiel [materiel]="ticket.materiel"></app-materiel>
+  </div>
+  <div class="flex justify-end mt-4">
+    <app-button [label]="'Nouvelle intervention'"></app-button>
+  </div>
+</article>

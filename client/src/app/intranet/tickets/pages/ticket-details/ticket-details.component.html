@@ -1,8 +1,10 @@
-<main class="w-[75vw] flex flex-col gap-y-2 p-2 items-center">
+<main class="w-[75vw] flex justify-start items-start gap-y-2 p-2 gap-x-8 mt-8">
   <section class="w-50" *ngIf="ticket">
     <app-ticket-summary [ticket]="ticket" [openedDate]="openedDate"></app-ticket-summary>
   </section>
   <section>
+    <app-interventions-list *ngIf="interventions?.length !== 0"
+      [interventions]="interventions!"></app-interventions-list>
   </section>
 
 </main>

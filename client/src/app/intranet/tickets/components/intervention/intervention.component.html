@@ -1,7 +1,7 @@
-<section class="flex flex-col gap-y-4 p-8 shadow-lg">
+<section class="flex flex-col gap-y-16 p-8 shadow-lg">
   <article class="flex justify-between border-b border-gray">
     <h4 class="text-lg font-bold">{{intervention.date | date}}</h4>
-    <h4>{{intervention.conseiller.prenom}} {{intervention.conseiller.nom}}</h4>
+    <h4 class="font-bold">{{intervention.conseiller.prenom}} {{intervention.conseiller.nom}}</h4>
   </article>
   <article>
     <p class="font-bold text-orange">{{intervention.statut.label}}</p>
