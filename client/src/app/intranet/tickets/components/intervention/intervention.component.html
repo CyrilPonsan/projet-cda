@@ -1,1 +1,23 @@
-<p>intervention works!</p>
+<section class="flex flex-col gap-y-4 p-8 shadow-lg">
+  <article class="flex justify-between border-b border-gray">
+    <h4 class="text-lg font-bold">{{intervention.date | date}}</h4>
+    <h4>{{intervention.conseiller.prenom}} {{intervention.conseiller.nom}}</h4>
+  </article>
+  <article>
+    <p class="font-bold text-orange">{{intervention.statut.label}}</p>
+  </article>
+  <article>
+    <p>{{intervention.titre}}</p>
+    <p>Type d'intervention: {{intervention.lieuIntervention}}</p>
+  </article>
+  <article>
+    <span class="flex flex-col">
+      <p class="font-bold">Description</p>
+      <p>{{intervention.description}}</p>
+    </span>
+    <span class="flex flex-col">
+      <p class="font-bold">Réponse</p>
+      <p>{{intervention.reponse}}</p>
+    </span>
+  </article>
+</section>

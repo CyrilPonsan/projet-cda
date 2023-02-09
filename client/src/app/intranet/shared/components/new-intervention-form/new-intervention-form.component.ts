@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegexService } from '../../services/regex.service';
 
 @Component({
   selector: 'app-new-intervention-form',
@@ -10,18 +9,7 @@ import { RegexService } from '../../services/regex.service';
 export class NewInterventionFormComponent implements OnInit {
   interventionForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private regex: RegexService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.interventionForm = this.formBuilder.group({
-      description: [
-        null,
-        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
-      ],
-      reponse: [
-        null,
-        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
-      ],
-    });
-  }
+  ngOnInit(): void {}
 }

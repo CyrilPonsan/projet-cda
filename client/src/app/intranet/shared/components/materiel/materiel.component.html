@@ -1,1 +1,20 @@
-<p>materiel works!</p>
+<section class="flex flex-col gap-y-2">
+  <article class="font-bold text-xl">Matériel</article>
+  <article>
+    <span class="flex">
+      <p class="font-bold">Catégorie:&nbsp;</p>
+      <p class="text-darkgray">{{materiel.typeMateriel.type}}</p>
+    </span>
+    <span class="flex">
+      <p class="font-bold">Marque:&nbsp;</p>
+      <p class="text-darkgray">{{materiel.marque.marque}}</p>
+    </span>
+    <span class="flex">
+      <p class="font-bold">Modèle:&nbsp;</p>
+      <p class="text-darkgray">{{materiel.modele.modele}}</p>
+    </span>
+  </article>
+  <article>
+    <p class="text-xs text-darkgray underline" (click)="urlHandle()">Liens vers le matériel</p>
+  </article>
+</section>

@@ -6,7 +6,7 @@ export interface Ticket {
   resume: string;
   code: number;
   date: string;
-  interventions?: Array<Intervention>;
+  intervention?: Array<Intervention>;
 }
 
 export interface Client {
@@ -63,7 +63,7 @@ export interface Modele {
 
 export interface Intervention {
   id: number;
-  date: Date;
+  date: string;
   description: string;
   reponse: string;
   statut: Statut;

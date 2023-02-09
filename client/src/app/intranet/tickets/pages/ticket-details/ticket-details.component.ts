@@ -12,6 +12,7 @@ import { TicketsService } from '../../utils/services/tickets.service';
 export class TicketDetailsComponent implements OnInit {
   ticket!: Ticket;
   interventions!: Intervention[] | undefined;
+  openedDate!: string;
 
   constructor(
     private ticketsService: TicketsService,
@@ -23,8 +24,13 @@ export class TicketDetailsComponent implements OnInit {
     if (ref) {
       this.ticketsService.httpGetTicketDetail(ref!).subscribe({
         next: (response) => {
+          console.log(response);
+
           this.ticket = response;
-          this.interventions = this.ticket.interventions;
+          this.interventions = this.ticket.intervention;
+          if (this.interventions?.length !== 0) {
+            this.openedDate = this.interventions![0].date;
+          }
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status === 404) {
