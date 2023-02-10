@@ -10,6 +10,24 @@ import { TicketsService } from '../../utils/services/tickets.service';
 export class TicketSummaryComponent {
   @Input() ticket!: Ticket;
   @Input() openedDate!: string;
+  showForm!: boolean;
 
   constructor(public tck: TicketsService) {}
+
+  showFormHandler(): void {
+    console.log(this.ticket);
+
+    this.showForm = !this.showForm;
+  }
+
+  onSubmitHandler(item: any): void {
+    console.log('hello');
+
+    Object.assign(item, { ticket_id: this.ticket.id });
+    this.tck.httpAddNewIntervention(item).subscribe({
+      next: (response) => console.log(response),
+      error: (err) => console.log(err),
+      complete: () => {},
+    });
+  }
 }

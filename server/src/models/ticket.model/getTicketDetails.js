@@ -30,7 +30,7 @@ async function getTicketDetails(ticketRef) {
           {
             model: Statut,
             as: "statut",
-            attributes: ["id", "label"],
+            attributes: ["id", "code", "label"],
           },
           {
             model: Conseiller,

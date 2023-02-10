@@ -26,8 +26,10 @@ export class TicketDetailsComponent implements OnInit {
     private router: Router
   ) {}
 
+  //  récupération de la réf du ticket dans l'url
   ngOnInit(): void {
     const ref = this.route.snapshot.paramMap.get('ref');
+    //  si la réf est présente, récupération du ticket associé à cette réf
     if (ref) {
       this.ticketsService.httpGetTicketDetail(ref!).subscribe({
         next: (response) => {
@@ -37,6 +39,7 @@ export class TicketDetailsComponent implements OnInit {
             this.openedDate = this.interventions![0].date;
           }
         },
+        //  si la ref n'existe pas dans la bdd: ouverture d'une modal pour prévenir l'utilisateur et revenir à la page d'accueil des tickets
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status === 404) {
             this.showModal = true;
@@ -47,6 +50,7 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
+  //  redirection vers la page d'accueil des tickets
   modalRightBtnHandler(): void {
     this.showModal = false;
     this.router.navigateByUrl('/intranet/tickets');

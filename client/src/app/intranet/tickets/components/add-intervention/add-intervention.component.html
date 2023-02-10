@@ -1,18 +1,42 @@
-<form>
-  <div>
-    <span>
-      <label for="titre">Titre</label>
-      <input type="text" name="titre" formControlName="titre">
-    </span>
-    <span>
-      <label for="statut">Statut</label>
-      <select name="statut" id="statut" formControlName="statut">
-        <option value="{{tck.statuts[0].code}}">{{tck.statuts[0].label}}</option>
-        <option value="{{tck.statuts[1].code}}">{{tck.statuts[1].label}}</option>
-        <option value="{{tck.statuts[2].code}}">{{tck.statuts[2].label}}</option>
-        <option value="{{tck.statuts[3].code}}">{{tck.statuts[3].label}}</option>
-        <option value="{{tck.statuts[4].code}}">{{tck.statuts[4].label}}</option>
-      </select>
-    </span>
-  </div>
+<form class="font-bold flex flex-col gap-y-4" [formGroup]="intervForm" (submit)="submitHandler()">
+  <article class="flex flex-col">
+    <label for="titre">Titre</label>
+    <input class="p-2 border border-gray w-full" type="text" name="titre" formControlName="titre">
+  </article>
+  <article>
+    <div class="flex gap-x-2 justify-between">
+      <span class="flex items-center gap-x-2">
+        <label for="lieuIntervention">Type</label>
+        <select class="p-2 border border-gray" name="lieuIntervention" formControlName="lieuIntervention">
+          <option value="distance">distance</option>
+          <option value="sur site">sur site</option>
+        </select>
+      </span>
+      <span class="flex items-center gap-x-2">
+        <label for="statut">Statut</label>
+        <select class="p-2 border border-gray" name="statut" id="statut" formControlName="statut">
+          <option *ngFor="let statut of tck.statuts" value="{{statut.code}}">{{statut.label}}</option>
+        </select>
+      </span>
+    </div>
+  </article>
+  <article class="flex flex-col">
+    <label for="description">
+      Description
+    </label>
+    <textarea class="border border-gray p-2 font-normal" name="description" cols="30" rows="5"
+      formControlName="description">
+    </textarea>
+  </article>
+  <article class="flex flex-col">
+    <label for="reponse">
+      Réponse
+    </label>
+    <textarea class="border border-gray p-2 font-normal" name="reponse" cols="30" rows="5" formControlName="reponse">
+    </textarea>
+  </article>
+  <article class="flex gap-x-2 justify-end items-center">
+    <app-button [orange]="true" [label]="'Annuler'" (click)="cancelHandler()"></app-button>
+    <app-button [type]="'submit'" [label]="'Enregistrer'"></app-button>
+  </article>
 </form>

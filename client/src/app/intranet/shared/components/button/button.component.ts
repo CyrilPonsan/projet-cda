@@ -6,17 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styles: ['@media print { button { display: none; } }'],
 })
 export class ButtonComponent implements OnInit {
-  @Input() bg!: string; //  background-color si différent du "bleu Step"
+  @Input() orange!: boolean; //  background color orange si "true"
   @Input() label!: string; //  label du bouton
   @Input() fullSize!: boolean;
+  @Input() type!: string;
   setFullSize!: string; // le bouton prend toute la largeur du parent
 
   constructor() {}
 
   ngOnInit(): void {
-    if (this.bg === undefined) {
-      this.bg = 'black';
-    }
     if (this.fullSize) {
       this.setFullSize = 'w-full block';
     }

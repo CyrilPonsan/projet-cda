@@ -1,3 +1,5 @@
+import Conseiller from 'src/app/extranet/utils/models/conseiller.model';
+
 export interface Ticket {
   id: number;
   ref: string;
@@ -70,9 +72,4 @@ export interface Intervention {
   conseiller: Conseiller;
   titre: string;
   lieuIntervention: string;
-}
-
-export interface Conseiller {
-  nom: string;
-  prenom: string;
 }

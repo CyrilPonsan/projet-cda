@@ -83,17 +83,34 @@ async function httpGetTicketStatutsList(req, res) {
 
 async function httpCreateIntervention(req, res) {
   const userId = req.auth.userId;
-  const data = req.body;
-  if (testNewInterventionData(data)) {
+  const { titre, ticket_id, statut, lieuIntervention, description, reponse } =
+    req.body.item;
+
+  console.log(req.body.item);
+  console.log(titre, ticket_id, statut, description, reponse);
+  if (
+    !titre ||
+    !regexGeneric.test(titre) ||
+    !statut ||
+    !regexNumber.test(statut) ||
+    !description ||
+    !regexGeneric.test(description) ||
+    !reponse ||
+    !regexGeneric.test(reponse) ||
+    !lieuIntervention ||
+    !regexGeneric.test(lieuIntervention)
+  ) {
     return res.status(400).json({ message: badQuery });
   }
-  if (data.statut === 5 && !req.auth.roles.includes("admin")) {
+
+  if (+statut === 5 && !req.auth.roles.includes("admin")) {
     return res.status(418).json({
       message: "Votre rôle ne vous permet d'effectuer cette opération.",
     });
   }
+
   try {
-    const newIntervention = await createNewIntervention(userId, data);
+    const newIntervention = await createNewIntervention(userId, req.body.item);
     if (!newIntervention) {
       throw new Error("Un problème est survenu...");
     }

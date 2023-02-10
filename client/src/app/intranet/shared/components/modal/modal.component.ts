@@ -5,20 +5,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   @Input() modal!: any;
   @Output() modalLeftClick = new EventEmitter<void>();
   @Output() modalRightClick = new EventEmitter<void>();
-  leftLabel!: string;
-  rightLabel!: string;
-
-  ngOnInit(): void {
-    if (this.modal.leftButton) {
-      this.leftLabel = this.modal.leftBtn;
-    }
-    this.rightLabel = this.modal.rightBtn;
-  }
-
   leftBtnHandler(): void {
     this.modalLeftClick.emit();
   }

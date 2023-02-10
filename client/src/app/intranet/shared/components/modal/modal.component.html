@@ -1,15 +1,15 @@
 <div class="backdrop"></div>
-<div class="modal">
+<div class="modal border-gray border">
   <div>
     <div>{{modal.titre}}</div>
   </div>
   <div>
     <div>{{modal.message}}</div>
-    <div>
-      <app-button [label]="leftLabel" [bg]="'orange'" *ngIf="modal.leftBtn"
-        (click)="leftBtnHandler()">{{modal.leftBtnLabel}}</app-button>
+    <div class="flex gap-x-4">
+      <button class="border-0 text-xs text-orange" *ngIf="modal.leftBtn"
+        (click)="leftBtnHandler()">{{modal.leftBtn}}</button>
 
-      <app-button [label]="rightLabel" (click)="rightBtnHandler()">{{modal.rightBtn}}</app-button>
+      <button class="border-0 text-xs text-black" (click)="rightBtnHandler()">{{modal.rightBtn}}</button>
     </div>
   </div>
 </div>

@@ -32,4 +32,11 @@ export class TicketsService {
       `${environment.baseUrl}/tickets/details/${ref}`
     );
   }
+
+  httpAddNewIntervention(item: any): Observable<string> {
+    return this.http.post<any>(
+      `${environment.baseUrl}/tickets/new-intervention`,
+      { item }
+    );
+  }
 }

@@ -1,4 +1,4 @@
-<article class="bg-white p-8 shadow-lg flex flex-col gap-y-4 min-w-[30vw]">
+<article class="bg-white p-8 shadow-lg flex flex-col gap-y-4 w-[40vw]">
   <div class="flex border-b border-gray">
     <h1 class="text-xl font-bold">Réf: {{ticket.ref}} - Ouvert le:&nbsp;</h1>
     <h1 class="text-xl font-bold text-orange">{{openedDate | date}}</h1>
@@ -17,7 +17,11 @@
   <div>
     <app-materiel [materiel]="ticket.materiel"></app-materiel>
   </div>
-  <div class="flex justify-end mt-4">
-    <app-button [label]="'Nouvelle intervention'"></app-button>
+  <div *ngIf="showForm">
+    <app-add-intervention (newInterv)="onSubmitHandler($event)" (cancel)="showForm = false"></app-add-intervention>
+  </div>
+  <div class="flex justify-end mt-4"
+    *ngIf="!showForm && ticket.intervention !== null &&ticket.intervention![0].statut.code !== 5">
+    <app-button [label]="'Nouvelle intervention'" (click)="showFormHandler()"></app-button>
   </div>
 </article>
