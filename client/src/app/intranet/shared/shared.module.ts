@@ -9,6 +9,7 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
 import { SearchComponent } from './components/search/search.component';
 import { ClientComponent } from './components/client/client.component';
 import { MaterielComponent } from './components/materiel/materiel.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 //import { NewInterventionFormComponent } from './components/new-intervention-form/new-intervention-form.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MaterielComponent } from './components/materiel/materiel.component';
     SearchComponent,
     ClientComponent,
     MaterielComponent,
+    SidebarComponent,
     //NewInterventionFormComponent, ,
   ],
   imports: [CommonModule, ReactiveFormsModule],
@@ -32,6 +34,7 @@ import { MaterielComponent } from './components/materiel/materiel.component';
     SearchComponent,
     ClientComponent,
     MaterielComponent,
+    SidebarComponent,
     //NewInterventionFormComponent, ,
   ],
   providers: [PaginationService],

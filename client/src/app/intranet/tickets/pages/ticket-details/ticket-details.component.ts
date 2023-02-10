@@ -19,6 +19,7 @@ export class TicketDetailsComponent implements OnInit {
     message: "Aucun ticket n'a été trouvé pour cette référence",
     rightBtn: 'Retour aux tickets',
   };
+  isReacOpen!: boolean;
 
   constructor(
     private ticketsService: TicketsService,
@@ -38,6 +39,7 @@ export class TicketDetailsComponent implements OnInit {
           if (this.interventions?.length !== 0) {
             this.openedDate = this.interventions![0].date;
           }
+          this.isReacOpen = true;
         },
         //  si la ref n'existe pas dans la bdd: ouverture d'une modal pour prévenir l'utilisateur et revenir à la page d'accueil des tickets
         error: (err) => {

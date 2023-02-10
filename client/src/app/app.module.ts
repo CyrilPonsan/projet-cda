@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './extranet/security/interceptors';
 import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import * as fr from '@angular/common/locales/fr';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
