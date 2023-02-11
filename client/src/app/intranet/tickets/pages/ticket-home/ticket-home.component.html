@@ -1,4 +1,4 @@
-<main class="min-h-[94vh] flex flex-col justify-center gap-y-2">
+<main class="min-h-[94vh] flex flex-col justify-center gap-y-2" @fade>
   <section class="p-8 shadow-lg">
     <article class="flex justify-between items-center mb-4">
       <h1 class="text-xl font-bold">Gestion des tickets</h1>
@@ -29,6 +29,7 @@
     </article>
   </section>
   <section class="flex justify-end">
-    <app-pagination (pageChanged)="pageChangedHandler()" (max)="setLimitHandler($event)"></app-pagination>
+    <app-pagination [label]="'Tickets'" (pageChanged)="pageChangedHandler()"
+      (max)="setLimitHandler($event)"></app-pagination>
   </section>
 </main>

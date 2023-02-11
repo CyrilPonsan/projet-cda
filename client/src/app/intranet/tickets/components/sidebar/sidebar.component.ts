@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { slide } from 'src/app/intranet/shared/animations/animations';
 import { TicketsService } from 'src/app/intranet/tickets/utils/services/tickets.service';
-import { slide } from '../../animations/animations';
 
 @Component({
   selector: 'app-sidebar',

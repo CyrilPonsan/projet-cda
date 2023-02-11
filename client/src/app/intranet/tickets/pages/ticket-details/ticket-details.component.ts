@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fade } from 'src/app/intranet/shared/animations/animations';
 import { Intervention, Ticket } from '../../utils/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
 
@@ -8,6 +10,7 @@ import { TicketsService } from '../../utils/services/tickets.service';
   selector: 'app-ticket-details',
   templateUrl: './ticket-details.component.html',
   styleUrls: ['./ticket-details.component.scss'],
+  animations: [fade],
 })
 export class TicketDetailsComponent implements OnInit {
   ticket!: Ticket;
@@ -31,23 +34,7 @@ export class TicketDetailsComponent implements OnInit {
     const ref = this.route.snapshot.paramMap.get('ref');
     //  si la réf est présente, récupération du ticket associé à cette réf
     if (ref) {
-      this.ticketsService.httpGetTicketDetail(ref!).subscribe({
-        next: (response) => {
-          this.ticket = response;
-          this.interventions = this.ticket.intervention;
-          if (this.interventions?.length !== 0) {
-            this.openedDate =
-              this.interventions![this.interventions!.length - 1].date;
-          }
-        },
-        //  si la ref n'existe pas dans la bdd: ouverture d'une modal pour prévenir l'utilisateur et revenir à la page d'accueil des tickets
-        error: (err) => {
-          if (err instanceof HttpErrorResponse && err.status === 404) {
-            this.showModal = true;
-          }
-        },
-        complete: () => {},
-      });
+      this.getTicketDetail(ref);
     }
   }
 
@@ -57,11 +44,37 @@ export class TicketDetailsComponent implements OnInit {
     this.router.navigateByUrl('/intranet/tickets');
   }
 
+  //  affiche la sidebar
   showSidebarHandler(): void {
     this.ticketsService.isSidebarOpen = true;
   }
 
+  //  cache la sidebar
   closeSidebarHandler(): void {
     this.ticketsService.isSidebarOpen = false;
+  }
+
+  reloadHandler(): void {
+    this.getTicketDetail(this.ticket.ref);
+  }
+
+  private getTicketDetail(ref: string): void {
+    this.ticketsService.httpGetTicketDetail(ref).subscribe({
+      next: (response) => {
+        this.ticket = response;
+        this.interventions = this.ticket.intervention;
+        if (this.interventions?.length !== 0) {
+          this.openedDate =
+            this.interventions![this.interventions!.length - 1].date;
+        }
+      },
+      //  si la ref n'existe pas dans la bdd: ouverture d'une modal pour prévenir l'utilisateur et revenir à la page d'accueil des tickets
+      error: (err) => {
+        if (err instanceof HttpErrorResponse && err.status === 404) {
+          this.showModal = true;
+        }
+      },
+      complete: () => {},
+    });
   }
 }

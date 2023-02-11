@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
@@ -9,6 +9,18 @@ import { Statut, Ticket } from '../models/models';
 export class TicketsService {
   statuts!: Array<Statut>;
   isSidebarOpen!: boolean;
+  showModal!: boolean;
+  modalError = {
+    titre: 'Erreur',
+    message: 'Problème serveur, réessayez plus tard...',
+    rightBtn: 'Fermer',
+  };
+  modalSuccess = {
+    titre: 'Opération effectuée',
+    message: '',
+    rightBtn: 'Fermer',
+  };
+  modal!: any;
 
   constructor(private http: HttpClient, private pag: PaginationService) {}
 
@@ -34,10 +46,26 @@ export class TicketsService {
     );
   }
 
-  httpAddNewIntervention(item: any): Observable<string> {
-    return this.http.post<any>(
-      `${environment.baseUrl}/tickets/new-intervention`,
-      { item }
-    );
+  httpAddNewIntervention(item: any): void {
+    this.http
+      .post<any>(`${environment.baseUrl}/tickets/new-intervention`, { item })
+      .subscribe({
+        next: (response) => this.successHandler(response),
+        error: (err) => this.errorHandler(err),
+        complete: () => {},
+      });
+  }
+
+  private successHandler(response: any): void {
+    this.modalSuccess.message = response.message;
+    this.modal = this.modalSuccess;
+    this.showModal = true;
+  }
+
+  private errorHandler(error: any): void {
+    if (error instanceof HttpErrorResponse && error.status === 500) {
+      this.modal.modalError;
+      this.showModal = true;
+    }
   }
 }

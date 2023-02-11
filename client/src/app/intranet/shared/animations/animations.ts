@@ -12,7 +12,7 @@ export let fade = trigger('fade', [
 ]);
 
 export let slide = trigger('slide', [
-  state('closed', style({ right: '-100%' })),
+  state('closed', style({ right: '-25%' })),
   state('open', style({ right: '0%' })),
-  transition('closed <=> open', [animate(750)]),
+  transition('closed <=> open', [animate(500)]),
 ]);

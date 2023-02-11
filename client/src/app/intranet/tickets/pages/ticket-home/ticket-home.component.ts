@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { fade } from 'src/app/intranet/shared/animations/animations';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { Ticket } from '../../utils/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
@@ -8,6 +9,7 @@ import { TicketsService } from '../../utils/services/tickets.service';
   selector: 'app-ticket-home',
   templateUrl: './ticket-home.component.html',
   styleUrls: ['./ticket-home.component.scss'],
+  animations: [fade],
 })
 export class TicketHomeComponent implements OnInit {
   tickets!: Array<Ticket>;

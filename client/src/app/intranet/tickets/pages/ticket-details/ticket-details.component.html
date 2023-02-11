@@ -10,12 +10,15 @@
 </section>
 <section class="w-[100vw] flex justify-center items-start gap-y-2 p-2 gap-x-4 mt-4">
   <article class="w-[50vw] flex justify-center" *ngIf="ticket">
-    <app-ticket-summary [ticket]="ticket" [openedDate]="openedDate"></app-ticket-summary>
+    <app-ticket-summary [ticket]="ticket" [openedDate]="openedDate" (reload)="reloadHandler()"
+      @fade></app-ticket-summary>
   </article>
   <article class="w-[50vw] flex justify-center">
-    <app-interventions-list *ngIf="interventions?.length !== 0"
-      [interventions]="interventions!"></app-interventions-list>
+    <app-interventions-list *ngIf="interventions?.length !== 0" [interventions]="interventions!"
+      @fade></app-interventions-list>
   </article>
 </section>
 <app-sidebar></app-sidebar>
 <app-modal *ngIf="showModal" [modal]="modal" (modalRightClick)="modalRightBtnHandler()"></app-modal>
+<app-modal *ngIf="ticketsService.showModal" [modal]="ticketsService. modal"
+  (modalRightClick)="ticketsService. showModal=false"></app-modal>

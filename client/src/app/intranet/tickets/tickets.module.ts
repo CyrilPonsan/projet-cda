@@ -9,6 +9,7 @@ import { InterventionComponent } from './components/intervention/intervention.co
 import { TicketSummaryComponent } from './components/ticket-summary/ticket-summary.component';
 import { InterventionsListComponent } from './components/interventions-list/interventions-list.component';
 import { AddInterventionComponent } from './components/add-intervention/add-intervention.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AddInterventionComponent } from './components/add-intervention/add-inte
     TicketSummaryComponent,
     InterventionsListComponent,
     AddInterventionComponent,
+    SidebarComponent,
   ],
   imports: [CommonModule, TicketsRoutingModule, SharedModule],
   providers: [TicketsService],

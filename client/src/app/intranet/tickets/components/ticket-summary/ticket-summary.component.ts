@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 import { Ticket } from '../../utils/models/models';
@@ -10,21 +9,10 @@ import { TicketsService } from '../../utils/services/tickets.service';
   styleUrls: ['./ticket-summary.component.scss'],
 })
 export class TicketSummaryComponent {
+  @Output() reload = new EventEmitter<void>();
   @Input() ticket!: Ticket;
   @Input() openedDate!: string;
   showForm!: boolean;
-  showModal!: boolean;
-  modalError = {
-    titre: 'Erreur',
-    message: 'Problème serveur, réessayez plus tard...',
-    rightBtn: 'Fermer',
-  };
-  modalSuccess = {
-    titre: 'Opération effectuée',
-    message: '',
-    rightBtn: 'Fermer',
-  };
-  modal!: any;
 
   constructor(public tck: TicketsService, public profil: ProfilService) {}
 
@@ -35,24 +23,8 @@ export class TicketSummaryComponent {
 
   onSubmitHandler(item: any): void {
     Object.assign(item, { ticket_id: this.ticket.id });
-    this.tck.httpAddNewIntervention(item).subscribe({
-      next: (response) => this.successHandler(response),
-      error: (err) => this.errorHandler(err),
-      complete: () => {},
-    });
-  }
-
-  private successHandler(response: any): void {
-    this.modalSuccess.message = response.message;
-    this.modal = this.modalSuccess;
-    this.showModal = true;
+    this.tck.httpAddNewIntervention(item);
     this.showForm = false;
-  }
-
-  private errorHandler(error: any): void {
-    if (error instanceof HttpErrorResponse && error.status === 500) {
-      this.modal.modalError;
-      this.showModal = true;
-    }
+    this.reload.emit();
   }
 }
