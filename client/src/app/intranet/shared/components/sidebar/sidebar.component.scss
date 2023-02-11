@@ -1,9 +1,23 @@
 article {
-  width: 30vw;
-  height: 100vh;
-  position: absolute;
+  width: 20vw;
+  height: 100%;
+  position: fixed;
   right: 100%;
   top: 0;
-  background-color: red;
   z-index: 100;
+  background-color: whitesmoke;
+
+  >div {
+    >.add-button {
+      width: 60px;
+      height: 60px;
+      color: white;
+      border-radius: 50%;
+      border: none;
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
 }

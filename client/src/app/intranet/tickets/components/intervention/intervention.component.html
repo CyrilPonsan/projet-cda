@@ -1,4 +1,4 @@
-<section class="flex flex-col bg-white gap-y-2 p-8 shadow-lg" (click)="showActions = !showActions">
+<section class="flex flex-col bg-white gap-y-2 p-8 shadow-lg cursor-pointer" (click)="showActions = !showActions">
   <article class="flex justify-between border-b border-gray">
     <h4 class="text-lg font-bold">{{intervention.date | date}}</h4>
     <h4 class="font-bold">{{intervention.conseiller.prenom}} {{intervention.conseiller.nom}}</h4>

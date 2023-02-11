@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { TicketsService } from 'src/app/intranet/tickets/utils/services/tickets.service';
 import { slide } from '../../animations/animations';
 
 @Component({
@@ -8,5 +9,9 @@ import { slide } from '../../animations/animations';
   animations: [slide],
 })
 export class SidebarComponent {
-  @Input() isReacOpen!: boolean;
+  constructor(public tck: TicketsService) {}
+
+  closeHandler(): void {
+    this.tck.isSidebarOpen = false;
+  }
 }

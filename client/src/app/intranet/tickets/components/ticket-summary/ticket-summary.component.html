@@ -22,6 +22,10 @@
   </div>
   <div class="flex justify-end mt-4"
     *ngIf="!showForm && ticket.intervention !== null &&ticket.intervention![0].statut.code !== 5">
-    <app-button [label]="'Nouvelle intervention'" (click)="showFormHandler()"></app-button>
+    <div *ngIf="!(ticket.code > 2 && !profil.user.roles.includes('admin'))">
+      <app-button [label]="'Nouvelle intervention'" (click)="showFormHandler()"></app-button>
+    </div>
   </div>
 </article>
+
+<app-modal *ngIf="showModal" [modal]="modal" (modalRightClick)="showModal=false"></app-modal>

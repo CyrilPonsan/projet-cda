@@ -8,6 +8,7 @@ import { Statut, Ticket } from '../models/models';
 @Injectable()
 export class TicketsService {
   statuts!: Array<Statut>;
+  isSidebarOpen!: boolean;
 
   constructor(private http: HttpClient, private pag: PaginationService) {}
 

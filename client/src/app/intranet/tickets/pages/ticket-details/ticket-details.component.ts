@@ -19,10 +19,9 @@ export class TicketDetailsComponent implements OnInit {
     message: "Aucun ticket n'a été trouvé pour cette référence",
     rightBtn: 'Retour aux tickets',
   };
-  isReacOpen!: boolean;
 
   constructor(
-    private ticketsService: TicketsService,
+    public ticketsService: TicketsService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -37,9 +36,9 @@ export class TicketDetailsComponent implements OnInit {
           this.ticket = response;
           this.interventions = this.ticket.intervention;
           if (this.interventions?.length !== 0) {
-            this.openedDate = this.interventions![0].date;
+            this.openedDate =
+              this.interventions![this.interventions!.length - 1].date;
           }
-          this.isReacOpen = true;
         },
         //  si la ref n'existe pas dans la bdd: ouverture d'une modal pour prévenir l'utilisateur et revenir à la page d'accueil des tickets
         error: (err) => {
@@ -56,5 +55,13 @@ export class TicketDetailsComponent implements OnInit {
   modalRightBtnHandler(): void {
     this.showModal = false;
     this.router.navigateByUrl('/intranet/tickets');
+  }
+
+  showSidebarHandler(): void {
+    this.ticketsService.isSidebarOpen = true;
+  }
+
+  closeSidebarHandler(): void {
+    this.ticketsService.isSidebarOpen = false;
   }
 }

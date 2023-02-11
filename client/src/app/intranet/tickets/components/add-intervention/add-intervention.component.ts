@@ -56,6 +56,7 @@ export class AddInterventionComponent implements OnInit {
         return;
       }
       this.newInterv.emit(this.intervForm.value);
+      this.intervForm.reset();
     }
   }
 
