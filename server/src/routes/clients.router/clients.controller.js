@@ -1,7 +1,9 @@
+const getAllClients = require("../../models/client.model/getAllClients");
 const {
   getClientByContrat,
   getClientByNom,
 } = require("../../models/client.model/getClientDetails");
+const { getPagination } = require("../../services/queryService");
 const {
   regexGeneric,
   regexNumber,
@@ -10,8 +12,23 @@ const {
   noData,
 } = require("../../utils/data");
 
+async function httpGetAllClients(req, res) {
+  const { page, lmt } = req.query;
+  if (!page || !regexNumber.test(page) || !lmt || !regexNumber.test(lmt)) {
+    return res.status(400).json({ message: badQuery });
+  }
+  try {
+    const clients = await getAllClients(getPagination(+page, +lmt), +lmt);
+    if (!clients) {
+      return res.status(404).json({ message: "La liste de clients est vide." });
+    }
+    return res.status(200).json(clients);
+  } catch (err) {
+    return res.status(500).json({ message: serverIssue + err });
+  }
+}
+
 async function httpSearchClient(req, res) {
-  console.log("coucou");
   const type = req.query.type;
   const value = req.query.value;
   if (
@@ -43,4 +60,4 @@ async function httpSearchClient(req, res) {
   }
 }
 
-module.exports = { httpSearchClient };
+module.exports = { httpSearchClient, httpGetAllClients };
