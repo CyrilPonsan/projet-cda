@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { environment } from 'src/environments/environment';
 import { Statut, Ticket } from '../models/models';
@@ -46,14 +46,18 @@ export class TicketsService {
     );
   }
 
-  httpAddNewIntervention(item: any): void {
-    this.http
+  httpAddNewIntervention(item: any): Observable<string> {
+    return this.http
       .post<any>(`${environment.baseUrl}/tickets/new-intervention`, { item })
-      .subscribe({
-        next: (response) => this.successHandler(response),
-        error: (err) => this.errorHandler(err),
-        complete: () => {},
-      });
+      .pipe(
+        tap((response) => {
+          if (response) {
+            this.successHandler(response);
+          } else {
+            this.errorHandler();
+          }
+        })
+      );
   }
 
   private successHandler(response: any): void {
@@ -62,10 +66,8 @@ export class TicketsService {
     this.showModal = true;
   }
 
-  private errorHandler(error: any): void {
-    if (error instanceof HttpErrorResponse && error.status === 500) {
-      this.modal.modalError;
-      this.showModal = true;
-    }
+  private errorHandler(): void {
+    this.modal.modalError;
+    this.showModal = true;
   }
 }

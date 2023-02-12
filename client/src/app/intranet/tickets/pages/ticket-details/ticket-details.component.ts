@@ -58,7 +58,19 @@ export class TicketDetailsComponent implements OnInit {
     this.getTicketDetail(this.ticket.ref);
   }
 
+  addNewIntervention(item: any): void {
+    this.ticketsService.httpAddNewIntervention(item).subscribe({
+      next: (response) => {
+        this.getTicketDetail(this.ticket.ref);
+      },
+      error: (err) => () => {},
+      complete: () => {},
+    });
+  }
+
   private getTicketDetail(ref: string): void {
+    console.log('fetching...');
+
     this.ticketsService.httpGetTicketDetail(ref).subscribe({
       next: (response) => {
         this.ticket = response;

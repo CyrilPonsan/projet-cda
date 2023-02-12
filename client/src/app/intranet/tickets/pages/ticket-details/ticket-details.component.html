@@ -10,7 +10,7 @@
 </section>
 <section class="w-[100vw] flex justify-center items-start gap-y-2 p-2 gap-x-4 mt-4">
   <article class="w-[50vw] flex justify-center" *ngIf="ticket">
-    <app-ticket-summary [ticket]="ticket" [openedDate]="openedDate" (reload)="reloadHandler()"
+    <app-ticket-summary [ticket]="ticket" [openedDate]="openedDate" (submit)="addNewIntervention($event)"
       @fade></app-ticket-summary>
   </article>
   <article class="w-[50vw] flex justify-center">

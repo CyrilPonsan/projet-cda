@@ -51,8 +51,6 @@ export class AddInterventionComponent implements OnInit {
         this.intervForm.value.statut === '5' &&
         !this.profil.user.roles.includes('admin')
       ) {
-        console.log('dans le cul lulu !');
-
         return;
       }
       this.newInterv.emit(this.intervForm.value);

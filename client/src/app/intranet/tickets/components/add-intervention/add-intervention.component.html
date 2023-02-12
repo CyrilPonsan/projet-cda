@@ -1,4 +1,4 @@
-<form class="font-bold flex flex-col gap-y-4" [formGroup]="intervForm" (submit)="submitHandler()">
+<form class="font-bold flex flex-col gap-y-4" [formGroup]="intervForm">
   <article class="flex flex-col">
     <label for="titre">Titre</label>
     <input class="p-2 border border-gray w-full" type="text" name="titre" formControlName="titre">
@@ -37,6 +37,6 @@
   </article>
   <article class="flex gap-x-2 justify-end items-center">
     <app-button [orange]="true" [label]="'Annuler'" (click)="cancelHandler()"></app-button>
-    <app-button [type]="'submit'" [label]="'Enregistrer'"></app-button>
+    <app-button [label]="'Enregistrer'" (click)="submitHandler()"></app-button>
   </article>
 </form>
