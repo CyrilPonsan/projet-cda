@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { environment } from 'src/environments/environment';
-import { Statut, Ticket } from '../models/models';
+import { Statut, Ticket } from '../../../shared/models/models';
 
 @Injectable()
 export class TicketsService {
@@ -67,7 +67,7 @@ export class TicketsService {
   }
 
   private errorHandler(): void {
-    this.modal.modalError;
+    this.modal = this.modalError;
     this.showModal = true;
   }
 }

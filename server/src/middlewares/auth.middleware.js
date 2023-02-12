@@ -12,25 +12,22 @@ const privateKey = process.env.PRIVATE_KEY;
  * @param {*} next
  */
 const hasAccess = (req, res, next) => {
-  /*   try {
+  try {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, privateKey);
-    req.auth = { userId: decodedToken.userId, roles: decodedToken.roles };
+    console.log("coucou, je check le token: ", decodedToken);
     if (
       decodedToken.roles.includes("tech") ||
       decodedToken.roles.includes("admin")
     ) {
+      req.auth = { userId: decodedToken.id, roles: decodedToken.roles };
       next();
     } else {
-      req.auth = { userId: 1, roles: ["tech"] };
-      next();
-      // return res.status(401).json({ message: noAccess });
+      return res.status(403).json({ message: noAccess });
     }
   } catch (error) {
-    res.status(401).json({ noAccess });
-  } */
-  req.auth = { userId: 1, roles: ["tech"] };
-  next();
+    res.status(403).json({ noAccess });
+  }
 };
 
 module.exports = { hasAccess };

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Intervention } from '../../utils/models/models';
+import { Intervention } from '../../../shared/models/models';
 
 @Component({
   selector: 'app-intervention',

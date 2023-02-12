@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Materiel } from 'src/app/intranet/tickets/utils/models/models';
+import { Materiel } from 'src/app/intranet/shared/models/models';
 
 @Component({
   selector: 'app-materiel',

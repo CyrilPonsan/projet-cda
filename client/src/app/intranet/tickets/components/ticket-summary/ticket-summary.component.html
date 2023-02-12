@@ -21,9 +21,7 @@
     <app-add-intervention (newInterv)="onSubmitHandler($event)" (cancel)="showForm = false"></app-add-intervention>
   </div>
   <div class="flex justify-end mt-4"
-    *ngIf="!showForm && ticket.intervention !== null &&ticket.intervention![0].statut.code !== 5">
-    <div *ngIf="!(ticket.code > 2 && !profil.user.roles.includes('admin'))">
-      <app-button [label]="'Nouvelle intervention'" (click)="showFormHandler()"></app-button>
-    </div>
+    *ngIf="!showForm && ticket.intervention !== null && (ticket.intervention![0].statut.code > 2 && profil.user.roles.includes('admin'))">
+    <app-button [label]="'Nouvelle intervention'" (click)="showFormHandler()"></app-button>
   </div>
 </article>

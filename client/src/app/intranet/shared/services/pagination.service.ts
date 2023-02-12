@@ -8,17 +8,6 @@ export class PaginationService {
   total!: number;
   next!: string;
   previous!: string;
-  constructor() {}
-
-  /**
-   * initialise les propriétés servant a appliquer le style inline
-   * @param value boolean : résultats des méthodes setPrevious() et
-   * setNext()
-   * @returns string : style à appliquer aux boutons du système de pagination
-   */
-  private testButtons(value: boolean): string {
-    return value ? 'visible' : 'hidden';
-  }
 
   /**
    *
@@ -58,5 +47,15 @@ export class PaginationService {
   setButtonsStyle(size: number): void {
     this.previous = this.setPrevious();
     this.next = this.setNext();
+  }
+
+  /**
+   * initialise les propriétés servant a appliquer le style inline
+   * @param value boolean : résultats des méthodes setPrevious() et
+   * setNext()
+   * @returns string : style à appliquer aux boutons du système de pagination
+   */
+  testButtons(value: boolean): string {
+    return value ? 'visible' : 'hidden';
   }
 }

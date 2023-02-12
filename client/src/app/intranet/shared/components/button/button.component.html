@@ -1,10 +1,10 @@
 <button *ngIf="!orange" [type]="type || 'button'"
-  class="{{setFullSize}} min-w-[75px] md:min-w-[100px] px-1 py-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 hover:bg-white hover:text-black hover:border-black hover:border focus:shadow-outline text-sm bg-black text-white font-bold">{{label
+  class="{{setFullSize}} min-w-[75px] shadow-lg md:min-w-[100px] px-1 py-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5 hover:bg-white hover:text-black hover:border-black hover:border text-sm bg-black text-white font-bold">{{label
   | titlecase}}
 </button>
 
-<button *ngIf="orange" [type]=" type || 'button'" class=" {{setFullSize}} min-w-[75px] md:min-w-[100px] px-1 py-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5
-  hover:bg-white hover:text-orange hover:border-orange hover:border focus:shadow-outline text-sm bg-orange text-white
+<button *ngIf="orange" [type]=" type || 'button'" class=" {{setFullSize}} shadow-lg min-w-[75px] md:min-w-[100px] px-1 py-2 md:p-4 active:translate-x-0.5 active:translate-y-0.5
+  hover:bg-white hover:text-orange hover:border-orange hover:border text-sm bg-orange text-white
   font-bold">{{label
   | titlecase}}
 </button>

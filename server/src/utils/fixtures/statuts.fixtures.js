@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const { Statut } = require("../../services/sequelize");
 
-const labels = ["ouvert", "traitement", "niveau 2", "validé", "clôturé"];
+const labels = ["ouvert", "traitement", "validé", "niveau 2", "clôturé"];
 
 const statuts = [];
 

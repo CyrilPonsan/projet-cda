@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fade } from 'src/app/intranet/shared/animations/animations';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
-import { Ticket } from '../../utils/models/models';
+import { Ticket } from '../../../shared/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
 
 @Component({

@@ -31,7 +31,7 @@ async function httpLogin(req, res) {
     if (user.roles.includes("tech") || user.roles.includes("admin")) {
       return res.status(200).json({
         user,
-        accessTolen: _getToken(user, accessTimeLife),
+        accessToken: _getToken(user, accessTimeLife),
         refreshToken: _getToken(user, refreshTimeLife),
       });
     } else {

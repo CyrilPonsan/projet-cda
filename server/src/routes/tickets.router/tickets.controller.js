@@ -82,6 +82,7 @@ async function httpGetTicketStatutsList(req, res) {
 }
 
 async function httpCreateIntervention(req, res) {
+  console.log(req.body);
   const userId = req.auth.userId;
   const { titre, ticket_id, statut, lieuIntervention, description, reponse } =
     req.body.item;
@@ -105,7 +106,7 @@ async function httpCreateIntervention(req, res) {
 
   if (+statut === 5 && !req.auth.roles.includes("admin")) {
     return res.status(418).json({
-      message: "Votre rôle ne vous permet d'effectuer cette opération.",
+      error: "Votre rôle ne vous permet pas d'effectuer cette opération.",
     });
   }
 

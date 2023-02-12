@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { tick } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fade } from 'src/app/intranet/shared/animations/animations';
-import { Intervention, Ticket } from '../../utils/models/models';
+import { Intervention, Ticket } from '../../../shared/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
 
 @Component({
@@ -63,14 +63,18 @@ export class TicketDetailsComponent implements OnInit {
       next: (response) => {
         this.getTicketDetail(this.ticket.ref);
       },
-      error: (err) => () => {},
+      error: (err) => {
+        if (err instanceof HttpErrorResponse && err.status === 418) {
+          this.ticketsService.modalError.message = err.error.error;
+          this.ticketsService.modal = this.ticketsService.modalError;
+          this.ticketsService.showModal = true;
+        }
+      },
       complete: () => {},
     });
   }
 
   private getTicketDetail(ref: string): void {
-    console.log('fetching...');
-
     this.ticketsService.httpGetTicketDetail(ref).subscribe({
       next: (response) => {
         this.ticket = response;

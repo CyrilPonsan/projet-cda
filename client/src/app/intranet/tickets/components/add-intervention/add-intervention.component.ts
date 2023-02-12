@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 import { RegexService } from 'src/app/extranet/utils/services/regex.service';
-import { Statut } from '../../utils/models/models';
+import { Statut } from '../../../shared/models/models';
 import { TicketsService } from '../../utils/services/tickets.service';
 
 @Component({
@@ -47,12 +47,8 @@ export class AddInterventionComponent implements OnInit {
 
   submitHandler(): void {
     if (this.intervForm.valid) {
-      if (
-        this.intervForm.value.statut === '5' &&
-        !this.profil.user.roles.includes('admin')
-      ) {
-        return;
-      }
+      console.log(this.intervForm.value);
+
       this.newInterv.emit(this.intervForm.value);
       this.intervForm.reset();
     }
