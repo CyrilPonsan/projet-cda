@@ -22,8 +22,8 @@ export class ConnexionService {
   httpConnexion(username: string, password: string): void {
     this.http
       .post<any>(`${environment.baseUrl}/auth/`, {
-        username: username,
-        password: password,
+        username,
+        password,
       })
       .subscribe({
         next: (response) => {
