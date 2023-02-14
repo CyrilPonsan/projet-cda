@@ -1,1 +1,45 @@
-<p>client-home works!</p>
+<div class="flex flex-col gap-y-2">
+  <section class="mt-8 flex items-center justify-between">
+    <article>
+      <h1 class="font-bold text-xl">Clients</h1>
+    </article>
+    <article class="w-fit-content flex gap-x-2 items-center">
+      <div>
+        <select class="shadow p-2 bg-white md:p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="type" (change)="searchTypeChangeHandler($event)">
+          <option value="nom">par nom</option>
+          <option value="adresse">par adresse</option>
+        </select>
+      </div><app-search (submitEvent)="searchSubmitHandler($event)"></app-search>
+    </article>
+  </section>
+  <section>
+    <article>
+      <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="clientList.length > 0">
+        <thead>
+          <tr class="bg-black text-orange">
+            <th class="p-2 md:px-4 text-left">Nom</th>
+            <th class="p-2 md:px-4 text-left">Contrat n°</th>
+            <th class="p-2 md:px-4 text-left">Date</th>
+            <th class="p-2 md:px-4 text-left">Ville</th>
+            <th class="p-2 md:px-4 text-left">Téléphone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-black hover:text-white"
+            *ngFor="let item of clientList">
+            <td class="p-2 font-bold">{{item.nom}}</td>
+            <td class="p-2">{{item.contrat}}</td>
+            <td class="p-2">{{item.createdAt | date}}</td>
+            <td class="p-2">{{item.ville}}</td>
+            <td class="p-2">{{item.telephone}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+  <section class="flex justify-end">
+    <app-pagination [label]="'clients'" (pageChanged)="pageChangedHandler()"
+      (max)="setLimitHandler($event)"></app-pagination>
+  </section>
+</div>

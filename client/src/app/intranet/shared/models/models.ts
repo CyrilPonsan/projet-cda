@@ -19,6 +19,7 @@ export interface Client {
   adresse: string;
   codePostal: string;
   ville: string;
+  telephone: string;
   createdAt: string;
   updatedAt: string;
   raisonSociale: RaisonSociale;

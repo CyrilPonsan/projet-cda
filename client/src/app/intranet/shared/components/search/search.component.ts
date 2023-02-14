@@ -9,20 +9,13 @@ import { RegexService } from 'src/app/extranet/utils/services/regex.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+  @Output() submitEvent = new EventEmitter<any>();
   searchForm!: FormGroup;
   searchTerm$ = new Subject<string>();
-  @Output() submitEvent = new EventEmitter<any>();
 
-  constructor(private regex: RegexService, private formBuilder: FormBuilder) {}
+  constructor(private regex: RegexService) {}
 
   ngOnInit(): void {
-    /*
-    this.searchForm = this.formBuilder.group({
-      valueToSearch: [
-        null,
-        [Validators.required, Validators.pattern(this.regex.regexNumber)],
-      ],
-    }); */
     this.searchTerm$
       .pipe(
         debounceTime(1000),
@@ -36,6 +29,8 @@ export class SearchComponent implements OnInit {
   }
 
   submitSearch(term: string): void {
-    this.submitEvent.emit(term);
+    if (this.regex.regexGeneric.test(term)) {
+      this.submitEvent.emit(term);
+    }
   }
 }

@@ -26,11 +26,13 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (
-      (this.profil.user !== null && this.profil.user.roles.includes('admin')) ||
-      this.profil.user.roles.includes('tech')
-    ) {
-      return true;
+    if (this.profil.user !== undefined) {
+      if (
+        this.profil.user.roles.includes('admin') ||
+        this.profil.user.roles.includes('tech')
+      ) {
+        return true;
+      }
     }
     this.conn.logout();
     return false;
@@ -44,11 +46,13 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (
-      (this.profil.user !== null && this.profil.user.roles.includes('admin')) ||
-      this.profil.user.roles.includes('tech')
-    ) {
-      return true;
+    if (this.profil.user !== undefined) {
+      if (
+        this.profil.user.roles.includes('admin') ||
+        this.profil.user.roles.includes('tech')
+      ) {
+        return true;
+      }
     }
     this.conn.logout();
     return false;
