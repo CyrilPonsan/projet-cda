@@ -31,7 +31,7 @@ export class ClientHomeComponent implements OnInit {
     this.getAllClients();
   }
 
-  searchTypeChangeHandler(value: string): void {
+  searchTypeChangeHandler(value: any): void {
     this.searchType = value;
   }
 

@@ -1,4 +1,7 @@
-const getAllClients = require("../../models/client.model/getAllClients");
+const {
+  getAllClients,
+  getTotalClients,
+} = require("../../models/client.model/getAllClients");
 const {
   getClientByContrat,
   getClientByNom,
@@ -18,11 +21,13 @@ async function httpGetAllClients(req, res) {
     return res.status(400).json({ message: badQuery });
   }
   try {
+    console.log(req.query);
     const clients = await getAllClients(getPagination(+page, +lmt), +lmt);
+    const total = await getTotalClients();
     if (!clients) {
       return res.status(404).json({ message: "La liste de clients est vide." });
     }
-    return res.status(200).json(clients);
+    return res.status(200).json({ data: clients, total: total });
   } catch (err) {
     return res.status(500).json({ message: serverIssue + err });
   }

@@ -6,10 +6,10 @@ async function getAllClients(offset, limit) {
       {
         model: RaisonSociale,
         as: "raisonSociale",
-        attributes: ["id", "raisonSociale"],
+        //attributes: ["id", "raisonSociale"],
       },
     ],
-    attributes: ["nom"],
+    //attributes: ["nom"],
     order: [
       [{ model: RaisonSociale, as: "raisonSociale" }, "raisonSociale", "ASC"],
       ["nom", "ASC"],
@@ -18,9 +18,11 @@ async function getAllClients(offset, limit) {
     limit: limit,
     subQuery: false,
   });
+
   if (clients.length === 0) {
     return false;
   }
+
   return clients;
 }
 

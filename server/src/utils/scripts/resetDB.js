@@ -1,5 +1,5 @@
 require("dotenv").config();
 
-const { resetDB, Statut } = require("../../services/sequelize");
+const { resetDB } = require("../../services/sequelize");
 
 resetDB();
