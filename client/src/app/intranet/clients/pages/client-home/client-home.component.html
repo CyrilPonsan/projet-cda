@@ -7,15 +7,15 @@
       <div>
         <select class="shadow p-2 bg-white md:p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="type" (change)="searchTypeChangeHandler($event)">
-          <option value="nom">par nom</option>
-          <option value="adresse">par adresse</option>
+          <option value="contrat">contrat</option>
+          <option value="nom">nom</option>
         </select>
       </div><app-search (submitEvent)="searchSubmitHandler($event)"></app-search>
     </article>
   </section>
   <section>
     <article>
-      <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="clientList.length > 0">
+      <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="clientList && clientList.length > 0">
         <thead>
           <tr class="bg-black text-orange">
             <th class="p-2 md:px-4 text-left">Nom</th>

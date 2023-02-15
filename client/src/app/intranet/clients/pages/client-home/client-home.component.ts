@@ -10,7 +10,7 @@ import { ClientsService } from '../../utils/services/clients.service';
 })
 export class ClientHomeComponent implements OnInit {
   clientList!: Array<Client>;
-  searchType = 'nom';
+  searchType = 'contrat';
 
   constructor(
     private clients: ClientsService,
@@ -32,10 +32,12 @@ export class ClientHomeComponent implements OnInit {
   }
 
   searchTypeChangeHandler(value: any): void {
-    this.searchType = value;
+    this.searchType = value.target.value;
   }
 
-  searchSubmitHandler(value: string): void {}
+  searchSubmitHandler(value: string): void {
+    this.clients.httpSearchClients(this.searchType, value);
+  }
 
   private getAllClients(): void {
     this.clients.httpGelAllClients().subscribe({

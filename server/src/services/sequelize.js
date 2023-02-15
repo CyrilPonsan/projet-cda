@@ -80,6 +80,9 @@ Intervention.belongsTo(Ticket, { foreignKey: "ticket_id", as: "ticket" });
 Materiel.hasMany(Ticket, { as: "ticket", foreignKey: "materiel_id" });
 Ticket.belongsTo(Materiel, { foreignKey: "materiel_id", as: "materiel" });
 
+Client.hasMany(Ticket, { as: "ticket", foreign_key: "client_id" });
+Ticket.belongsTo(Client, { foreignKey: "client_id", as: "client" });
+
 /**
  * relation ManyToOne entre client et materiel
  * un client peut avoir plusieurs materiel

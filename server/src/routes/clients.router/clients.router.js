@@ -5,6 +5,6 @@ const { httpSearchClient, httpGetAllClients } = require("./clients.controller");
 const clientsRouter = express.Router();
 
 clientsRouter.get("/", httpGetAllClients);
-clientsRouter.get("/search", hasAccess, httpSearchClient);
+clientsRouter.get("/search", httpSearchClient);
 
 module.exports = clientsRouter;

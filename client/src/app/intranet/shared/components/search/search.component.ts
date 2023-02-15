@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, map, Subject } from 'rxjs';
 import { RegexService } from 'src/app/extranet/utils/services/regex.service';
 
@@ -10,8 +9,8 @@ import { RegexService } from 'src/app/extranet/utils/services/regex.service';
 })
 export class SearchComponent implements OnInit {
   @Output() submitEvent = new EventEmitter<any>();
-  searchForm!: FormGroup;
   searchTerm$ = new Subject<string>();
+  searchIsValid!: boolean;
 
   constructor(private regex: RegexService) {}
 
@@ -29,7 +28,8 @@ export class SearchComponent implements OnInit {
   }
 
   submitSearch(term: string): void {
-    if (this.regex.regexGeneric.test(term)) {
+    this.searchIsValid = this.regex.regexGeneric.test(term);
+    if (this.searchIsValid) {
       this.submitEvent.emit(term);
     }
   }

@@ -1,4 +1,4 @@
-const { Ticket, Intervention } = require("../../services/sequelize");
+const { Ticket, Intervention, Materiel } = require("../../services/sequelize");
 const { _setRandomNumber } = require("../data");
 
 require("dotenv").config;
@@ -7,14 +7,17 @@ let date = new Date("2021, 01, 01");
 let day = 0;
 
 async function createTickets() {
+  const materiels = await Materiel.findAll();
   let ref = 5000;
   const tickets = [];
   for (let i = 1; i <= 25; i++) {
+    const materiel_id = _setRandomNumber(1, 1500);
     tickets.push({
       ref: ref,
-      materiel_id: _setRandomNumber(1, 1500),
+      materiel_id: materiel_id,
       titre: "en panne",
       resume: "lorem lorem",
+      client_id: materiels.find((m) => m.id === materiel_id).client_id,
     });
     ref++;
   }

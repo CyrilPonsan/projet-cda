@@ -9,6 +9,8 @@ import { BtnPagesComponent } from './components/btn-pages/btn-pages.component';
 import { SearchComponent } from './components/search/search.component';
 import { ClientComponent } from './components/client/client.component';
 import { MaterielComponent } from './components/materiel/materiel.component';
+import { PwdVisibilityDirective } from './directives/pwd-visibility.directive';
+import { InputIsValidDirective } from './directives/input-is-valid.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { MaterielComponent } from './components/materiel/materiel.component';
     SearchComponent,
     ClientComponent,
     MaterielComponent,
+    PwdVisibilityDirective,
+    InputIsValidDirective,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [

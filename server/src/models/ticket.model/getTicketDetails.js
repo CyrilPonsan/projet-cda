@@ -60,6 +60,7 @@ async function getTicketDetails(ticketRef) {
               "adresse",
               "codePostal",
               "ville",
+              "telephone",
             ],
           },
           {

@@ -36,6 +36,7 @@ async function httpGetAllClients(req, res) {
 async function httpSearchClient(req, res) {
   const type = req.query.type;
   const value = req.query.value;
+  console.log(type, value);
   if (
     !type ||
     !regexGeneric.test(type) ||
@@ -54,6 +55,7 @@ async function httpSearchClient(req, res) {
         clients = await getClientByNom(value);
         break;
       default:
+        return res.status(400).json({ message: badQuery });
         break;
     }
     if (!clients) {
