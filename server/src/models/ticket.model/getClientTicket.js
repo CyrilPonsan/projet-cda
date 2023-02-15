@@ -11,7 +11,7 @@ async function getClientTicket(clientId) {
       {
         model: Materiel,
         as: "materiel",
-        where: { client_id: 2 },
+        where: { client_id: 7 },
       },
     ],
   });

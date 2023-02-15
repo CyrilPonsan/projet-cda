@@ -80,7 +80,7 @@ Intervention.belongsTo(Ticket, { foreignKey: "ticket_id", as: "ticket" });
 Materiel.hasMany(Ticket, { as: "ticket", foreignKey: "materiel_id" });
 Ticket.belongsTo(Materiel, { foreignKey: "materiel_id", as: "materiel" });
 
-Client.hasMany(Ticket, { as: "ticket", foreign_key: "client_id" });
+Client.hasMany(Ticket, { as: "ticket", foreignKey: "client_id" });
 Ticket.belongsTo(Client, { foreignKey: "client_id", as: "client" });
 
 /**
