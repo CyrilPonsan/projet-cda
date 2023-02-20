@@ -21,7 +21,7 @@ function conseillerModel(sequelize, DataTypes) {
       type: DataTypes.JSON,
       allowNull: false,
     },
-  });
+  },);
 }
 
 module.exports = conseillerModel;

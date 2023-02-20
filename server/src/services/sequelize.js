@@ -134,7 +134,7 @@ Materiel.belongsTo(Marque, { as: "marque", foreignKey: "marque_id" });
 Modele.hasMany(Materiel, { as: "materiel", foreignKey: "modele_id" });
 Materiel.belongsTo(Modele, { as: "modele", foreignKey: "modele_id" });
 
-//  initialisation à la bdd
+//  initialisation de la bdd
 
 function initDB() {
   return sequelize
