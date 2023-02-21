@@ -1,13 +1,36 @@
 <main class="min-h-[94vh] flex flex-col justify-center gap-y-2" @fade>
+  <section class="py-5 flex justify-between items-center">
+    <article class="flex flex-col gap-2">
+      <div class="font-bold text-3xl">
+        <h2>Tickets</h2>
+      </div>
+      <div>
+        <p>Tous les Tickets</p> 
+      </div>
+    </article>
+    <article>
+      <div>
+        <button class=" flex bg-[#6941C6] text-white px-4 py-2 rounded-md"> <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+        </svg>
+        </span> Ajouter un ticket</button>
+      </div>
+    </article>
+  </section>
+  <section  aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
   <section class="p-8 shadow-lg">
     <article class="flex justify-between items-center mb-4">
-      <h1 class="text-xl font-bold">Gestion des tickets</h1>
+      <h1 class="text-xl font-semibold">Gestion des tickets</h1>
       <app-search (submitEvent)="searchSubmitHandler($event)"></app-search>
     </article>
     <article>
       <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="tck.statuts">
         <thead>
-          <tr class="bg-black text-orange">
+          <tr class="bg-[#6941C6] text-white">
             <th class="p-2 md:px-4 text-left">Date</th>
             <th class="p-2 md:px-4 text-left">Ref</th>
             <th class="p-2 md:px-4 text-left">Statut</th>
@@ -16,9 +39,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-black hover:text-white"
+          <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-[#6941c6be] hover:text-white"
             (click)="searchSubmitHandler(item.ref)" *ngFor="let item of tickets">
-            <td class="p-2 font-bold">{{item.date | date}}</td>
+            <td class="p-2 font-semibold">{{item.date | date}}</td>
             <td>{{item.ref}}</td>
             <td>{{tck.statuts[item.code -1].label}}</td>
             <td>{{item.materiel.client.nom}}</td>
@@ -28,7 +51,7 @@
       </table>
     </article>
   </section>
-  <section class="flex justify-end">
+  <section class="flex justify-end py-5">
     <app-pagination [label]="'Tickets'" (pageChanged)="pageChangedHandler()"
       (max)="setLimitHandler($event)"></app-pagination>
   </section>

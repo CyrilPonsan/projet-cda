@@ -1,38 +1,72 @@
 <div class="flex flex-col gap-y-2">
+  <!-- titre de la page et bouton d'ajout -->
   <section class="py-5 flex justify-between items-center">
     <article class="flex flex-col gap-2">
       <div class="font-bold text-3xl">
         <h2>Clients</h2>
       </div>
       <div>
-        <p>Tous les clients</p> 
+        <p>Tous les clients</p>
       </div>
     </article>
     <article>
       <div>
-        <button class="bg-black text-white px-4 py-2 rounded-md">Ajouter un client</button>
+        <button class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+          <span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"
+              />
+            </svg>
+          </span>
+          Ajouter un client
+        </button>
       </div>
     </article>
   </section>
-  <section class="mt-8 flex items-center justify-between">
+  <!-- separator -->
+  <section  aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
+  <!-- search bar -->
+  <section class="mt-8 flex items-center justify-between ">
     <article>
-      <h1 class="font-bold text-xl">Clients</h1>
+      <h2 class="font-semibold text-xl">Clients</h2>
     </article>
     <article class="w-fit-content flex gap-x-2 items-center">
       <div>
-        <select class="shadow p-2 bg-white md:p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="type" (change)="searchTypeChangeHandler($event)">
-          <option value="contrat">contrat</option>
-          <option value="nom">nom</option>
+        <select 
+          id="type" 
+          (change)="searchTypeChangeHandler($event)"
+
+          >
+          <option value="nom">Nom</option>
+          <option value="contrat">Contrat</option>
         </select>
-      </div><app-search (submitEvent)="searchSubmitHandler($event)"></app-search>
+      </div>
+      <app-search (submitEvent)="searchSubmitHandler($event)"></app-search>
     </article>
   </section>
+  <!-- Tableau clients -->
   <section>
     <article>
-      <table class="min-w-[65vw] table-auto text-xs md:text-lg" *ngIf="clientList && clientList.length > 0">
+      <table
+        class="min-w-[65vw] table-auto text-xs md:text-lg  shadow-md "
+        *ngIf="clientList && clientList.length > 0"
+      >
         <thead>
-          <tr class="bg-black text-orange">
+          <tr class="bg-[#6941C6] text-white">
             <th class="p-2 md:px-4 text-left">Nom</th>
             <th class="p-2 md:px-4 text-left">Contrat n°</th>
             <th class="p-2 md:px-4 text-left">Date</th>
@@ -41,20 +75,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-black hover:text-white"
-            *ngFor="let item of clientList">
-            <td class="p-2 font-bold">{{item.nom}}</td>
-            <td class="p-2">{{item.contrat}}</td>
-            <td class="p-2">{{item.createdAt | date}}</td>
-            <td class="p-2">{{item.ville}}</td>
-            <td class="p-2">{{item.telephone}}</td>
+          <tr
+            class="even:bg-stone-300 my-auto cursor-pointer hover:bg-[#6941c6be] hover:text-white"
+            *ngFor="let item of clientList"
+          >
+            <td class="p-2 font-semibold">{{ item.nom }}</td>
+            <td class="p-2">{{ item.contrat }}</td>
+            <td class="p-2">{{ item.createdAt | date }}</td>
+            <td class="p-2">{{ item.ville }}</td>
+            <td class="p-2">{{ item.telephone }}</td>
           </tr>
         </tbody>
       </table>
     </article>
   </section>
   <section class="flex justify-end">
-    <app-pagination [label]="'clients'" (pageChanged)="pageChangedHandler()"
-      (max)="setLimitHandler($event)"></app-pagination>
+    <app-pagination
+      [label]="'clients'"
+      (pageChanged)="pageChangedHandler()"
+      (max)="setLimitHandler($event)"
+    ></app-pagination>
   </section>
 </div>
