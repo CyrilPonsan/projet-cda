@@ -1,7 +1,7 @@
 <main class="flex flex-col items-center min-h-[100vh]">
-  <header class="flex justify-center items-center font-bold bg-white">
-    <nav>
-      <ul>
+  <header class=" flex justify-center items-center font-semibold  w-screen h-16">
+    <nav class="flex justify-between w-5/6  ">
+      <ul class="flex justify-center gap-8  w-3/6">
         <li>
           <a routerLink="clients" routerLinkActive="active">Clients</a>
         </li>
@@ -14,10 +14,10 @@
         <li>
           <a routerLink="profil" routerLinkActive="active">Profil</a>
         </li>
-        <li>
-          <p class="cursor-pointer" (click)="conn.logout()">Déconnexion</p>
-        </li>
       </ul>
+      <div>
+        <p class="cursor-pointer" (click)="conn.logout()">Déconnexion</p>
+      </div>
     </nav>
   </header>
   <section>

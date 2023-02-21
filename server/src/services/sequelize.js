@@ -25,7 +25,7 @@ if (process.env.NODE8ENV === "development") {
       host: process.env.DB_HOST,
       dialect: "mariadb",
       dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock",
+        socketPath: {host : "localhost", port : 3308},
       },
       logging: false,
     }
@@ -34,6 +34,7 @@ if (process.env.NODE8ENV === "development") {
   console.log("prod environment");
   sequelize = new Sequelize(
     process.env.DB_NAME,
+
     process.env.DB_USERNAME,
     process.env.DB_PASSWORD,
     {
@@ -41,7 +42,7 @@ if (process.env.NODE8ENV === "development") {
       host: process.env.DB_HOST,
       dialect: "mariadb",
       dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock",
+        socketPath: {host :"localhost", port : 3308 },
       },
       logging: false,
     }

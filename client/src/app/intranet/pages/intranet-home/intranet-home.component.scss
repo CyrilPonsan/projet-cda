@@ -1,11 +1,32 @@
 header {
-  width: 100vw;
-  height: 6vh;
+  background-color: #6941C6;
 
   >nav {
     >ul {
-      display: flex;
-      column-gap: 1vw;
+      >li:hover {
+        background-color: rgba(255, 255, 255, 0.13);
+        border: solid 1px #7554c2;
+        border-radius: 7px;
+      }
+      >li {
+        width: 90px;
+        text-align: center;
+
+        >a {
+          color: #fff;
+        }
+       
+      }
+    }
+    >div {
+      >p {
+        color: #fff;
+      }
+      >p:hover {
+        color: #fff;
+      }
     }
   }
 }
+
+
