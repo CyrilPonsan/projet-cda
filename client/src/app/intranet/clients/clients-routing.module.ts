@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientDetailComponent } from './components/client-detail/client-detail.component';
 import { ClientRechercheComponent } from './components/client-recherche/client-recherche.component';
 import { ClientHomeComponent } from './pages/client-home/client-home.component';
+import { NewClientComponent } from './pages/new-client/new-client.component';
 
 const routes: Routes = [
   { path: '', component: ClientHomeComponent },
   { path: 'detail/:contrat', component: ClientDetailComponent },
   { path: 'recherche', component: ClientRechercheComponent },
+  { path: 'ajouter', component: NewClientComponent },
 ];
 
 @NgModule({
