@@ -37,4 +37,23 @@ export class ClientsService {
         },
       });
   }
+
+  httpGetRaisonsSociales(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/clients/raisons-sociales`
+    );
+  }
+
+  httpAddRaisonSociale(raisonSociale: string): Observable<any> {
+    return this.http.post<any>(
+      `${environment.baseUrl}/clients/raisons-sociales`,
+      { raisonSociale }
+    );
+  }
+
+  httpCreateClient(client: Client): Observable<any> {
+    console.log('client', client);
+
+    return this.http.post<any>(`${environment.baseUrl}/clients`, { client });
+  }
 }
