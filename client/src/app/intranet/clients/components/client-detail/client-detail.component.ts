@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Client } from 'src/app/intranet/shared/models/models';
 import { ClientsService } from '../../utils/services/clients.service';
 
 @Component({
@@ -7,9 +9,18 @@ import { ClientsService } from '../../utils/services/clients.service';
   styleUrls: ['./client-detail.component.scss'],
 })
 export class ClientDetailComponent implements OnInit {
-  client = this.clientsService.client[0];
+  client!: Client;
 
-  constructor(private clientsService: ClientsService) {}
+  constructor(private clientsService: ClientsService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (
+      this.clientsService.client[0] === null ||
+      this.clientsService.client[0] === undefined
+    ) {
+      this.router.navigateByUrl('/intranet/clients');
+    } else {
+      this.client = this.clientsService.client[0];
+    }
+  }
 }
