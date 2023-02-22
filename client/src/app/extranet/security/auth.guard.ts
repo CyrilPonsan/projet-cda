@@ -33,6 +33,9 @@ export class AuthGuard implements CanActivate {
       ) {
         return true;
       }
+    } else if (sessionStorage.getItem('accessToken')) {
+      this.conn.httpHandshake();
+      return true;
     }
     this.conn.logout();
     return false;

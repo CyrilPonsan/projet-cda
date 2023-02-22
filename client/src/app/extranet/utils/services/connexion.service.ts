@@ -10,9 +10,6 @@ import { ProfilService } from './profil.service';
   providedIn: 'root',
 })
 export class ConnexionService {
-  accessToken!: string;
-  refreshToken!: string;
-
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -28,8 +25,7 @@ export class ConnexionService {
       .subscribe({
         next: (response) => {
           this.profil.user = response.user;
-          this.accessToken = response.accessToken;
-          this.refreshToken = response.refreshToken;
+          this.saveTokens(response.accessToken, response.refreshToken);
         },
         error: (err) => console.log(err),
         complete: () => this.router.navigateByUrl('intranet'),
@@ -37,21 +33,33 @@ export class ConnexionService {
   }
 
   httpGenerateTokens(): Observable<any> {
-    const refreshToken = this.refreshToken;
     return this.http.post<any>(`${environment.baseUrl}/auth/refresh-tokens`, {
-      refreshToken,
+      refreshToken: sessionStorage.getItem('refreshToken'),
     });
   }
 
   logout(): void {
     this.profil.user = <Conseiller>{};
-    this.accessToken = '';
-    this.refreshToken = '';
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
     this.router.navigateByUrl('/');
   }
 
   saveTokens(accessToken: string, refreshToken: string): void {
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
+    sessionStorage.setItem('accessToken', accessToken);
+    sessionStorage.setItem('refreshToken', refreshToken);
+  }
+
+  httpHandshake(): void {
+    this.http.get<any>(`${environment.baseUrl}/auth/handshake`).subscribe({
+      next: (response) => {
+        this.profil.user = response.user;
+      },
+      error: (err) => {
+        console.log(err);
+        this.logout();
+      },
+      complete: () => [],
+    });
   }
 }
