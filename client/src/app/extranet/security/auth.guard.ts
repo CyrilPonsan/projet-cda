@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
       ) {
         return true;
       }
-    } else if (sessionStorage.getItem('accessToken')) {
+    } else if (sessionStorage.getItem('accessToken') !== null) {
       this.conn.httpHandshake();
       return true;
     }
@@ -56,6 +56,9 @@ export class AuthGuard implements CanActivate {
       ) {
         return true;
       }
+    } else if (sessionStorage.getItem('accessToken') !== null) {
+      this.conn.httpHandshake();
+      return true;
     }
     this.conn.logout();
     return false;
