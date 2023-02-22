@@ -15,8 +15,8 @@ export class ClientDetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (
-      this.clientsService.client[0] === null ||
-      this.clientsService.client[0] === undefined
+      this.clientsService.client === undefined ||
+      this.clientsService.client.length === 0
     ) {
       this.router.navigateByUrl('/intranet/clients');
     } else {
