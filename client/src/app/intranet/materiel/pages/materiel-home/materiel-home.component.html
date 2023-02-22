@@ -1,1 +1,75 @@
-<p>materiel-home works!</p>
+<main>
+
+
+ <!-- titre de la page et bouton d'ajout -->
+ <section class="py-5 flex justify-between items-center">
+    <article class="flex flex-col gap-2">
+      <div class="font-bold text-3xl">
+        <h2>Parc informatique</h2>
+      </div>
+      <div>
+        <p>Selectionnez un client et vérifiez ou enrichisez son parc informatique </p>
+      </div>
+    </article>
+    <article>
+      <div>
+        <button routerLink="/intranet/clients/ajouter" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+          <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+            </svg>
+          </span>
+          Ajouter un client
+        </button>
+      </div>
+    </article>
+  </section>
+  <!-- separator -->
+  <section aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
+<!-- Selector Client -->
+<form  class="example-form py-5 ">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Choisisez un Client</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedClient = $event.option.value">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+   <!-- separator -->
+   <section aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
+
+  <ng-container *ngIf="selectedClient">
+    <h2>{{ selectedClient }}</h2>
+    <button routerLink="/intranet/materiels/ajouter" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+        <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+          </svg>
+        </span> Ajouter un matériel
+    </button>
+  </ng-container>
+  
+  <ng-container *ngIf="!selectedClient">
+    <p> Aucun client sélectionné</p>
+  </ng-container>
+  
+
+
+</main>
