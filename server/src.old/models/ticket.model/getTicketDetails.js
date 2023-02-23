@@ -4,23 +4,38 @@ const {
   Client,
   Intervention,
   Statut,
-  sequelize,
+  Conseiller,
   RaisonSociale,
   TypeMateriel,
-  Marque,
   Modele,
+  Marque,
 } = require("../../services/sequelize");
 
-async function getTickets(offset, limit) {
-  return await Ticket.findAll({
+async function getTicketDetails(ticketRef) {
+  return await Ticket.findOne({
+    where: { ref: ticketRef },
     include: [
       {
         model: Intervention,
         as: "intervention",
+        attributes: [
+          "id",
+          "lieuIntervention",
+          "date",
+          "description",
+          "reponse",
+          "titre",
+        ],
         include: [
           {
             model: Statut,
             as: "statut",
+            attributes: ["id", "code", "label"],
+          },
+          {
+            model: Conseiller,
+            as: "conseiller",
+            attributes: ["id", "nom", "prenom"],
           },
         ],
       },
@@ -38,42 +53,37 @@ async function getTickets(offset, limit) {
                 attributes: ["raisonSociale"],
               },
             ],
-            attributes: ["nom"],
+            attributes: [
+              "id",
+              "nom",
+              "contrat",
+              "adresse",
+              "codePostal",
+              "ville",
+              "telephone",
+            ],
           },
           {
             model: TypeMateriel,
             as: "typeMateriel",
+            attributes: ["type"],
           },
           {
             model: Marque,
             as: "marque",
+            attributes: ["marque"],
           },
           {
             model: Modele,
             as: "modele",
+            attributes: ["modele", "url"],
           },
         ],
-        attributes: ["id"],
+        attributes: ["id", "createdAt", "updatedAt", "miseEnService"],
       },
     ],
-    attributes: [
-      "id",
-      "ref",
-      "titre",
-      "resume",
-      [sequelize.fn("MAX", sequelize.col("code")), "code"],
-      [sequelize.fn("MAX", sequelize.col("date")), "date"],
-    ],
-    group: ["intervention.ticketId"],
-    order: [["date", "DESC"]],
-    offset: offset,
-    limit: limit,
-    subQuery: false,
+    order: [["intervention", "date", "DESC"]],
   });
 }
 
-async function getTotalTickets() {
-  return await Ticket.count();
-}
-
-module.exports = { getTickets, getTotalTickets };
+module.exports = { getTicketDetails };
