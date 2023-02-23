@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Client } from 'src/app/intranet/shared/models/models';
+import { Client, Ticket } from 'src/app/intranet/shared/models/models';
 import { ClientsService } from '../../utils/services/clients.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { ClientsService } from '../../utils/services/clients.service';
 })
 export class ClientDetailComponent implements OnInit {
   client!: Client;
+  clientTicket!: Array<Ticket>;
 
   constructor(private clientsService: ClientsService, private router: Router) {}
 
@@ -21,6 +22,21 @@ export class ClientDetailComponent implements OnInit {
       this.router.navigateByUrl('/intranet/clients');
     } else {
       this.client = this.clientsService.client[0];
+      this.clientsService.httpGetClientTickets(this.client.id).subscribe({
+        next: (response) => {
+          this.clientTicket = response;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.table(this.clientTicket);
+        },
+      });
     }
+  }
+
+  editClientHandler(): void {
+    this.router.navigateByUrl('/intranet/clients/editer');
   }
 }

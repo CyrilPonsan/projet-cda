@@ -1,6 +1,6 @@
 <section class="flex flex-col gap-y-4 border-b border-gray pb-2">
   <article>
-    <h3 class="font-bold">{{client.raisonSociale.raisonSociale | uppercase}}</h3>
+    <h3 *ngIf="client.raisonSociale" class="font-bold">{{client.raisonSociale.raisonSociale | uppercase}}</h3>
     <p>{{client.nom}}</p>
     <span class="flex">
       <p class="font-bold">Contrat n°&nbsp;</p>

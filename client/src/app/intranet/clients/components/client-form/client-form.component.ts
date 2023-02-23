@@ -12,6 +12,7 @@ import { ClientsService } from '../../utils/services/clients.service';
 export class ClientFormComponent implements OnInit {
   @Output() newClient = new EventEmitter<Client>();
   @Input() clientToEdit!: Client;
+  editedClient!: Client;
   clientForm!: FormGroup;
   raisonsSociales!: Array<RaisonSociale>;
   showNewRaisonSociale!: boolean;
@@ -34,13 +35,19 @@ export class ClientFormComponent implements OnInit {
       ville: [null, [Validators.pattern(this.regex.regexGeneric)]],
       telephone: [null, [Validators.pattern(this.regex.regexGeneric)]],
     });
+    if (this.clientToEdit !== undefined && this.clientToEdit !== null) {
+      this.clientForm.patchValue(this.clientToEdit);
+      this.clientForm.valueChanges.subscribe((value) => {
+        this.editedClient = { ...value };
+      });
+    }
   }
 
   submitHandler(): void {
     if (this.clientForm.valid) {
       this.newClient.emit(this.clientForm.value);
     } else {
-      console.log('oops');
+      console.log('oops', this.clientForm.value);
     }
   }
 

@@ -1,5 +1,4 @@
 const express = require("express");
-const { hasAccess } = require("../../middlewares/auth.middleware");
 const {
   httpGetOneMateriel,
   httpDeleteMateriel,

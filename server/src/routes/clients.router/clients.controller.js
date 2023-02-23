@@ -58,7 +58,7 @@ async function httpSearchClient(req, res) {
     let clients;
     switch (type) {
       case "contrat":
-        clients = await getClientByContrat(+value);
+        clients = await getClientByContrat(value);
         break;
       case "nom":
         clients = await getClientByNom(value);
@@ -111,7 +111,8 @@ async function httpDeleteClient(req, res) {
 
 async function httpUpdateClient(req, res) {
   const clientId = req.params.id;
-  const clientToUpdate = req.body;
+  const clientToUpdate = req.body.client;
+  console.log(req.body);
   if (checkClient(clientToUpdate) || !clientId || !regexNumber.test(clientId)) {
     return res.status(400).json({ message: badQuery });
   }

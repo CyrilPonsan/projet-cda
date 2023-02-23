@@ -14,7 +14,7 @@ const {
 const clientsRouter = express.Router();
 clientsRouter.get("/", httpGetAllClients);
 clientsRouter.get("/raisons-sociales", httpGetRaisonsScociales);
-clientsRouter.put("/update/:id", httpUpdateClient);
+clientsRouter.put("/:id", httpUpdateClient);
 clientsRouter.get("/search", httpSearchClient);
 clientsRouter.get("/tickets/:id", httpGetClientTickets);
 clientsRouter.delete("/delete/:id", isAdmin, httpDeleteClient);

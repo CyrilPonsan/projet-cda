@@ -9,7 +9,7 @@ export class RegexService {
   regexFacteurPassword =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{10,})/;
   regexNumber = /^[0-9]*$/;
-  regexGeneric = /^[a-zA-Z0-9\s,.'\-+éàèâôêûù]{0,}$/;
+  regexGeneric = /^[a-zA-Z0-9\s°,.'\-+éàèâôêûù]{0,}$/;
 
   constructor() {}
 }

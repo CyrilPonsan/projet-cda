@@ -21,8 +21,7 @@ function checkClient(data) {
 }
 
 function checkMateriel(data) {
-  const { miseEnService, ref, clientId, typeMaterielId, marqueId, modeleId } =
-    data;
+  const { miseEnService, ref, typeMaterielId, marqueId, modeleId } = data;
 
   return (
     !miseEnService ||
