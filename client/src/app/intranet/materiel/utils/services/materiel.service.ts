@@ -44,5 +44,8 @@ export class MaterielService {
     return this.http.delete<string>(` ${environment.baseUrl}/materiel/${id}`);
   }
 
+  searchMateriel(term: string): Observable<string[]> {
+    return this.http.get<string[]>(`${environment.baseUrl}/materiel/search/${term}`);
+  }
 
 }

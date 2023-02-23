@@ -9,6 +9,8 @@ import {MatInputModule} from '@angular/material/input';
 import { NewMaterielComponent } from './pages/new-materiel/new-materiel.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FormsModule
     
 
     

@@ -20,8 +20,8 @@
     select name= ctrl + D sur tous les autres et remplace
 -->
 
-<main class="flex flex-col justify-center items-center ">
-  <section class="py-5 w-3/6" >
+<main class="flex flex-col justify-center items-center">
+  <section class="py-5 w-3/6">
     <h3 class="text-lg font-medium leading-6 text-gray-900">
       Nouveau materiel
     </h3>
@@ -41,100 +41,183 @@
     <!-- <form [formGroup]="clientForm" (submit)="submitHandler()"> -->
     <form action="POST">
       <div class="px-4 py-5 sm:p-6 flex flex-col gap-5">
-                <!-- Type -->
+        <!-- Type -->
         <div class="flex justify-between items-center gap-5 flex-wrap">
           <div class="flex flex-col w-72">
-            <label
-              for="type"
-              class="block text-sm font-medium text-gray-700"
+            <label for="type" class="block text-sm font-medium text-gray-700"
               >Type</label
             >
 
-            <select name="denomination_sociale" name="typeId" >
-
-
-              <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.type |
-                  titlecase}}
-                </option> -->
-              <option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option}}</option>
+            <select name="denomination_sociale" name="typeId">
+              <option
+                *ngFor="let option of filteredOptions | async"
+                [value]="option"
+              >
+                {{ option }}
+              </option>
             </select>
           </div>
           <div class="w-3/12 self-end">
-            <!-- <button
-                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                (click)="showNewtype=true">
-                Nouvelle raison Sociale
-              </button> -->
             <button
+              (click)="showNewType = true"
               class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Ajouter
             </button>
           </div>
         </div>
-                <!-- Marque-->
-        <div class="flex justify-between items-center gap-5 flex-wrap">
-            <div class="flex flex-col w-72">
-              <label
-                for="marque"
-                class="block text-sm font-medium text-gray-700"
-                >Marque</label
-              >
-  
-              <select name="denomination_sociale" name="marqueId">
-                <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.marque |
-                    titlecase}}
-                  </option> -->
-                
-                <option *ngFor="let option of filteredOptionsMarque | async" [value]="option">
-                  {{option}}</option>
-              </select>
-            </div>
-            <div class="w-3/12 self-end">
-              <!-- <button
-                  class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  (click)="showNewmarque=true">
-                  Nouvelle raison Sociale
-                </button> -->
-              <button
-                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Ajouter
-              </button>
-            </div>
-          </div>
-                <!-- Modele-->
 
-          <div class="flex justify-between items-center gap-5 flex-wrap">
-            <div class="flex flex-col w-72">
-              <label
-                for="modele"
-                class="block text-sm font-medium text-gray-700"
-                >Modele</label
+        <!-- Nouveau type -->
+        <div *ngIf="showNewType" class="flex justify-between items-center gap-5 flex-wrap">
+            <div  class="flex flex-col w-72">
+                <label for="newType" class="block text-sm font-medium text-gray-700"
+                >Nouveau type</label
+                >
+                <input
+                    type="text"
+                    name="newType"
+                    id="newType"
+                    [(ngModel)]="newType"
+                    placeholder="Ex: Imprimante"
+                />
+            </div>
+
+            <div class="w-3/12 self-end">
+                <button
+                (click)="addNewType()"
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                Ajouter
+                </button>
+            </div>
+        </div>
+
+        <!-- Si le type a correctement été ajouté afficher a la place 'type corremctement implémenté '-->
+
+        <div >
+            <p *ngIf="newTypeAdded" class="text-green-500">Type correctement implémenté</p>
+        </div>
+
+        <!-- Marque-->
+        <div class="flex justify-between items-center gap-5 flex-wrap">
+          <div class="flex flex-col w-72">
+            <label for="marque" class="block text-sm font-medium text-gray-700"
+              >Marque</label
+            >
+
+            <select name="denomination_sociale" name="marqueId">
+              <option
+                *ngFor="let option of filteredOptionsMarque | async"
+                [value]="option"
               >
-  
-              <select name="denomination_sociale" name="modeleId" >
-                <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.modele |
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div class="w-3/12 self-end">
+            <button
+                (click)="showNewMarque = true"
+              class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+
+        <!-- Nouvelle marque -->
+
+        <div *ngIf="showNewMarque" class="flex justify-between items-center gap-5 flex-wrap">
+            <div  class="flex flex-col w-72">
+                <label for="newMarque" class="block text-sm font-medium text-gray-700"
+                >Nouvelle marque</label
+                >
+                <input
+                    type="text"
+                    name="newMarque"
+                    id="newMarque"
+                    [(ngModel)]="newMarque"
+                    placeholder="Ex: Canon"
+                />
+            </div>
+
+            <div class="w-3/12 self-end">
+                <button
+                (click)="addNewMarque()"
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                Ajouter
+                </button>
+            </div>
+        </div>
+
+        <!-- Si la marque a correctement été ajouté afficher a la place 'marque corremctement implémenté '-->
+
+        <div >
+            <p *ngIf="newMarqueAdded" class="text-green-500">Marque correctement implémenté</p>
+        </div>
+
+        <!-- Modele-->
+
+        <div class="flex justify-between items-center gap-5 flex-wrap">
+          <div class="flex flex-col w-72">
+            <label for="modele" class="block text-sm font-medium text-gray-700"
+              >Modele</label
+            >
+
+            <select name="denomination_sociale" name="modeleId">
+              <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.modele |
                     titlecase}}
                   </option> -->
-                <option *ngFor="let option of filteredOptionsModele | async" [value]="option">
-                  {{option}}</option>
-              </select>
-            </div>
-            <div class="w-3/12 self-end ">
-              <!-- <button
-                  class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  (click)="showNewmodele=true">
-                  Nouvelle raison Sociale
-                </button> -->
-              <button
-                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              <option
+                *ngFor="let option of filteredOptionsModele | async"
+                [value]="option"
               >
-                Ajouter
-              </button>
-            </div>
+                {{ option }}
+              </option>
+            </select>
           </div>
+          <div class="w-3/12 self-end">
+            <button
+                (click)="showNewModele = true"
+              class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+
+        <!-- Nouveau modele -->
+
+        <div *ngIf="showNewModele" class="flex justify-between items-center gap-5 flex-wrap">
+            <div  class="flex flex-col w-72">
+                <label for="newModele" class="block text-sm font-medium text-gray-700"
+                >Nouveau modele</label
+                >
+                <input
+                    type="text"
+                    name="newModele"
+                    id="newModele"
+                    [(ngModel)]="newModele"
+                    placeholder="Ex: LBP 2900"
+                />
+            </div>
+
+            <div class="w-3/12 self-end">
+                <button
+                (click)="addNewModele()"
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                Ajouter
+                </button>
+            </div>
+        </div>
+
+        <!-- Si le modele a correctement été ajouté afficher a la place 'modele corremctement implémenté '-->
+
+        <div >
+            <p *ngIf="newModeleAdded" class="text-green-500">Modele correctement implémenté</p>
+        </div>
+
 
         <!-- <div *ngIf="showNewRaisonSociale" class="flex justify-between items-center gap-5">
             <div class="flex flex-col w-72">
@@ -149,16 +232,16 @@
             </div>
           </div> -->
 
-          <mat-form-field appearance="fill">
-            <mat-label>Date de mise en route</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>JJ/MM/AAAA</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-        
-         
+        <mat-form-field appearance="fill">
+          <mat-label>Date de mise en route</mat-label>
+          <input matInput [matDatepicker]="picker" />
+          <mat-hint>JJ/MM/AAAA</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </div>
 
       <div class="footer-form px-4 py-3 text-right sm:px-6">
