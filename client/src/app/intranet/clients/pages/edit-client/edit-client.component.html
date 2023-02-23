@@ -29,7 +29,8 @@
     </div>
   </section>
 
-  <div class="w-3/6 mx-auto">
-    <app-client-form (newClient)="submitHandler($event)"></app-client-form>
+  <div *ngIf="client" class="w-3/6 mx-auto">
+    <app-client-form [clientToEdit]="client" (newClient)="submitHandler($event)"></app-client-form>
   </div>
+
 </main>

@@ -7,9 +7,11 @@ import { ClientsService } from './utils/services/clients.service';
 import { ClientDetailComponent } from './components/client-detail/client-detail.component';
 import { ClientRechercheComponent } from './components/client-recherche/client-recherche.component';
 import { NewClientComponent } from './pages/new-client/new-client.component';
+import { EditClientComponent } from './pages/edit-client/edit-client.component';
+import { ClientFormComponent } from './components/client-form/client-form.component';
 
 @NgModule({
-  declarations: [ClientHomeComponent, ClientDetailComponent, ClientRechercheComponent, NewClientComponent],
+  declarations: [ClientHomeComponent, ClientDetailComponent, ClientRechercheComponent, NewClientComponent, EditClientComponent, ClientFormComponent],
   imports: [CommonModule, ClientsRoutingModule, SharedModule],
   providers: [ClientsService],
 })
