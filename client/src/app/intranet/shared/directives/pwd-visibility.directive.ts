@@ -25,11 +25,11 @@ export class PwdVisibilityDirective {
     if (!this._shown) {
       this._shown = true;
       this.el.nativeElement.setAttribute('type', 'text');
-      images.setAttribute('src', 'assets/images/oeil-masque.svg');
+      images.setAttribute('src', 'assets/images/oeil.svg');
     } else {
       this._shown = false;
       this.el.nativeElement.setAttribute('type', 'password');
-      images.setAttribute('src', 'assets/images/oeil.svg');
+      images.setAttribute('src', 'assets/images/oeil-masque.svg');
     }
   }
 }
