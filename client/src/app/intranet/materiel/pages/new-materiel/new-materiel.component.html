@@ -1,0 +1,184 @@
+<!--
+  This example requires some changes to your config:
+
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+
+<!-- 
+    pour Cyril
+    POUR formControlName="raisonSocialeId" exemple
+    changes tout les name="denomination_sociale" par formControlName="raisonSocialeId"
+    select name= ctrl + D sur tous les autres et remplace
+-->
+
+<main class="flex flex-col justify-center items-center ">
+  <section class="py-5 w-3/6" >
+    <h3 class="text-lg font-medium leading-6 text-gray-900">
+      Nouveau materiel
+    </h3>
+    <p class="mt-1 text-sm text-gray-600">
+      Ajoutez un nouveau materiel pour (nom du client) dans le formulaire ci
+      dessous
+    </p>
+  </section>
+
+  <section class="w-3/6" aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
+
+  <section class="bg-white overflow-hidden shadow sm:rounded-md w-3/6">
+    <!-- <form [formGroup]="clientForm" (submit)="submitHandler()"> -->
+    <form action="POST">
+      <div class="px-4 py-5 sm:p-6 flex flex-col gap-5">
+                <!-- Type -->
+        <div class="flex justify-between items-center gap-5 flex-wrap">
+          <div class="flex flex-col w-72">
+            <label
+              for="type"
+              class="block text-sm font-medium text-gray-700"
+              >Type</label
+            >
+
+            <select name="denomination_sociale" name="typeId" >
+
+
+              <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.type |
+                  titlecase}}
+                </option> -->
+              <option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}</option>
+            </select>
+          </div>
+          <div class="w-3/12 self-end">
+            <!-- <button
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                (click)="showNewtype=true">
+                Nouvelle raison Sociale
+              </button> -->
+            <button
+              class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+                <!-- Marque-->
+        <div class="flex justify-between items-center gap-5 flex-wrap">
+            <div class="flex flex-col w-72">
+              <label
+                for="marque"
+                class="block text-sm font-medium text-gray-700"
+                >Marque</label
+              >
+  
+              <select name="denomination_sociale" name="marqueId">
+                <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.marque |
+                    titlecase}}
+                  </option> -->
+                <option value="SCI">Société Civile Immobilière (SCI)</option>
+                <option value="SCOP">
+                  Société Coopérative et Participative (SCOP)
+                </option>
+                <option value="EI">Entreprise Individuelle (EI)</option>
+                <option value="EURL">
+                  Entreprise Unipersonnelle à Responsabilité Limitée (EURL)
+                </option>
+                <option value="SNC">Société en Nom Collectif (SNC)</option>
+              </select>
+            </div>
+            <div class="w-3/12 self-end">
+              <!-- <button
+                  class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  (click)="showNewmarque=true">
+                  Nouvelle raison Sociale
+                </button> -->
+              <button
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Ajouter
+              </button>
+            </div>
+          </div>
+                <!-- Modele-->
+
+          <div class="flex justify-between items-center gap-5 flex-wrap">
+            <div class="flex flex-col w-72">
+              <label
+                for="modele"
+                class="block text-sm font-medium text-gray-700"
+                >Modele</label
+              >
+  
+              <select name="denomination_sociale" name="modeleId" >
+                <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.modele |
+                    titlecase}}
+                  </option> -->
+                <option value="SCI">Société Civile Immobilière (SCI)</option>
+                <option value="SCOP">
+                  Société Coopérative et Participative (SCOP)
+                </option>
+                <option value="EI">Entreprise Individuelle (EI)</option>
+                <option value="EURL">
+                  Entreprise Unipersonnelle à Responsabilité Limitée (EURL)
+                </option>
+                <option value="SNC">Société en Nom Collectif (SNC)</option>
+              </select>
+            </div>
+            <div class="w-3/12 self-end ">
+              <!-- <button
+                  class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  (click)="showNewmodele=true">
+                  Nouvelle raison Sociale
+                </button> -->
+              <button
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Ajouter
+              </button>
+            </div>
+          </div>
+
+        <!-- <div *ngIf="showNewRaisonSociale" class="flex justify-between items-center gap-5">
+            <div class="flex flex-col w-72">
+              <input type="text" placeholder="Nouvelle Raison Sociale"
+                class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500" #rsBox />
+            </div>
+            <div class="w-3/12 self-end">
+              <button
+                class="bg-[#6941C6] text-white px-4 py-2 rounded-md hover:bg-[#2d3748] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                (click)="raisonSocialeHandler(rsBox.value)">Enregistrer
+              </button>
+            </div>
+          </div> -->
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date de mise en route</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>JJ/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+        
+         
+      </div>
+
+      <div class="footer-form px-4 py-3 text-right sm:px-6">
+        <button class="footer-button font-bold" type="submit">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </section>
+</main>

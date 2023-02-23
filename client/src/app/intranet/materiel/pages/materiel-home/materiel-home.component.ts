@@ -10,10 +10,10 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./materiel-home.component.scss']
 })
 export class MaterielHomeComponent implements OnInit {
-  myControl = new FormControl('');
-  options: string[] = ['Client 1 ', 'Client 2 ', 'Client 3 '];
-  filteredOptions: Observable<string[]> = new Observable<string[]>();
-  selectedClient: string | null = null;
+  myControl = new FormControl(''); // ici je veux que le champ soit vide au chargement de la page
+  options: string[] = ['Client 1 ', 'Client 2 ', 'Client 3 ']; // ici j'établis la liste des clients
+  filteredOptions: Observable<string[]> = new Observable<string[]>(); // ici j'initialise la liste des clients filtrés
+  selectedClient: string | null = null; // ici j'initialise le client sélectionné
 
 
   ngOnInit() {

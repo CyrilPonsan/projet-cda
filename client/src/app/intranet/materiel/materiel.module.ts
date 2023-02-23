@@ -6,10 +6,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { NewMaterielComponent } from './pages/new-materiel/new-materiel.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
-  declarations: [MaterielHomeComponent],
+  declarations: [MaterielHomeComponent, NewMaterielComponent],
   imports: [
     CommonModule,
     MaterielRoutingModule,
@@ -17,6 +20,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
 
     

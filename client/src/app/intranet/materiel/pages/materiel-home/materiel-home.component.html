@@ -54,10 +54,10 @@
       <div class="border-t border-gray-200"></div>
     </div>
   </section>
-
+ <!-- if client is selected  -->
   <ng-container *ngIf="selectedClient">
     <h2>{{ selectedClient }} + son parc informatique </h2>
-    <button routerLink="/intranet/materiels/ajouter" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+    <button routerLink="/intranet/materiel/new-materiel" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
         <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
@@ -65,7 +65,7 @@
         </span> Ajouter un matériel
     </button>
   </ng-container>
-  
+  <!-- if No client is selected  -->
   <ng-container *ngIf="!selectedClient">
     <p> Aucun client sélectionné</p>
   </ng-container>
