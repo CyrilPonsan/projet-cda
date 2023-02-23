@@ -10,16 +10,18 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./new-materiel.component.scss']
 })
 export class NewMaterielComponent implements OnInit {
-  selectedType: string | null = null;
-  selectedMarque: string | null = null;
-  selectedModele: string | null = null;
-  options: string[] = ['Type 1 ', 'Type 2 ', 'Type 3 '];
-  optionsMarque: string[] = ['Marque 1 ', 'Marque 2 ', 'Marque 3 '];
-  optionsModele: string[] = ['Modele 1 ', 'Modele 2 ', 'Modele 3 '];
-  filteredOptions: Observable<string[]> = new Observable<string[]>();
-  filteredOptionsMarque: Observable<string[]> = new Observable<string[]>();
-  filteredOptionsModele: Observable<string[]> = new Observable<string[]>();
+  selectedType: string | null = null; // ici j'initialise le type sélectionné
+  selectedMarque: string | null = null; // ici j'initialise la marque sélectionnée
+  selectedModele: string | null = null; // ici j'initialise le modèle sélectionné
+  options: string[] = ['Type 1 ', 'Type 2 ', 'Type 3 ']; // ici j'établis la liste des types
+  optionsMarque: string[] = ['Marque 1 ', 'Marque 2 ', 'Marque 3 ']; // ici j'établis la liste des marques
+  optionsModele: string[] = ['Modele 1 ', 'Modele 2 ', 'Modele 3 ']; // ici j'établis la liste des modèles
+  filteredOptions: Observable<string[]> = new Observable<string[]>(); // ici j'initialise la liste des types filtrés
+  filteredOptionsMarque: Observable<string[]> = new Observable<string[]>(); // ici j'initialise la liste des marques filtrées
+  filteredOptionsModele: Observable<string[]> = new Observable<string[]>(); // ici j'initialise la liste des modèles filtrés
   myControl = new FormControl(''); // ici je veux que le champ soit vide au chargement de la page
+
+
 
 
   constructor() { }
@@ -33,6 +35,16 @@ export class NewMaterielComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value as string ))
       );
+
+      this.filteredOptionsMarque = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterMarque(value as string ))
+      );
+
+      this.filteredOptionsModele = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterModele(value as string ))
+      );
     }
   
     private _filter(value: string): string[] {
@@ -40,7 +52,24 @@ export class NewMaterielComponent implements OnInit {
   
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
 
-  }
+    }
+
+    private _filterMarque(value: string): string[] {
+      const filterValue = value.toLowerCase();
+  
+      return this.optionsMarque.filter(option => option.toLowerCase().includes(filterValue));
+
+    }
+
+
+    private _filterModele(value: string): string[] {
+
+      const filterValue = value.toLowerCase();
+  
+      return this.optionsModele.filter(option => option.toLowerCase().includes(filterValue));
+
+    }
+
 
 
 }

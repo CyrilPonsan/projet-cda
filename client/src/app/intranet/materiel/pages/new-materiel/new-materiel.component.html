@@ -86,15 +86,9 @@
                 <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.marque |
                     titlecase}}
                   </option> -->
-                <option value="SCI">Société Civile Immobilière (SCI)</option>
-                <option value="SCOP">
-                  Société Coopérative et Participative (SCOP)
-                </option>
-                <option value="EI">Entreprise Individuelle (EI)</option>
-                <option value="EURL">
-                  Entreprise Unipersonnelle à Responsabilité Limitée (EURL)
-                </option>
-                <option value="SNC">Société en Nom Collectif (SNC)</option>
+                
+                <option *ngFor="let option of filteredOptionsMarque | async" [value]="option">
+                  {{option}}</option>
               </select>
             </div>
             <div class="w-3/12 self-end">
@@ -124,15 +118,8 @@
                 <!-- <option *ngFor="let item of raisonsSociales" value="{{item.id}}">{{item.modele |
                     titlecase}}
                   </option> -->
-                <option value="SCI">Société Civile Immobilière (SCI)</option>
-                <option value="SCOP">
-                  Société Coopérative et Participative (SCOP)
-                </option>
-                <option value="EI">Entreprise Individuelle (EI)</option>
-                <option value="EURL">
-                  Entreprise Unipersonnelle à Responsabilité Limitée (EURL)
-                </option>
-                <option value="SNC">Société en Nom Collectif (SNC)</option>
+                <option *ngFor="let option of filteredOptionsModele | async" [value]="option">
+                  {{option}}</option>
               </select>
             </div>
             <div class="w-3/12 self-end ">
