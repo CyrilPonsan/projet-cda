@@ -11,10 +11,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+
+
 
 
 @NgModule({
-  declarations: [MaterielHomeComponent, NewMaterielComponent],
+  declarations: [MaterielHomeComponent, NewMaterielComponent,  ],
   imports: [
     CommonModule,
     MaterielRoutingModule,
@@ -24,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    MatTableModule
     
 
     
