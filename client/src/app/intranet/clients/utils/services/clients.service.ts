@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Client, Ticket } from 'src/app/intranet/shared/models/models';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { environment } from 'src/environments/environment';
+import { ClientTicket } from '../models/models';
 
 @Injectable()
 export class ClientsService {
@@ -63,8 +64,8 @@ export class ClientsService {
     });
   }
 
-  httpGetClientTickets(clientId: number): Observable<Array<Ticket>> {
-    return this.http.get<Array<Ticket>>(
+  httpGetClientTickets(clientId: number): Observable<Array<ClientTicket>> {
+    return this.http.get<Array<ClientTicket>>(
       `${environment.baseUrl}/clients/tickets/${clientId}`
     );
   }

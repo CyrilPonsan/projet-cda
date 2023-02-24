@@ -88,7 +88,16 @@ async function httpGetClientTickets(req, res) {
     if (!tickets) {
       return res.status(404).json({ message: noData });
     }
-    return res.status(200).json(tickets);
+    const result = tickets.map((item) => ({
+      id: item.id,
+      resume: item.resume,
+      title: item.title,
+      ref: item.ref,
+      date: item.intervention[0].date,
+      statut: item.intervention[0].statut.label,
+      typeMateriel: item.materiel.typeMateriel.type,
+    }));
+    return res.status(200).json(result);
   } catch (err) {
     return res.status(500).json({ message: serverIssue + err });
   }
