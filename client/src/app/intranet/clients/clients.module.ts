@@ -9,6 +9,7 @@ import { ClientRechercheComponent } from './components/client-recherche/client-r
 import { NewClientComponent } from './pages/new-client/new-client.component';
 import { EditClientComponent } from './pages/edit-client/edit-client.component';
 import { ClientFormComponent } from './components/client-form/client-form.component';
+import { ClientTicketComponent } from './components/client-ticket/client-ticket.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
     NewClientComponent,
     EditClientComponent,
     ClientFormComponent,
+    ClientTicketComponent,
   ],
   imports: [CommonModule, ClientsRoutingModule, SharedModule],
   providers: [ClientsService],

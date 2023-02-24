@@ -1,41 +1,50 @@
-<main *ngIf="client" class="flex flex-col justify-center items-start w-[60vw]">
-  <section class="py-5 w-96">
-    <h2 class="text-lg font-medium leading-6 text-gray-900">
-      {{client.raisonSociale.raisonSociale | titlecase}} - {{client.nom}}
-    </h2>
-    <h3>
-      Numéro de contrat: {{client.contrat}}
-    </h3>
-    <p class="mt-1 text-sm text-gray-600">{{client.adresse}}</p>
-    <p class="mt-1 text-sm text-gray-600">
-      {{client.codePostal}} {{client.ville}}
-    </p>
-    <p class="mt-1 text-sm text-gray-600">
-      {{client.telephone}}
-    </p>
-    <p class="mt-1 text-sm text-gray-600 underline">
-      {{client.email}}
-    </p>
-  </section>
+<main *ngIf="client" class="flex justify-start items-start w-[60vw]">
 
-  <section class="w-3/6" aria-hidden="true">
-    <div class="py-5">
-      <div class="border-t flex border-gray-200 justify-end">
-        <article class="mt-4">
-          <div>
-            <button routerLink="/intranet/clients/editer" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
-              <!--  <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+  <section class="w-[50vw]">
+    <article class=" py-5 w-[100%]">
+      <h2 class="text-lg font-medium leading-6 text-gray-900">
+        {{client.raisonSociale.raisonSociale | titlecase}} - {{client.nom}}
+      </h2>
+      <h3>
+        Numéro de contrat: {{client.contrat}}
+      </h3>
+      <p class="mt-1 text-sm text-gray-600">{{client.adresse}}</p>
+      <p class="mt-1 text-sm text-gray-600">
+        {{client.codePostal}} {{client.ville}}
+      </p>
+      <p class="mt-1 text-sm text-gray-600">
+        {{client.telephone}}
+      </p>
+      <p class="mt-1 text-sm text-gray-600 underline">
+        {{client.email}}
+      </p>
+    </article>
+
+    <article class="w-3/6" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t flex border-gray-200 justify-end">
+          <article class="mt-4">
+            <div>
+              <button routerLink="/intranet/clients/editer" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+                <!--  <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
                 </svg>
               </span> -->
-              Modifier les informations du client
-            </button>
-          </div>
-        </article>
+                Modifier les informations du client
+              </button>
+            </div>
+          </article>
+        </div>
       </div>
-    </div>
+    </article>
   </section>
+
+  <section>
+
+  </section>
+
+
 
 </main>
 

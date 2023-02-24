@@ -40,7 +40,11 @@ export class ClientHomeComponent implements OnInit {
   }
 
   searchSubmitHandler(value: string): void {
-    this.router.navigate(['/intranet/clients/detail/', value]);
+    if (this.searchType === 'contrat') {
+      this.router.navigate(['/intranet/clients/detail/', value]);
+    } else if (this.searchType === 'nom') {
+      this.searchClientByNom(value);
+    }
   }
 
   detailsNavigationHandler(contrat: string): void {
@@ -56,6 +60,18 @@ export class ClientHomeComponent implements OnInit {
         this.pagination.setButtonsStyle(response.data.length);
         console.log(this.clientList);
       },
+    });
+  }
+
+  private searchClientByNom(nom: string): void {
+    this.clients.httpSearchClients('nom', nom).subscribe({
+      next: (response) => {
+        this.clientList = response;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
     });
   }
 }
