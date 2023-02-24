@@ -25,7 +25,7 @@ if (process.env.NODE8ENV === "development") {
       host: process.env.DB_HOST,
       dialect: "mariadb",
       dialectOptions: {
-        socketPath: {host : "localhost", port : 3308},
+        socketPath: { host: "localhost", port: 3308 },
       },
       logging: false,
     }
@@ -41,7 +41,7 @@ if (process.env.NODE8ENV === "development") {
       host: process.env.DB_HOST,
       dialect: "mariadb",
       dialectOptions: {
-        socketPath: {host : "localhost", port : 3308},
+        socketPath: { host: "localhost", port: 3308 },
       },
       logging: false,
     }
