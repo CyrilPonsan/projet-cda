@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Client, Ticket } from 'src/app/intranet/shared/models/models';
 import { ClientsService } from '../../utils/services/clients.service';
 
@@ -12,25 +12,26 @@ export class ClientDetailComponent implements OnInit {
   client!: Client;
   clientTicket!: Array<Ticket>;
 
-  constructor(private clientsService: ClientsService, private router: Router) {}
+  constructor(
+    private clientsService: ClientsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    if (
-      this.clientsService.client === undefined ||
-      this.clientsService.client.length === 0
-    ) {
-      this.router.navigateByUrl('/intranet/clients');
-    } else {
-      this.client = this.clientsService.client[0];
-      this.clientsService.httpGetClientTickets(this.client.id).subscribe({
+    const contrat = this.route.snapshot.paramMap.get('contrat');
+    if (contrat !== null) {
+      this.clientsService.httpSearchClients('contrat', contrat).subscribe({
         next: (response) => {
-          this.clientTicket = response;
+          console.log(response);
+          this.client = response[0];
         },
         error: (err) => {
           console.log(err);
         },
         complete: () => {
-          console.table(this.clientTicket);
+          this.clientsService.client = this.client;
+          console.log(this.clientsService.client);
         },
       });
     }

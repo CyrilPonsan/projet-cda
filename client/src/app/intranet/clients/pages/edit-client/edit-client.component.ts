@@ -16,11 +16,11 @@ export class EditClientComponent implements OnInit {
   ngOnInit(): void {
     if (
       this.clientsService.client === undefined ||
-      this.clientsService.client.length === 0
+      this.clientsService.client === null
     ) {
       this.router.navigateByUrl('/intranet/clients');
     } else {
-      this.client = this.clientsService.client[0];
+      this.client = this.clientsService.client;
     }
   }
 
@@ -35,10 +35,10 @@ export class EditClientComponent implements OnInit {
           console.log(err);
         },
         complete: () => {
-          this.clientsService.httpSearchClients(
-            'contrat',
-            editedClient.contrat
-          );
+          this.router.navigate([
+            '/intranet/clients/detail/',
+            editedClient.contrat,
+          ]);
         },
       });
   }

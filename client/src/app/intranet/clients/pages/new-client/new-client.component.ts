@@ -18,7 +18,10 @@ export class NewClientComponent {
         console.log(err);
       },
       complete: () => {
-        this.router.navigateByUrl('/intranet/clients');
+        this.router.navigate([
+          '/intranet/clients/detail/',
+          clientToAdd.contrat,
+        ]);
       },
     });
   }

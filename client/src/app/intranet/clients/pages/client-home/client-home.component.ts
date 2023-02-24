@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Client } from 'src/app/intranet/shared/models/models';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { ClientsService } from '../../utils/services/clients.service';
@@ -14,7 +15,8 @@ export class ClientHomeComponent implements OnInit {
 
   constructor(
     private clients: ClientsService,
-    public pagination: PaginationService
+    public pagination: PaginationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,11 @@ export class ClientHomeComponent implements OnInit {
   }
 
   searchSubmitHandler(value: string): void {
-    this.clients.httpSearchClients(this.searchType, value);
+    this.router.navigate(['/intranet/clients/detail/', value]);
+  }
+
+  detailsNavigationHandler(contrat: string): void {
+    this.router.navigate(['/intranet/clients/detail/', contrat]);
   }
 
   private getAllClients(): void {

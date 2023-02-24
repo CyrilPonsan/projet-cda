@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ClientsService {
-  client!: Array<Client>;
+  client!: Client;
 
   constructor(
     private http: HttpClient,
@@ -22,12 +22,11 @@ export class ClientsService {
     );
   }
 
-  httpSearchClients(type: string, value: string) {
-    this.http
-      .get<Array<Client>>(
-        `${environment.baseUrl}/clients/search?type=${type}&value=${value}`
-      )
-      .subscribe({
+  httpSearchClients(type: string, value: string): Observable<Array<Client>> {
+    return this.http.get<Array<Client>>(
+      `${environment.baseUrl}/clients/search?type=${type}&value=${value}`
+    );
+    /*  .subscribe({
         next: (response) => {
           this.client = response;
           console.log(this.client);
@@ -38,7 +37,7 @@ export class ClientsService {
             this.router.navigate(['/intranet/clients/detail/', value]);
           }
         },
-      });
+      }); */
   }
 
   httpGetRaisonsSociales(): Observable<any> {
