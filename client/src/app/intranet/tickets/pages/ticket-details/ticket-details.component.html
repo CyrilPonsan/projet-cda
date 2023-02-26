@@ -1,11 +1,19 @@
 <section class="w-[100vw] flex justify-center mt-8">
-  <article class="w-[90%]  font-bold flex justify-between items-center">
-    <a routerLink="..">
-      <h2 class="text-orange underline">Retour aux tickets</h2>
-    </a>
-    <h2 *ngIf="!ticketsService.isSidebarOpen" class="underline cursor-pointer"
-      (click)="ticketsService.isSidebarOpen=true">Afficher la base de connaissances
-    </h2>
+  <article class="w-[90%] flex justify-end items-center gap-x-4">
+    <div>
+      <div>
+        <button routerLink=".." class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">Retour à la liste des
+          tickets</button>
+      </div>
+    </div>
+    <div>
+      <div>
+        <button class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+          (click)="ticketsService.isSidebarOpen=true">Afficher
+          la base de connaissances
+        </button>
+      </div>
+    </div>
   </article>
 </section>
 <section class="w-[100vw] flex justify-center items-start gap-y-2 p-2 gap-x-4 mt-4">

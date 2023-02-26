@@ -9,6 +9,7 @@ const {
   httpDeleteClient,
   httpAddRaisonSociale,
   httpCreateClient,
+  httpGetClientMateriels,
 } = require("./clients.controller");
 
 const clientsRouter = express.Router();
@@ -20,5 +21,6 @@ clientsRouter.get("/tickets/:id", httpGetClientTickets);
 clientsRouter.delete("/delete/:id", isAdmin, httpDeleteClient);
 clientsRouter.post("/raisons-sociales", httpAddRaisonSociale);
 clientsRouter.post("/", httpCreateClient);
+clientsRouter.get("/materiels/:clientId", httpGetClientMateriels);
 
 module.exports = clientsRouter;

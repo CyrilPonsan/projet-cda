@@ -1,14 +1,30 @@
-<article>
-  <div>
-    <div>{{ticket.date}}</div>
-    <div>{{ticket.statut}}</div>
-  </div>
-  <div>
-    <div>{{ticket.ref}}</div>
-    <div>{{ticket.titre}}</div>
-    <div>{{ticket.resume}}</div>
-  </div>
-  <div>
-    <div>{{ticket.typeMateriel}}</div>
-  </div>
-</article>
+<section class="w-[20vw] flex flex-col bg-white gap-y-2 p-8 shadow-lg">
+  <article class="w-fit flex justify-between border-b border-gray gap-x-8 font-bold">
+    <h4 class="text-lg">{{ticket.date | date}}</h4>
+    <h4 class="text-lg">{{ticket.statut}}</h4>
+    <!--   <h4 class="font-bold">{{ticket.conseiller.prenom}} {{intervention.conseiller.nom}}</h4> -->
+  </article>
+  <article class="flex justify-between gap-x-8">
+    <p>Type de Matériel:</p>
+    <p>{{ticket.typeMateriel}}</p>
+  </article>
+  <article>
+    <p class="font-bold">{{ticket.titre}}</p>
+  </article>
+  <article class=" flex justify-between border-b border-gray">
+    <p>{{ticket.resume}}</p>
+  </article>
+  <article class="mt-4 flex justify-end">
+    <div>
+      <button routerLink="{{'/intranet/tickets/' + ticket.ref}}"
+        class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+        <!--  <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+          </svg>
+        </span> -->
+        Détails du ticket
+      </button>
+    </div>
+  </article>
+</section>
