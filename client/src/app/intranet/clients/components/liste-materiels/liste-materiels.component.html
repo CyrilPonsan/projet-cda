@@ -1,1 +1,57 @@
-<p>liste-materiels works!</p>
+<section class="flex flex-col gap-y-8">
+
+  <article>
+    <app-search (submitEvent)="searchMaterielHandler($event)"></app-search>
+  </article>
+
+  <article>
+    <h2 class="w-3/6 font-bold text-lg border-b border-gray-200">Parc Informatique</h2>
+  </article>
+
+  <article *ngIf="!listeClientMateriels">
+    <h3>Aucun matériel enregistré à ce jour.</h3>
+  </article>
+
+  <article *ngIf="listeClientMateriels && listeClientMateriels.length > 0">
+    <table class="w-3/6 border-b border-gray-200">
+      <thead>
+        <tr class="border-b border-gray-200">
+          <th class="text-left">Type</th>
+          <th class="text-left">Marque</th>
+          <th class="text-left">Modèle</th>
+          <th class="text-left">Unités</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="font-bold text-xs cursor-pointer hover:bg-[#6941c6be] hover:text-white"
+          *ngFor="let item of listeClientMateriels">
+          <td class="py-2 px-8">
+            <h3>{{item.typeMateriel}}</h3>
+          </td>
+          <td class="py-2 px-8">
+            <h3>{{item.marque}}</h3>
+          </td>
+          <td class="py-2 px-8">
+            <h3>{{item.modele}}</h3>
+          </td>
+          <td class="py-2 px-8">
+            <h3>{{item.quantity}}</h3>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <article class="w-3/6" aria-hidden="true">
+    <div class="py-5">
+      <div class="flex justify-end">
+        <article class="mt-4">
+          <div>
+            <button routerLink="/intranet/clients/editer" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+              Ajouter un nouveau matériel
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </article>
+</section>

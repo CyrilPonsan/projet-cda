@@ -1,6 +1,6 @@
 <main *ngIf="client" class="flex justify-start items-start w-[60vw]">
 
-  <section class="w-[50vw]">
+  <section class="w-[80%] flex flex-col gap-y-8">
     <article class=" py-5 w-[100%]">
       <h2 class="text-lg font-medium leading-6 text-gray-900">
         {{client.raisonSociale.raisonSociale | titlecase}} - {{client.nom}}
@@ -26,11 +26,6 @@
           <article class="mt-4">
             <div>
               <button routerLink="/intranet/clients/editer" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
-                <!--  <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                </svg>
-              </span> -->
                 Modifier les informations du client
               </button>
             </div>
@@ -38,17 +33,19 @@
         </div>
       </div>
     </article>
+    <article>
+      <app-liste-materiels [listeClientMateriels]="listeClientMateriels"></app-liste-materiels>
+    </article>
   </section>
 
-  <section>
-
-  </section>
 
   <section>
     <app-liste-tickets [listeTickets]="clientTicket"></app-liste-tickets>
   </section>
 
 </main>
+
+
 
 <main *ngIf="!client" class="flex flex-col justify-center items-start w-[60vw]">
 
@@ -61,11 +58,6 @@
         <article class="mt-4">
           <div>
             <button routerLink="/intranet/clients/" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
-              <!--  <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                </svg>
-              </span> -->
               Retour à la liste des clients
             </button>
           </div>

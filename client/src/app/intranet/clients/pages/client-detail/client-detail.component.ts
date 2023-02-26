@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Client, Ticket } from 'src/app/intranet/shared/models/models';
-import { ClientTicket } from '../../utils/models/models';
+import { Client } from 'src/app/intranet/shared/models/models';
+import { ClientTicket, Inventaire } from '../../utils/models/models';
 import { ClientsService } from '../../utils/services/clients.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { ClientsService } from '../../utils/services/clients.service';
 export class ClientDetailComponent implements OnInit {
   client!: Client;
   clientTicket!: Array<ClientTicket>;
+  listeClientMateriels!: Array<Inventaire>;
 
   constructor(
     private clientsService: ClientsService,
@@ -33,7 +34,8 @@ export class ClientDetailComponent implements OnInit {
         complete: () => {
           this.clientsService.client = this.client;
           console.log(this.clientsService.client);
-          this.getClientTickets(this.client.id);
+          this.getClientTickets();
+          this.getClientMateriels();
         },
       });
     }
@@ -43,8 +45,8 @@ export class ClientDetailComponent implements OnInit {
     this.router.navigateByUrl('/intranet/clients/editer');
   }
 
-  getClientTickets(clientId: number): void {
-    this.clientsService.httpGetClientTickets(clientId).subscribe({
+  getClientTickets(): void {
+    this.clientsService.httpGetClientTickets(this.client.id).subscribe({
       next: (response) => {
         this.clientTicket = response;
       },
@@ -54,6 +56,18 @@ export class ClientDetailComponent implements OnInit {
       complete: () => {
         console.log(this.clientTicket);
       },
+    });
+  }
+
+  getClientMateriels(): void {
+    this.clientsService.httpGetClientMateriels(this.client.id).subscribe({
+      next: (response) => {
+        this.listeClientMateriels = response;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
     });
   }
 }

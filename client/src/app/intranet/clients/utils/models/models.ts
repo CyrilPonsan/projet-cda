@@ -7,3 +7,10 @@ export interface ClientTicket {
   typeMateriel: string;
   ref: string;
 }
+
+export interface Inventaire {
+  typeMateriel: string;
+  marque: string;
+  modele: string;
+  quantity: number;
+}

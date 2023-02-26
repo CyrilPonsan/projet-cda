@@ -1,3 +1,12 @@
+<article class="w-[20vw] py-5">
+  <h2 class="font-bold text-lg border-b border-gray-200">Historique des tickets</h2>
+</article>
+
+<article *ngIf="!listeTickets || listeTickets.length === 0">
+  <h3>Aucun ticket enregistré à ce jour.</h3>
+</article>
+
+
 <section class="w-40vw flex flex-col gap-y-4">
   <app-client-ticket *ngFor="let ticket of listeTickets" [ticket]="ticket"></app-client-ticket>
 </section>

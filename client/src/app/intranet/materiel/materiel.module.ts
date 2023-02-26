@@ -13,12 +13,13 @@ import { FormsModule } from '@angular/forms';
 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import { MaterielDetailComponent } from './pages/materiel-detail/materiel-detail.component';
 
 
 
 
 @NgModule({
-  declarations: [MaterielHomeComponent, NewMaterielComponent,  ],
+  declarations: [MaterielHomeComponent, NewMaterielComponent, MaterielDetailComponent,  ],
   imports: [
     CommonModule,
     MaterielRoutingModule,

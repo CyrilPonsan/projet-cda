@@ -4,13 +4,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MaterielService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getTypes(): Observable<string[]> {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/types`);
@@ -28,8 +26,8 @@ export class MaterielService {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/`);
   }
 
-  getMateriel(id: string): Observable<string> {
-    return this.http.get<string>(`${environment.baseUrl}/materiel/${id}`);
+  getMateriel(ref: string): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/materiel/${ref}`);
   }
 
   addMateriel(materiel: string): Observable<string> {
@@ -45,7 +43,8 @@ export class MaterielService {
   }
 
   searchMateriel(term: string): Observable<string[]> {
-    return this.http.get<string[]>(`${environment.baseUrl}/materiel/search/${term}`);
+    return this.http.get<string[]>(
+      `${environment.baseUrl}/materiel/search/${term}`
+    );
   }
-
 }

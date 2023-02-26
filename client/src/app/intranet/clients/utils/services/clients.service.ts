@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Client, Ticket } from 'src/app/intranet/shared/models/models';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { environment } from 'src/environments/environment';
-import { ClientTicket } from '../models/models';
+import { ClientTicket, Inventaire } from '../models/models';
 
 @Injectable()
 export class ClientsService {
@@ -27,18 +27,6 @@ export class ClientsService {
     return this.http.get<Array<Client>>(
       `${environment.baseUrl}/clients/search?type=${type}&value=${value}`
     );
-    /*  .subscribe({
-        next: (response) => {
-          this.client = response;
-          console.log(this.client);
-        },
-        error: (err) => console.log(err),
-        complete: () => {
-          if (type === 'contrat') {
-            this.router.navigate(['/intranet/clients/detail/', value]);
-          }
-        },
-      }); */
   }
 
   httpGetRaisonsSociales(): Observable<any> {
@@ -67,6 +55,12 @@ export class ClientsService {
   httpGetClientTickets(clientId: number): Observable<Array<ClientTicket>> {
     return this.http.get<Array<ClientTicket>>(
       `${environment.baseUrl}/clients/tickets/${clientId}`
+    );
+  }
+
+  httpGetClientMateriels(clientId: number): Observable<Array<Inventaire>> {
+    return this.http.get<Array<Inventaire>>(
+      `${environment.baseUrl}/clients/materiels/${clientId}`
     );
   }
 }
