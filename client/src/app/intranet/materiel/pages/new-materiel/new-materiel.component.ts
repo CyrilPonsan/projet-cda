@@ -35,6 +35,7 @@ export class NewMaterielComponent implements OnInit {
   newMarqueAdded: boolean = false;
   newModeleAdded: boolean = false;
 
+  
 
   typeAdded = false;
 
@@ -124,3 +125,4 @@ export class NewMaterielComponent implements OnInit {
     
 
 }
+ 

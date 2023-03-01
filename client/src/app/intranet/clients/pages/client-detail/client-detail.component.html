@@ -1,54 +1,66 @@
-<main *ngIf="client" class="flex justify-start items-start w-[60vw]">
+<!-- Si client trouvé -->
+<main *ngIf="client" class="flex py-10 justify-between items-start w-[70vw]">
+  <!-- section gauche (resumé client/résumé parc informatique) -->
+  <section class="w-7/12 flex flex-col gap-y-8">
+    <!-- Article client -->
 
-  <section class="w-[80%] flex flex-col gap-y-8">
-    <article class=" py-5 w-[100%]">
-      <h2 class="text-lg font-medium leading-6 text-gray-900">
-        {{client.raisonSociale.raisonSociale | titlecase}} - {{client.nom}}
+    <article class="py-5 w-[100%]">
+      <h2 class="text-lg font-medium leading-6 text-gray-900 border-b">
+        {{ client.raisonSociale.raisonSociale | titlecase }} -
+        {{ client.nom }}
       </h2>
-      <h3>
-        Numéro de contrat: {{client.contrat}}
-      </h3>
-      <p class="mt-1 text-sm text-gray-600">{{client.adresse}}</p>
-      <p class="mt-1 text-sm text-gray-600">
-        {{client.codePostal}} {{client.ville}}
-      </p>
-      <p class="mt-1 text-sm text-gray-600">
-        {{client.telephone}}
-      </p>
-      <p class="mt-1 text-sm text-gray-600 underline">
-        {{client.email}}
-      </p>
-    </article>
+      
+      <div class="flex flex-col first-letter: bg-white gap-y-2 p-8 mt-5 shadow-lg">
+        <h3>Numéro de contrat: {{ client.contrat }}</h3>
+        <p class="mt-1 text-sm text-gray-600">{{ client.adresse }}</p>
+        <p class="mt-1 text-sm text-gray-600">
+          {{ client.codePostal }} {{ client.ville }}
+        </p>
+        <p class="mt-1 text-sm text-gray-600">
+          {{ client.telephone }}
+        </p>
+        <p class="mt-1 text-sm text-gray-600 underline">
+          {{ client.email }}
+        </p>
 
-    <article class="w-3/6" aria-hidden="true">
-      <div class="py-5">
-        <div class="border-t flex border-gray-200 justify-end">
-          <article class="mt-4">
-            <div>
-              <button routerLink="/intranet/clients/editer" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
-                Modifier les informations du client
-              </button>
-            </div>
-          </article>
-        </div>
+       
+      </div> 
+      <!-- div client button  -->
+      <div class="self-end bg-[#6941C6]" aria-hidden="true">
+        
+          <div class="border-t flex border-gray-200 justify-end">
+            
+                <button
+                  routerLink="/intranet/clients/editer"
+                  class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+                >
+                  Modifier les informations du client
+                </button>
+              </div>
+           
+          
+       
       </div>
     </article>
+
+    <!-- Article materiel -->
     <article>
-      <app-liste-materiels [listeClientMateriels]="listeClientMateriels"></app-liste-materiels>
+      <app-liste-materiels
+        [listeClientMateriels]="listeClientMateriels"
+      ></app-liste-materiels>
     </article>
   </section>
 
+  <!-- section droite (ticket) -->
 
   <section>
     <app-liste-tickets [listeTickets]="clientTicket"></app-liste-tickets>
   </section>
-
 </main>
 
-
+<!-- Si client introuvable -->
 
 <main *ngIf="!client" class="flex flex-col justify-center items-start w-[60vw]">
-
   <section *ngIf="!client" class="py-5 w-96">
     <h2 class="text-lg font-medium leading-6 text-gray-900">
       Aucun client n'a été trouvé.
@@ -57,7 +69,10 @@
       <div class="border-t flex border-gray-200 justify-end">
         <article class="mt-4">
           <div>
-            <button routerLink="/intranet/clients/" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+            <button
+              routerLink="/intranet/clients/"
+              class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+            >
               Retour à la liste des clients
             </button>
           </div>
@@ -65,5 +80,4 @@
       </div>
     </div>
   </section>
-
 </main>

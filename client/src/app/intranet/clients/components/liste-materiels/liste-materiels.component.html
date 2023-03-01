@@ -1,21 +1,24 @@
-<section class="flex flex-col gap-y-8">
-
+<section class="flex flex-col">
+  <!-- Search bar -->
   <article>
     <app-search (submitEvent)="searchMaterielHandler($event)"></app-search>
   </article>
-
-  <article>
-    <h2 class="w-3/6 font-bold text-lg border-b border-gray-200">Parc Informatique</h2>
+  <!-- Title -->
+  <article class="py-10">
+    <h2 class="font-bold text-lg border-b ">
+      Parc Informatique
+    </h2>
   </article>
-
+  <!-- if aucun materiel attribué -->
   <article *ngIf="!listeClientMateriels">
     <h3>Aucun matériel enregistré à ce jour.</h3>
   </article>
+  <!-- if materiel attribué -->
 
   <article *ngIf="listeClientMateriels && listeClientMateriels.length > 0">
-    <table class="w-3/6 border-b border-gray-200">
+    <table class="w-full bg-white gap-y-2 p-8  shadow-lg">
       <thead>
-        <tr class="border-b border-gray-200">
+        <tr class="border-b ">
           <th class="text-left">Type</th>
           <th class="text-left">Marque</th>
           <th class="text-left">Modèle</th>
@@ -23,35 +26,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="font-bold text-xs cursor-pointer hover:bg-[#6941c6be] hover:text-white"
-          *ngFor="let item of listeClientMateriels">
+        <tr
+          class="font-bold text-xs cursor-pointer hover:bg-[#6941c6be] hover:text-white"
+          *ngFor="let item of listeClientMateriels"
+        >
           <td class="py-2 px-8">
-            <h3>{{item.typeMateriel}}</h3>
+            <h3>{{ item.typeMateriel }}</h3>
           </td>
           <td class="py-2 px-8">
-            <h3>{{item.marque}}</h3>
+            <h3>{{ item.marque }}</h3>
           </td>
           <td class="py-2 px-8">
-            <h3>{{item.modele}}</h3>
+            <h3>{{ item.modele }}</h3>
           </td>
           <td class="py-2 px-8">
-            <h3>{{item.quantity}}</h3>
+            <h3>{{ item.quantity }}</h3>
           </td>
         </tr>
       </tbody>
     </table>
   </article>
-  <article class="w-3/6" aria-hidden="true">
-    <div class="py-5">
+  <article class="bg-[#6941C6]" aria-hidden="true">
+   
       <div class="flex justify-end">
-        <article class="mt-4">
-          <div>
-            <button routerLink="/intranet/clients/editer" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
-              Ajouter un nouveau matériel
-            </button>
-          </div>
-        </article>
+        <button
+          routerLink="/intranet/clients/editer"
+          class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+        >
+          Ajouter un nouveau matériel
+        </button>
       </div>
-    </div>
+
   </article>
 </section>
