@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 import { fade } from 'src/app/intranet/shared/animations/animations';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { Ticket } from '../../../shared/models/models';
@@ -17,10 +18,13 @@ export class TicketHomeComponent implements OnInit {
   constructor(
     public tck: TicketsService,
     public pagination: PaginationService,
-    private router: Router
+    private router: Router,
+    private profil: ProfilService
   ) {}
 
   ngOnInit(): void {
+    console.log(this.profil.user);
+
     this.pagination.page = 1;
     if (!this.tck.statuts) {
       this.tck.httpGetStatuts();

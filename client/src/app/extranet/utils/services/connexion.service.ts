@@ -40,8 +40,15 @@ export class ConnexionService {
 
   logout(): void {
     this.profil.user = <Conseiller>{};
-    sessionStorage.removeItem('accessToken');
-    sessionStorage.removeItem('refreshToken');
+    this.http.get<any>(`${environment.baseUrl}/auth/logout`).subscribe({
+      next: (response) => {
+        console.log(response.message);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
+    });
     this.router.navigateByUrl('/');
   }
 
@@ -51,17 +58,21 @@ export class ConnexionService {
   }
 
   async httpHandshake(): Promise<any> {
-    return this.http.get<any>(
-      `${environment.baseUrl}/auth/handshake`
-    ); /* .subscribe({
+    console.log('handshake');
+
+    this.http.get<any>(`${environment.baseUrl}/auth/handshake`).subscribe({
       next: (response) => {
+        console.log(response);
+
         this.profil.user = response.user;
       },
       error: (err) => {
         console.log(err);
         this.logout();
       },
-      complete: () => [],
-    }); */
+      complete: () => {
+        return 'toto';
+      },
+    });
   }
 }

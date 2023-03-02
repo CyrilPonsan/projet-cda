@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./intranet/intranet.module').then((m) => m.IntranetModule),
     canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
+    // canLoad: [AuthGuard],
   },
 ];
 
