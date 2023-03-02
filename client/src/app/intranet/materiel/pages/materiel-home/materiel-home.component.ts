@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Materiel } from 'src/app/intranet/shared/models/models';
+import { MaterielService } from '../../utils/services/materiel.service';
 
 @Component({
   selector: 'app-materiel-home',
@@ -15,6 +17,9 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
   options: string[] = ['Client 1 ', 'Client 2 ', 'Client 3 ']; // ici j'établis la liste des clients
   filteredOptions: Observable<string[]> = new Observable<string[]>(); // ici j'initialise la liste des clients filtrés
   selectedClient: string | null = null; // ici j'initialise le client sélectionné
+
+  clientMateriel: Materiel[] = []; // ici j'initialise la liste des matériels du client sélectionné
+
 
   // ici je déclare les colonnes de la table
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'michel'];

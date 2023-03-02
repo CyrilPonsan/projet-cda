@@ -9,8 +9,10 @@
         {{ client.raisonSociale.raisonSociale | titlecase }} -
         {{ client.nom }}
       </h2>
-      
-      <div class="flex flex-col first-letter: bg-white gap-y-2 p-8 mt-5 shadow-lg">
+
+      <div
+        class="flex flex-col first-letter: bg-white gap-y-2 p-8 mt-5 shadow-lg"
+      >
         <h3>Numéro de contrat: {{ client.contrat }}</h3>
         <p class="mt-1 text-sm text-gray-600">{{ client.adresse }}</p>
         <p class="mt-1 text-sm text-gray-600">
@@ -22,24 +24,17 @@
         <p class="mt-1 text-sm text-gray-600 underline">
           {{ client.email }}
         </p>
-
-       
-      </div> 
+      </div>
       <!-- div client button  -->
       <div class="self-end bg-[#6941C6]" aria-hidden="true">
-        
-          <div class="border-t flex border-gray-200 justify-end">
-            
-                <button
-                  routerLink="/intranet/clients/editer"
-                  class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
-                >
-                  Modifier les informations du client
-                </button>
-              </div>
-           
-          
-       
+        <div class="border-t flex border-gray-200 justify-end">
+          <button
+            routerLink="/intranet/clients/editer"
+            class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+          >
+            Modifier les informations du client
+          </button>
+        </div>
       </div>
     </article>
 
