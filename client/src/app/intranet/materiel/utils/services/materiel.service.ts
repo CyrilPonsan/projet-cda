@@ -26,7 +26,7 @@ export class MaterielService {
   }
 
   getClientMateriels(id :number): Observable<Materiel[]> {
-    return this.http.get<Materiel[]>(`${environment.baseUrl}/materiel/${id}`);
+    return this.http.get<Materiel[]>(`${environment.baseUrl}/materiel/client?page=1&limite=5&id=${id}`);
   }
 
   getMateriel(ref: string): Observable<any> {

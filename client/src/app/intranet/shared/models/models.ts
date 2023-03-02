@@ -38,8 +38,6 @@ export interface Materiel {
   marque: Marque;
   modele: Modele;
   miseEnService: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface Statut {
