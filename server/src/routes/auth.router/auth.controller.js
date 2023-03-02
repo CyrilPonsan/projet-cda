@@ -1,9 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const {
-  login,
-  getConseillerById,
-} = require("../../models/auth.model/login.model");
+const { login } = require("../../models/auth.model/login.model");
 const {
   regexMail,
   regexPassword,
@@ -12,8 +9,8 @@ const {
   noAccess,
 } = require("../../utils/data");
 
-const accessTimeLife = "1h";
-const refreshTimeLife = "2h";
+const accessTimeLife = "15m";
+const refreshTimeLife = "1h";
 
 //  authentification de l'utilisateur
 async function httpLogin(req, res) {
@@ -70,27 +67,6 @@ function httpGenerateNewTokens(req, res) {
   }
 }
 
-async function httpHandShake(req, res) {
-  try {
-    const user = await getConseillerById(req.auth.userId);
-    if (user.roles.includes("tech") || user.roles.includes("admin")) {
-      return res.status(200).json({
-        user: {
-          username: user.username,
-          id: user.id,
-          nom: user.nom,
-          prenom: user.prenom,
-          roles: user.roles,
-          createdAt: user.createdAt,
-        },
-      });
-    }
-    return res.status(403).json({ message: noAccess });
-  } catch (error) {
-    return res.status(500).json({ error: serverIssue + error });
-  }
-}
-
 //  génère un token d'accès ou de refresh
 const _getToken = (user, timeLife) => {
   return jwt.sign(
@@ -103,4 +79,4 @@ const _getToken = (user, timeLife) => {
   );
 };
 
-module.exports = { httpLogin, httpGenerateNewTokens, httpHandShake };
+module.exports = { httpLogin, httpGenerateNewTokens };

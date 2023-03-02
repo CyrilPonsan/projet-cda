@@ -22,14 +22,4 @@ async function login(username, password) {
   };
 }
 
-async function getConseillerById(userId) {
-  const user = await Conseiller.findByPk(userId);
-  if (user) {
-    return user;
-  }
-  return false;
-}
-
-module.exports = getConseillerById;
-
-module.exports = { login, getConseillerById };
+module.exports = { login };
