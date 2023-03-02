@@ -23,7 +23,10 @@ if (process.env.NODE8ENV === "development") {
     {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
-      dialect: "mysql",
+      dialect: "mariadb",
+      dialectOptions: {
+        socketPath: {host : "localhost", port : 3308},
+      },
       logging: false,
     }
   );
@@ -36,7 +39,10 @@ if (process.env.NODE8ENV === "development") {
     {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
-      dialect: "mysql",
+      dialect: "mariadb",
+      dialectOptions: {
+        socketPath: {host : "localhost", port : 3308},
+      },
       logging: false,
     }
   );
