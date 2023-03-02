@@ -50,8 +50,10 @@ export class ConnexionService {
     sessionStorage.setItem('refreshToken', refreshToken);
   }
 
-  httpHandshake(): void {
-    this.http.get<any>(`${environment.baseUrl}/auth/handshake`).subscribe({
+  async httpHandshake(): Promise<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/auth/handshake`
+    ); /* .subscribe({
       next: (response) => {
         this.profil.user = response.user;
       },
@@ -60,6 +62,6 @@ export class ConnexionService {
         this.logout();
       },
       complete: () => [],
-    });
+    }); */
   }
 }

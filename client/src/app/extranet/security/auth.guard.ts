@@ -32,10 +32,14 @@ export class AuthGuard implements CanActivate {
         this.profil.user.roles.includes('tech')
       ) {
         return true;
+      } else {
+        return false;
       }
-    } else if (sessionStorage.getItem('accessToken') !== null) {
-      this.conn.httpHandshake();
-      return true;
+    } else {
+      const handshake = async () => {
+        await this.conn.httpHandshake();
+        return true;
+      };
     }
     this.conn.logout();
     return false;
