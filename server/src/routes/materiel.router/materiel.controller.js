@@ -2,6 +2,11 @@ const createMateriel = require("../../models/materiel.model.js/createMateriel");
 const deleteMateriel = require("../../models/materiel.model.js/deleteMateriel");
 const getClientMateriels = require("../../models/materiel.model.js/getClientMateriels");
 const getOneMateriel = require("../../models/materiel.model.js/getOneMateriel");
+const { getMarqueList } = require("../../models/materiel.model.js/marque");
+const { getModeleList } = require("../../models/materiel.model.js/modele");
+const {
+  getTypeMaterielList,
+} = require("../../models/materiel.model.js/typeMateriel");
 const updateMateriel = require("../../models/materiel.model.js/updateMateriel");
 const { checkMateriel } = require("../../services/checkData");
 const { getPagination } = require("../../services/queryService");
@@ -113,10 +118,40 @@ async function httpGetClientMateriels(req, res) {
   }
 }
 
+async function httpGetTypesList(req, res) {
+  try {
+    const typeMaterielList = await getTypeMaterielList();
+    return res.status(200).json(typeMaterielList);
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
+async function httpGetMarqueList(req, res) {
+  try {
+    const marqueList = await getMarqueList();
+    return res.status(200).json(marqueList);
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
+async function httpGetModeleList(req, res) {
+  try {
+    const modeleList = await getModeleList();
+    return res.status(200).json(modeleList);
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
 module.exports = {
   httpGetOneMateriel,
   httpDeleteMateriel,
   httpCreateMateriel,
   httpUpdateMateriel,
   httpGetClientMateriels,
+  httpGetTypesList,
+  httpGetMarqueList,
+  httpGetModeleList,
 };
