@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Materiel } from 'src/app/intranet/shared/models/models';
+import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,8 @@ import { Materiel } from 'src/app/intranet/shared/models/models';
 export class MaterielService {
   constructor(
     private http: HttpClient,
+    private pag: PaginationService,
+    
     ) {}
 
   getTypes(): Observable<string[]> {
@@ -25,8 +28,8 @@ export class MaterielService {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/modeles`);
   }
 
-  getClientMateriels(id :number): Observable<Materiel[]> {
-    return this.http.get<Materiel[]>(`${environment.baseUrl}/materiel/client?page=1&limite=5&id=${id}`);
+  getClientMateriels(id :number,  ): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/materiel/client?page=1&limite=${this.pag.max}&id=${id}`);
   }
 
   getMateriel(ref: string): Observable<any> {
