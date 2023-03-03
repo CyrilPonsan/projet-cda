@@ -25,6 +25,7 @@ const {
 const createClient = require("../../models/client.model/createClient");
 const getClientMateriels = require("../../models/client.model/getClientMateriels");
 const { countMateriels } = require("../../services/countMateriels");
+const getClients = require("../../models/client.model/getClients");
 
 async function httpGetAllClients(req, res) {
   const { page, lmt } = req.query;
@@ -211,6 +212,15 @@ async function httpGetClientMateriels(req, res) {
   }
 }
 
+async function httpGetClients(req, res) {
+  try {
+    const clients = await getClients();
+    return res.status(200).json(clients);
+  } catch (err) {
+    return res.status(500).json({ message: serverIssue + err });
+  }
+}
+
 module.exports = {
   httpSearchClient,
   httpGetAllClients,
@@ -221,4 +231,5 @@ module.exports = {
   httpAddRaisonSociale,
   httpCreateClient,
   httpGetClientMateriels,
+  httpGetClients,
 };

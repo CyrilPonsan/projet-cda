@@ -10,10 +10,12 @@ const {
   httpAddRaisonSociale,
   httpCreateClient,
   httpGetClientMateriels,
+  httpGetClients,
 } = require("./clients.controller");
 
 const clientsRouter = express.Router();
 clientsRouter.get("/", httpGetAllClients);
+clientsRouter.get("/clients", httpGetClients);
 clientsRouter.get("/raisons-sociales", httpGetRaisonsScociales);
 clientsRouter.put("/:id", httpUpdateClient);
 clientsRouter.get("/search", httpSearchClient);
