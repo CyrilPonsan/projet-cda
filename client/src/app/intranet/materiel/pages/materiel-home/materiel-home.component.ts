@@ -6,6 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { Client, Materiel } from 'src/app/intranet/shared/models/models';
 import { MaterielService } from '../../utils/services/materiel.service';
 import { ClientsService } from 'src/app/intranet/clients/utils/services/clients.service';
+import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 
 @Component({
   selector: 'app-materiel-home',
@@ -29,7 +30,9 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
 
   constructor(
     public materielService: MaterielService,
-    public clientService: ClientsService
+    public clientService: ClientsService,
+    public pagination: PaginationService,
+
   ) {
     
   }
@@ -95,5 +98,38 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
       this.clientMateriel = [];
     }
   }
+
+  setLimitHandler(value: any): void {
+    this.pagination.max = value;
+    const clientId = this.clientList.find(client => client.nom === this.myControl.value)?.id;
+    if (clientId) {
+      this.materielService.getClientMateriels(clientId).subscribe({
+        next: (materiels) => {
+          this.clientMateriel = materiels;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    } else {
+      this.clientMateriel = [];
+    }
+  }
+  pageChangedHandler(): void {
+    const clientId = this.clientList.find(client => client.nom === this.myControl.value)?.id;
+    if (clientId) {
+      this.materielService.getClientMateriels(clientId).subscribe({
+        next: (materiels) => {
+          this.clientMateriel = materiels;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    } else {
+      this.clientMateriel = [];
+    }
+  }
+
   
 }
