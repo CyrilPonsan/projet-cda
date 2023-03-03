@@ -30,10 +30,11 @@
     "openai": "^3.2.0",
     "save": "^2.9.0",
     "sequelize": "^6.28.0",
-    "swagger-ui-express": "^4.6.1",
+    
     "express-session": "^1.17.3",
     "connect-session-sequelize": "^7.1.5",
-    "helmet": "^6.0.1"
+    "helmet": "^6.0.1",
+    "swagger-ui-express": "^4.6.1"
   },
   "devDependencies": {
     "jest": "^29.3.1",
