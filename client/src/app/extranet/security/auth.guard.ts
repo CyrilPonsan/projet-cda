@@ -32,35 +32,15 @@ export class AuthGuard implements CanActivate {
         this.profil.user.roles.includes('tech')
       ) {
         return true;
+      } else {
+        return false;
       }
-    } else if (sessionStorage.getItem('accessToken') !== null) {
-      this.conn.httpHandshake();
+    } else {
+      const handshake = async () => {
+        const result = await this.conn.httpHandshake();
+      };
+      handshake();
       return true;
     }
-    this.conn.logout();
-    return false;
-  }
-  /** Autoriser ou interdire le chargement de fichier en lazy loading */
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    if (this.profil.user !== undefined) {
-      if (
-        this.profil.user.roles.includes('admin') ||
-        this.profil.user.roles.includes('tech')
-      ) {
-        return true;
-      }
-    } else if (sessionStorage.getItem('accessToken') !== null) {
-      this.conn.httpHandshake();
-      return true;
-    }
-    this.conn.logout();
-    return false;
   }
 }

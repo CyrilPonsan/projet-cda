@@ -20,20 +20,17 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.accessToken = sessionStorage.getItem('accessToken')!;
-    let authReq = this.addTokenToHeaders(req, this.accessToken);
+    const authReq = req.clone({ withCredentials: true });
     return next.handle(authReq).pipe(
       catchError((error: any) => {
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-          return this.handleRefreshToken(req, next);
-        } else if (error instanceof HttpErrorResponse && error.status === 403) {
+        if (error instanceof HttpErrorResponse && error.status === 403) {
           this.conn.logout();
         }
         return throwError(() => error);
       })
     );
   }
-
+  /*
   private handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
     return this.conn.httpGenerateTokens().pipe(
       switchMap((data: any) => {
@@ -47,5 +44,5 @@ export class AuthInterceptor implements HttpInterceptor {
     return req.clone({
       headers: req.headers.set('Authorization', `bearer ${accessToken}`),
     });
-  }
+  } */
 }

@@ -36,4 +36,19 @@ function checkMateriel(data) {
   );
 }
 
-module.exports = { checkClient, checkMateriel };
+function checkKnowledgeGPT(data) {
+  const { def, type, marque, modele } = data;
+
+  return (
+    !def ||
+    !regexGeneric.test(def) ||
+    !type ||
+    !regexGeneric.test(type) ||
+    !marque ||
+    !regexGeneric.test(marque) ||
+    !modele ||
+    !regexGeneric.test(modele)
+  );
+}
+
+module.exports = { checkClient, checkMateriel, checkKnowledgeGPT };

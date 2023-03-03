@@ -25,7 +25,7 @@ export class TicketSummaryComponent {
   }
 
   onSubmitHandler(item: any): void {
-    Object.assign(item, { ticket_id: this.ticket.id });
+    Object.assign(item, { ticketId: this.ticket.id });
     this.showForm = false;
     this.submit.emit(item);
   }
