@@ -4,6 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Client, Materiel } from 'src/app/intranet/shared/models/models';
+import { MaterielService } from '../../utils/services/materiel.service';
+import { ClientsService } from 'src/app/intranet/clients/utils/services/clients.service';
 
 @Component({
   selector: 'app-materiel-home',
@@ -15,6 +18,9 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
   options: string[] = ['Client 1 ', 'Client 2 ', 'Client 3 ']; // ici j'établis la liste des clients
   filteredOptions: Observable<string[]> = new Observable<string[]>(); // ici j'initialise la liste des clients filtrés
   selectedClient: string | null = null; // ici j'initialise le client sélectionné
+  
+  clientMateriel: Materiel[] = []; // ici j'initialise la liste des matériels du client sélectionné
+  clientsNameList: string[] = []; // ici j'initialise la liste des noms des clients
 
   // ici je déclare les colonnes de la table
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'michel'];
@@ -23,6 +29,54 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
 
   // ici je déclare le paginator
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private materielService: MaterielService , clientService: ClientsService) {
+    // Get all clients's name
+    clientService.httpGelAllClients().subscribe({
+      next: (response) => {
+        const clients = response.data; // Extract the array of clients from the response
+        clients.forEach((client: Client) => {
+          this.clientsNameList.push(client.nom);
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('complete');
+        console.log(this.clientsNameList);
+      },
+    });
+
+    
+  
+  
+
+
+    //get Materiel by client id
+    this.materielService.getClientMateriels(1).subscribe({
+      next: (materiel) => {
+        this.clientMateriel = materiel;
+        // materiel.forEach((item) => {
+        //   console.log(`ID: ${item.id}`);
+        //   console.log(`Reference: ${item.ref}`);
+        //   console.log(`Date of commissioning: ${item.miseEnService}`);
+        //   console.log(`Equipment type: ${item.typeMateriel.type}`);
+        //   console.log(`Brand: ${item.marque.marque}`);
+        //   console.log(`Model: ${item.modele.modele}`);
+        //   console.log(`Model URL: ${item.modele.url}`);
+        // });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('complete');       
+      },
+    });
+    
+  }
+
 
   // ici je déclare la fonction qui permet de charger le paginator
   ngAfterViewInit() {

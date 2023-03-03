@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MaterielDetailComponent } from './pages/materiel-detail/materiel-detail.component';
+import { ClientsService } from '../clients/utils/services/clients.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -31,10 +33,12 @@ import { MaterielDetailComponent } from './pages/materiel-detail/materiel-detail
     MatNativeDateModule,
     FormsModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    SharedModule
     
 
     
   ],
+  providers: [ClientsService],
 })
 export class MaterielModule {}

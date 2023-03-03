@@ -5,9 +5,7 @@
   </article>
   <!-- Title -->
   <article class="py-10">
-    <h2 class="font-bold text-lg border-b ">
-      Parc Informatique
-    </h2>
+    <h2 class="font-bold text-lg border-b">Parc Informatique</h2>
   </article>
   <!-- if aucun materiel attribué -->
   <article *ngIf="!listeClientMateriels">
@@ -16,9 +14,9 @@
   <!-- if materiel attribué -->
 
   <article *ngIf="listeClientMateriels && listeClientMateriels.length > 0">
-    <table class="w-full bg-white gap-y-2 p-8  shadow-lg">
+    <table class="w-full bg-white gap-y-2 p-8 shadow-lg">
       <thead>
-        <tr class="border-b ">
+        <tr class="border-b">
           <th class="text-left">Type</th>
           <th class="text-left">Marque</th>
           <th class="text-left">Modèle</th>
@@ -46,16 +44,24 @@
       </tbody>
     </table>
   </article>
-  <article class="bg-[#6941C6]" aria-hidden="true">
-   
-      <div class="flex justify-end">
-        <button
-          routerLink="/intranet/clients/editer"
-          class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
-        >
-          Ajouter un nouveau matériel
-        </button>
-      </div>
-
+  <article class="bg-[#6941C6] flex justify-between" aria-hidden="true">
+    <!-- div materiel go to material user's list -->
+    <div class=" ">
+      <button
+        routerLink="/intranet/materiel"
+        class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+      >
+        Voir tous les matériels
+      </button>
+    </div>
+    <!-- div materiel go to new-materiel  -->
+    <div class="flex justify-end">
+      <button
+        routerLink="/intranet/materiel/new-materiel"
+        class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md"
+      >
+        Ajouter un nouveau matériel
+      </button>
+    </div>
   </article>
 </section>

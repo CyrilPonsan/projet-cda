@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Materiel } from 'src/app/intranet/shared/models/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MaterielService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    ) {}
 
   getTypes(): Observable<string[]> {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/types`);
@@ -22,8 +25,8 @@ export class MaterielService {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/modeles`);
   }
 
-  getMateriels(): Observable<string[]> {
-    return this.http.get<string[]>(`${environment.baseUrl}/materiel/`);
+  getClientMateriels(id :number): Observable<Materiel[]> {
+    return this.http.get<Materiel[]>(`${environment.baseUrl}/materiel/client?page=1&limite=5&id=${id}`);
   }
 
   getMateriel(ref: string): Observable<any> {
