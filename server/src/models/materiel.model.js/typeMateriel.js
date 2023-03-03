@@ -5,7 +5,13 @@ async function getTypeMaterielList() {
   return typeMaterielList;
 }
 
-async function createTypeMaterielList(typeMateriel) {
+async function createTypeMateriel(typeMateriel) {
+  const materielToAdd = await TypeMateriel.findOne({
+    where: { type: typeMateriel.type },
+  });
+  if (materielToAdd) {
+    return false;
+  }
   const newTypeMateriel = await TypeMateriel.create(typeMateriel);
   if (newTypeMateriel) {
     return newTypeMateriel;
@@ -13,4 +19,4 @@ async function createTypeMaterielList(typeMateriel) {
   return false;
 }
 
-module.exports = { getTypeMaterielList, createTypeMaterielList };
+module.exports = { getTypeMaterielList, createTypeMateriel };
