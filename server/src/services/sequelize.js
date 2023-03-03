@@ -36,8 +36,7 @@ if (process.env.NODE8ENV === "development") {
     {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
-      dialect: "mysql",
-      
+      dialect: "mysql",      
       logging: false,
     }
   );
