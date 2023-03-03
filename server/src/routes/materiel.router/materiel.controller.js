@@ -2,10 +2,14 @@ const createMateriel = require("../../models/materiel.model.js/createMateriel");
 const deleteMateriel = require("../../models/materiel.model.js/deleteMateriel");
 const getClientMateriels = require("../../models/materiel.model.js/getClientMateriels");
 const getOneMateriel = require("../../models/materiel.model.js/getOneMateriel");
-const { getMarqueList } = require("../../models/materiel.model.js/marque");
+const {
+  getMarqueList,
+  createMarque,
+} = require("../../models/materiel.model.js/marque");
 const { getModeleList } = require("../../models/materiel.model.js/modele");
 const {
   getTypeMaterielList,
+  createTypeMateriel,
 } = require("../../models/materiel.model.js/typeMateriel");
 const updateMateriel = require("../../models/materiel.model.js/updateMateriel");
 const { checkMateriel } = require("../../services/checkData");
@@ -15,6 +19,7 @@ const {
   badQuery,
   noData,
   serverIssue,
+  regexGeneric,
 } = require("../../utils/data");
 
 async function httpGetOneMateriel(req, res) {
@@ -145,6 +150,46 @@ async function httpGetModeleList(req, res) {
   }
 }
 
+async function httpCreateTypeMateriel(req, res) {
+  const typeMateriel = req.body;
+  if (!typeMateriel.type || !regexGeneric.test(typeMateriel.type)) {
+    return res.status(400).json({ message: badQuery });
+  }
+  try {
+    const newTypeMateriel = await createTypeMateriel(typeMateriel);
+    if (!newTypeMateriel) {
+      return res.status(404).json({
+        message: `Le type de matériel ${typeMateriel.type} existe déjà.`,
+      });
+    }
+    return res.status(201).json({
+      message: `Nouveau type de matériel enregistré avec l'identifiant: ${newTypeMateriel.id}`,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
+async function httpCreateMarque(req, res) {
+  const marque = req.body;
+  if (!marque || !regexGeneric.test(marque)) {
+    return res.status(400).json({ message: badQuery });
+  }
+  try {
+    const newMarque = await createMarque(marque);
+    if (!newMarque) {
+      return res.status(404).json({
+        message: `La marque ${marque.marque} existe déjà.`,
+      });
+    }
+    return res.status(201).json({
+      message: `Nouvelle marque enregistrée avec l'identifiant: ${newTypeMateriel.id}`,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
 module.exports = {
   httpGetOneMateriel,
   httpDeleteMateriel,
@@ -154,4 +199,5 @@ module.exports = {
   httpGetTypesList,
   httpGetMarqueList,
   httpGetModeleList,
+  httpCreateTypeMateriel,
 };

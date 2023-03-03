@@ -5,4 +5,18 @@ async function getMarqueList() {
   return marqueList;
 }
 
-module.exports = { getMarqueList };
+async function createMarque(marque) {
+  const marqueToAdd = await Marque.findOne({
+    where: { marque: marque.marque },
+  });
+  if (marqueToAdd) {
+    return false;
+  }
+  const newMarque = await TypeMateriel.create(marque);
+  if (newMarque) {
+    return newMarque;
+  }
+  return false;
+}
+
+module.exports = { getMarqueList, createMarque };
