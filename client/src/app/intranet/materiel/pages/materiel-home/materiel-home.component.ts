@@ -29,10 +29,8 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
   constructor(
     public materielService: MaterielService,
     public clientService: ClientsService,
-    public pagination: PaginationService,
-  ) {
-
-  }
+    public pagination: PaginationService
+  ) {}
 
   // ici je déclare la fonction qui permet de charger le paginator
   ngAfterViewInit() {}
@@ -81,7 +79,9 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
   }
 
   onClientSelection() {
-    const clientId = this.clientList.find(client => client.nom === this.myControl.value)?.id;
+    const clientId = this.clientList.find(
+      (client) => client.nom === this.myControl.value
+    )?.id;
     if (clientId) {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
@@ -89,7 +89,7 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
         },
         error: (err) => {
           console.log(err);
-        }
+        },
       });
     } else {
       this.clientMateriel = [];
@@ -98,7 +98,9 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
 
   setLimitHandler(value: any): void {
     this.pagination.max = value;
-    const clientId = this.clientList.find(client => client.nom === this.myControl.value)?.id;
+    const clientId = this.clientList.find(
+      (client) => client.nom === this.myControl.value
+    )?.id;
     if (clientId) {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
@@ -106,32 +108,31 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
 
           this.pagination.setPagesMax(materiels.total);
           this.pagination.setButtonsStyle(materiels.data.length);
-          this.clientMateriel = materiels;
+          this.clientMateriel = materiels.data;
         },
         error: (err) => {
           console.log(err);
-        }
+        },
       });
     } else {
       this.clientMateriel = [];
     }
   }
   pageChangedHandler(): void {
-    const clientId = this.clientList.find(client => client.nom === this.myControl.value)?.id;
+    const clientId = this.clientList.find(
+      (client) => client.nom === this.myControl.value
+    )?.id;
     if (clientId) {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
           this.clientMateriel = materiels;
-          
         },
         error: (err) => {
           console.log(err);
-        }
+        },
       });
     } else {
       this.clientMateriel = [];
     }
   }
-
-  
 }
