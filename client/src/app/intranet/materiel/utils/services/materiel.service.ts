@@ -6,15 +6,9 @@ import { environment } from 'src/environments/environment';
 import { Materiel } from 'src/app/intranet/shared/models/models';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MaterielService {
-  constructor(
-    private http: HttpClient,
-    private pag: PaginationService,
-    
-    ) {}
+  constructor(private http: HttpClient, private pag: PaginationService) {}
 
   getTypes(): Observable<string[]> {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/types`);
@@ -28,8 +22,10 @@ export class MaterielService {
     return this.http.get<string[]>(`${environment.baseUrl}/materiel/modeles`);
   }
 
-  getClientMateriels(id :number,  ): Observable<any> {
-    return this.http.get<any>(`${environment.baseUrl}/materiel/client?page=1&limite=${this.pag.max}&id=${id}`);
+  getClientMateriels(id: number): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/materiel/client?page=1&limite=${this.pag.max}&id=${id}`
+    );
   }
 
   getMateriel(ref: string): Observable<any> {
