@@ -23,6 +23,15 @@ export class ClientsService {
     );
   }
 
+  
+  httpGetClients(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/clients/clients`
+    );
+  }
+
+  
+
   httpSearchClients(type: string, value: string): Observable<Array<Client>> {
     return this.http.get<Array<Client>>(
       `${environment.baseUrl}/clients/search?type=${type}&value=${value}`

@@ -16,6 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MaterielDetailComponent } from './pages/materiel-detail/materiel-detail.component';
 import { ClientsService } from '../clients/utils/services/clients.service';
 import { SharedModule } from '../shared/shared.module';
+import { PaginationService } from '../shared/services/pagination.service';
 
 
 
@@ -34,11 +35,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     MatPaginatorModule,
     MatTableModule,
-    SharedModule
-    
-
-    
+    SharedModule,
   ],
-  providers: [ClientsService],
+  providers: [ClientsService, PaginationService],
 })
 export class MaterielModule {}

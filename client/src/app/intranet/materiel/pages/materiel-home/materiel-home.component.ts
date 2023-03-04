@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -26,15 +25,13 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
   clientsNameList: string[] = []; // ici j'initialise la liste des noms des clients
 
   // ici je déclare le paginator
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     public materielService: MaterielService,
     public clientService: ClientsService,
     public pagination: PaginationService,
-
   ) {
-    
+
   }
 
   // ici je déclare la fonction qui permet de charger le paginator
@@ -42,9 +39,9 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
 
   // ici je déclare la fonction qui permet de filtrer la liste des clients
   ngOnInit() {
-    this.clientService.httpGelAllClients().subscribe({
+    this.clientService.httpGetClients().subscribe({
       next: (response) => {
-        const clients = response.data;
+        const clients = response;
         clients.forEach((client: Client) => {
           const clientInfo = { id: client.id, nom: client.nom };
           this.clientList.push(clientInfo);
@@ -105,6 +102,10 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
     if (clientId) {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
+          this.pagination.total = materiels.total;
+
+          this.pagination.setPagesMax(materiels.total);
+          this.pagination.setButtonsStyle(materiels.data.length);
           this.clientMateriel = materiels;
         },
         error: (err) => {
@@ -121,6 +122,7 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
           this.clientMateriel = materiels;
+          
         },
         error: (err) => {
           console.log(err);
