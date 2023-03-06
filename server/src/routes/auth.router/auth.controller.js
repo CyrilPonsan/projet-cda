@@ -12,9 +12,6 @@ const {
   noAccess,
 } = require("../../utils/data");
 
-const accessTimeLife = "10h";
-const refreshTimeLife = "1d";
-
 //  authentification de l'utilisateur
 async function httpLogin(req, res) {
   const { username, password } = req.body;
@@ -24,12 +21,12 @@ async function httpLogin(req, res) {
     !regexMail.test(username) ||
     !regexPassword.test(password)
   ) {
-    return res.status(400).json({ credentialsError });
+    return res.status(401).json({ credentialsError });
   }
   const user = await login(username, password);
   try {
     if (!user.isValid) {
-      return res.status(400).json({ credentialsError });
+      return res.status(401).json({ credentialsError });
     }
     if (user.roles.includes("tech") || user.roles.includes("admin")) {
       req.session.userId = user.id;
@@ -43,8 +40,6 @@ async function httpLogin(req, res) {
           roles: user.roles,
           createdAt: user.createdAt,
         },
-        //accessToken: _getToken(user, accessTimeLife),
-        //refreshToken: _getToken(user, refreshTimeLife),
       });
     } else {
       return res.status(403).json({ noAccess });

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConnexionService } from '../../utils/services/connexion.service';
+import { ProfilService } from '../../utils/services/profil.service';
 import { RegexService } from '../../utils/services/regex.service';
 
 @Component({
@@ -16,11 +18,14 @@ export class ConnexionComponent implements OnInit {
   isPasswordValid = true;
   loader = false;
   hasError = false;
+  credentialsError!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private regex: RegexService,
-    private conn: ConnexionService
+    private conn: ConnexionService,
+    private profil: ProfilService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,10 +60,19 @@ export class ConnexionComponent implements OnInit {
   //  connexion
   submitLoginHandler(): void {
     if (this.loginForm.valid) {
-      this.conn.httpConnexion(
-        this.loginForm.value.username.trim(),
-        this.loginForm.value.password.trim()
-      );
+      this.credentialsError = false;
+      this.conn
+        .httpConnexion(
+          this.loginForm.value.username.trim(),
+          this.loginForm.value.password.trim()
+        )
+        .subscribe({
+          next: (response) => {
+            this.profil.user = response.user;
+          },
+          error: (err) => (this.credentialsError = true),
+          complete: () => this.router.navigateByUrl('intranet'),
+        });
     }
   }
 }
