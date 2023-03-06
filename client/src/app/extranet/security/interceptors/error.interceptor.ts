@@ -1,27 +1,24 @@
+import { Injectable } from '@angular/core';
 import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
   HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { ConnexionService } from '../../utils/services/connexion.service';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  accessToken!: string;
-
+export class ErrorInterceptor implements HttpInterceptor {
   constructor(private conn: ConnexionService) {}
 
   intercept(
-    req: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const authReq = req.clone({ withCredentials: true });
-    return next.handle(authReq).pipe(
+  ): Observable<HttpEvent<unknown>> {
+    return next.handle(request).pipe(
       catchError((error: any) => {
         if (error instanceof HttpErrorResponse && error.status === 403) {
           this.conn.logout();

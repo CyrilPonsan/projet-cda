@@ -16,20 +16,11 @@ export class ConnexionService {
     private profil: ProfilService
   ) {}
 
-  httpConnexion(username: string, password: string): void {
-    this.http
-      .post<any>(`${environment.baseUrl}/auth/`, {
-        username,
-        password,
-      })
-      .subscribe({
-        next: (response) => {
-          this.profil.user = response.user;
-          this.saveTokens(response.accessToken, response.refreshToken);
-        },
-        error: (err) => console.log(err),
-        complete: () => this.router.navigateByUrl('intranet'),
-      });
+  httpConnexion(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/auth/`, {
+      username,
+      password,
+    });
   }
 
   httpGenerateTokens(): Observable<any> {
