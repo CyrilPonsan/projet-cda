@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../../app");
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../../../.env") });
 const jwt = require("jsonwebtoken");
 
 const { initDB } = require("../../services/sequelize");
@@ -10,29 +11,12 @@ let credentials = {
   password: "Abcd@1234",
 };
 
-const refreshToken = jwt.sign(
-  {
-    id: 1,
-    roles: ["tech", "admin"],
-  },
-  process.env.PRIVATE_KEY,
-  { expiresIn: "10min" }
-);
-
-const fakeRefreshToken = jwt.sign(
-  {
-    id: 1,
-    roles: ["tech", "admin"],
-  },
-  process.env.PRIVATE_KEY,
-  { expiresIn: "0s" }
-);
-
 describe("API", () => {
   beforeAll(async () => {
     await initDB();
   });
   describe("Test POST /login", () => {
+    console.log("toto");
     test("réponse attendue : 200", async () => {
       const response = await request(app).post("/v1/auth/").send(credentials);
       expect(200);
