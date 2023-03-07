@@ -14,7 +14,7 @@ const TypeMaterielModel = require("../models/sequelize.models.js/typeMateriel.db
 
 let sequelize;
 
-if (process.env.NODE8ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   console.log("dev environment");
   sequelize = new Sequelize(
     process.env.DB_NAME,
