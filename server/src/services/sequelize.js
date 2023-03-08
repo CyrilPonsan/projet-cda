@@ -120,7 +120,6 @@ Materiel.belongsTo(Modele, { as: "modele" });
 
 function initDB() {
   return sequelize
-    .sync({ alter: true })
     .then(() => console.log("Base de données initialisée."))
     .catch((error) =>
       console.log(`La base de données n'a pas été initialisée: ${error}`)
