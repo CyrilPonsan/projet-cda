@@ -24,12 +24,14 @@ export class TicketsService {
 
   constructor(private http: HttpClient, private pag: PaginationService) {}
 
+  //  retourne la liste de tous les tickets
   httpGetTickets(): Observable<any> {
     return this.http.get<any>(
       `${environment.baseUrl}/tickets?page=${this.pag.page}&lmt=${this.pag.max}`
     );
   }
 
+  //  retourne la liste de tous les statuts
   httpGetStatuts(): void {
     this.http.get<any>(`${environment.baseUrl}/tickets/statuts`).subscribe({
       next: (response) => (this.statuts = response.data),

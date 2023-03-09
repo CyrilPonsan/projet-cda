@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Client, Ticket } from 'src/app/intranet/shared/models/models';
+import { Client } from 'src/app/intranet/shared/models/models';
 import { PaginationService } from 'src/app/intranet/shared/services/pagination.service';
 import { environment } from 'src/environments/environment';
 import { ClientTicket, Inventaire } from '../models/models';
@@ -73,4 +72,3 @@ export class ClientsService {
     );
   }
 }
-// coucou
