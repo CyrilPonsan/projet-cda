@@ -69,6 +69,7 @@ async function httpCreateMateriel(req, res) {
         .status(201)
         .json({ message: "Nouveau matériel enregistré", newMateriel });
     }
+    return res.status(404).json({ message: "Le client n'existe pas." });
   } catch (error) {
     return res.status(500).json({ message: serverIssue + error });
   }
@@ -86,11 +87,12 @@ async function httpUpdateMateriel(req, res) {
   }
   try {
     const updatedMateriel = await updateMateriel(materielToUpdate, materielId);
-    if (updatedMateriel) {
-      return res.status(201).json({
-        message: `Le matériel avec l'identifiant: ${materielId} a été mis à jour.`,
-      });
+    if (updatedMateriel[0] === 0) {
+      return res.status(404).json({ message: "Le client n'existe pas." });
     }
+    return res.status(201).json({
+      message: `Le matériel avec l'identifiant: ${materielId} a été mis à jour.`,
+    });
   } catch (error) {
     return res.status(500).json({ message: serverIssue + error });
   }
@@ -106,7 +108,7 @@ async function httpGetClientMateriels(req, res) {
     !limite ||
     !regexNumber.test(limite)
   ) {
-    return res.status(403).json({ message: badQuery });
+    return res.status(400).json({ message: badQuery });
   }
   try {
     const clientMateriels = await getClientMateriels(

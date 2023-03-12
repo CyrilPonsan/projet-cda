@@ -6,7 +6,6 @@ const {
 } = require("../../services/sequelize");
 
 async function getClientMateriels(clientId, offset, limite) {
-  console.log(offset, limite);
   const materiels = await Materiel.findAll({
     where: { clientId: clientId },
     include: [

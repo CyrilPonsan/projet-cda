@@ -1,6 +1,11 @@
-const { Materiel } = require("../../services/sequelize");
+const { Materiel, Client } = require("../../services/sequelize");
 
 async function createMateriel(materielToAdd) {
+  const client = await Client.findByPk(materielToAdd.clientId);
+  if (!client) {
+    return false;
+  }
+
   materielToAdd = { ...materielToAdd, ref: await _getMaterielLastRef() };
   const newMateriel = await Materiel.create(materielToAdd);
   if (newMateriel) {

@@ -21,15 +21,7 @@ describe("API", () => {
     test("réponse attendue : 200", async () => {
       await authenticatedSession.get("/v1/clients?page=1&lmt=5").expect(200);
     });
-  }); /* 
-  // table client vide
-  describe("Test GET /", () => {
-    test("réponse attendue : 404", async () => {
-     await authenticatedSession
-        .get("/v1/clients?page=1&lmt=5")
-        .expect(404);
-    });
-  }); */
+  });
   // page non conforme
   describe("Test GET /", () => {
     test("réponse attendue : 400", async () => {
