@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../../app");
 const session = require("supertest-session");
 const { _setRandomNumber } = require("../../utils/data");
+const { Materiel } = require("../../services/sequelize");
 
 describe("API", () => {
   let authenticatedSession;
@@ -316,9 +317,58 @@ describe("API", () => {
     });
   });
   // retourne la liste des marques
-  describe("Test GET /type-materiel", () => {
+  describe("Test GET /marque", () => {
     test("réponse attendue : 200", async () => {
       await authenticatedSession.get("/v1/materiel/marque").expect(200);
     });
   });
+  // retourne la liste des modèles de matériel
+  describe("Test GET /modele", () => {
+    test("réponse attendue : 200", async () => {
+      await authenticatedSession.get("/v1/materiel/modele").expect(200);
+    });
+  });
+  // les détails d'un matériel
+  describe("Test GET /:ref", () => {
+    test("réponse attendue : 200", async () => {
+      const ref = await _getLastMaterielRef();
+      await authenticatedSession.get(`/v1/materiel/${ref}`).expect(200);
+    });
+  });
+  // les détails d'un matériel avec une id non conforme
+  describe("Test GET /:ref", () => {
+    test("réponse attendue : 400", async () => {
+      await authenticatedSession.get("/v1/materiel/foo").expect(400);
+    });
+  });
+  // les détails d'un matériel avec une id qui n'existe pas
+  describe("Test GET /:ref", () => {
+    test("réponse attendue : 404", async () => {
+      await authenticatedSession.get("/v1/materiel/100000").expect(404);
+    });
+  });
+  // supprime un matériel
+  describe("Test delete /:ref", () => {
+    test("réponse attendue : 201", async () => {
+      const ref = await _getLastMaterielRef();
+      await authenticatedSession.delete(`/v1/materiel/${ref}`).expect(201);
+    });
+  });
+  // supprime un matériel avec une ref non conforme
+  describe("Test delete /:ref", () => {
+    test("réponse attendue : 400", async () => {
+      await authenticatedSession.delete("/v1/materiel/foo").expect(400);
+    });
+  });
+  // supprime un matériel avec une ref qui n'existe pas
+  describe("Test delete /:ref", () => {
+    test("réponse attendue : 404", async () => {
+      await authenticatedSession.delete("/v1/materiel/1000000").expect(404);
+    });
+  });
 });
+
+async function _getLastMaterielRef() {
+  const materiels = await Materiel.findAll({ order: [["id", "DESC"]] });
+  return parseInt(materiels[0].ref);
+}
