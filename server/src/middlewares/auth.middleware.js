@@ -29,14 +29,10 @@ const hasAccess = (req, res, next) => {
 
 const isAdmin = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(token, privateKey);
-    console.log("coucou, je check le token: ", decodedToken);
-    if (decodedToken.roles.includes("admin")) {
-      req.auth = { userId: decodedToken.id, roles: decodedToken.roles };
+    if (req.session && req.session.roles.includes("admin")) {
       next();
     } else {
-      return res.status(403).json({ message: noAccess });
+      res.status(403).json({ noAccess });
     }
   } catch (error) {
     res.status(403).json({ noAccess });
