@@ -16,7 +16,7 @@ const api = require("./routes/v1.router");
 const app = express();
 
 //  initialise la bdd
-initDB();
+//initDB();
 
 app.use(helmet());
 app.use(

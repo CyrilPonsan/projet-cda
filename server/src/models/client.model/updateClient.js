@@ -4,10 +4,7 @@ async function updateClient(clientId, client) {
   const updatedClient = await Client.update(client, {
     where: { id: clientId },
   });
-  if (updatedClient) {
-    return updateClient;
-  }
-  return false;
+  return updatedClient;
 }
 
 module.exports = updateClient;
