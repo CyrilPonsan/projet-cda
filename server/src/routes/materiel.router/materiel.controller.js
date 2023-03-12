@@ -29,7 +29,6 @@ async function httpGetOneMateriel(req, res) {
   }
   try {
     const materiel = await getOneMateriel(ref);
-    console.log("matos", materiel);
     if (!materiel) {
       return res.status(404).json({ message: noData });
     }
