@@ -21,12 +21,14 @@ function checkClient(data) {
 }
 
 function checkMateriel(data) {
-  const { miseEnService, ref, typeMaterielId, marqueId, modeleId } = data;
+  const { miseEnService, ref, typeMaterielId, marqueId, modeleId, clientId } =
+    data;
 
   return (
     !miseEnService ||
     !regexGeneric.test(miseEnService) ||
     (ref && !regexNumber.test(ref)) ||
+    (clientId && !regexNumber.test(clientId)) ||
     !typeMaterielId ||
     !regexNumber.test(typeMaterielId) ||
     !marqueId ||

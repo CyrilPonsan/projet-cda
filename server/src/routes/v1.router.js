@@ -10,10 +10,10 @@ const ticketsRouter = require("./tickets.router/tickets.router");
 const api = express.Router();
 
 api.use("/auth", authRouter);
-api.use("/clients", clientsRouter);
-api.use("/tickets", ticketsRouter);
+api.use("/clients", hasAccess, clientsRouter);
+api.use("/tickets", hasAccess, ticketsRouter);
 api.use("/materiel", materielRouter);
-api.use("/knowledge", knowledgeRouter);
-api.use("/conseillers", conseillerRouter);
+api.use("/knowledge", hasAccess, knowledgeRouter);
+api.use("/conseillers", hasAccess, conseillerRouter);
 
 module.exports = api;
