@@ -1,3 +1,6 @@
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+
 const { Sequelize, DataTypes } = require("sequelize");
 const ConseillerModel = require("../models/sequelize.models.js/conseiller.db.model");
 const ClientModel = require("../models/sequelize.models.js/client.db.model");
@@ -120,6 +123,7 @@ Materiel.belongsTo(Modele, { as: "modele" });
 
 function initDB() {
   return sequelize
+    .sync()
     .then(() => console.log("Base de données initialisée."))
     .catch((error) =>
       console.log(`La base de données n'a pas été initialisée: ${error}`)

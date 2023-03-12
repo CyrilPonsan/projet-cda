@@ -33,7 +33,6 @@ async function httpGetAllClients(req, res) {
     return res.status(400).json({ message: badQuery });
   }
   try {
-    console.log(req.query);
     const clients = await getAllClients(getPagination(+page, +lmt), +lmt);
     const total = await getTotalClients();
     if (!clients) {
@@ -57,7 +56,6 @@ async function httpSearchClient(req, res) {
     return res.status(400).json({ message: badQuery });
   }
   try {
-    console.log("hello", type, value);
     let clients;
     switch (type) {
       case "contrat":
@@ -67,14 +65,12 @@ async function httpSearchClient(req, res) {
         clients = await getClientByNom(value);
         break;
       default:
-        console.log("coucou");
         return res.status(400).json({ message: badQuery });
         break;
     }
     if (!clients) {
       return res.status(404).json({ message: noData });
     }
-    console.log(clients);
     return res.status(200).json(clients);
   } catch (err) {
     return res.status(500).json({ message: serverIssue + err });
@@ -123,14 +119,13 @@ async function httpDeleteClient(req, res) {
 
 async function httpUpdateClient(req, res) {
   const clientId = req.params.id;
-  const clientToUpdate = req.body.client;
-  console.log(req.body);
+  const clientToUpdate = req.body;
   if (checkClient(clientToUpdate) || !clientId || !regexNumber.test(clientId)) {
     return res.status(400).json({ message: badQuery });
   }
   try {
     const updatedClient = await updateClient(clientId, clientToUpdate);
-    if (!updatedClient) {
+    if (updatedClient[0] === 0) {
       return res.status(404).json({ message: noData });
     }
     return res.status(201).json({

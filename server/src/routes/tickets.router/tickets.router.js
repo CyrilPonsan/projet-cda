@@ -16,6 +16,6 @@ ticketsRouter.get("/details/:ref", hasAccess, httpGetTicketDetails);
 ticketsRouter.get("/statuts", hasAccess, httpGetTicketStatutsList);
 ticketsRouter.post("/new-intervention", hasAccess, httpCreateIntervention);
 ticketsRouter.post("/new-ticket", hasAccess, httpCreateTicket);
-ticketsRouter.get("/client-tickets", httpGetClientTickets);
+ticketsRouter.get("/client-tickets", hasAccess, httpGetClientTickets);
 
 module.exports = ticketsRouter;
