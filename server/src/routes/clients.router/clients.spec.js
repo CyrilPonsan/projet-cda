@@ -1,4 +1,3 @@
-const request = require("supertest");
 const app = require("../../app");
 const { Client, RaisonSociale } = require("../../services/sequelize");
 const { _setRandomNumber } = require("../../utils/data");
