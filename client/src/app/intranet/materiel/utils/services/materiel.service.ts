@@ -8,16 +8,18 @@ import { PaginationService } from 'src/app/intranet/shared/services/pagination.s
 export class MaterielService {
   constructor(private http: HttpClient, private pag: PaginationService) {}
 
-  getTypes(): Observable<string[]> {
-    return this.http.get<string[]>(`${environment.baseUrl}/materiel/types`);
+  getTypes(): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${environment.baseUrl}/materiel/type-materiel`
+    );
   }
 
-  getMarques(): Observable<string[]> {
-    return this.http.get<string[]>(`${environment.baseUrl}/materiel/marques`);
+  getMarques(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.baseUrl}/materiel/marque`);
   }
 
-  getModeles(): Observable<string[]> {
-    return this.http.get<string[]>(`${environment.baseUrl}/materiel/modeles`);
+  getModeles(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.baseUrl}/materiel/modele`);
   }
 
   getClientMateriels(id: number): Observable<any> {
