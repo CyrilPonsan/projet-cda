@@ -85,7 +85,12 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
     if (clientId) {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
-          this.clientMateriel = materiels;
+          console.log('materiels', materiels);
+
+          this.clientMateriel = materiels.data;
+          this.pagination.total = materiels.total;
+          this.pagination.setPagesMax(materiels.total);
+          this.pagination.setButtonsStyle(materiels.data / length);
         },
         error: (err) => {
           console.log(err);
@@ -107,7 +112,7 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
           this.pagination.total = materiels.total;
 
           this.pagination.setPagesMax(materiels.total);
-          this.pagination.setButtonsStyle(materiels.data.length);
+          this.pagination.setButtonsStyle(materiels.data / length);
           this.clientMateriel = materiels.data;
         },
         error: (err) => {
@@ -125,7 +130,11 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
     if (clientId) {
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
-          this.clientMateriel = materiels;
+          this.pagination.total = materiels.total;
+
+          this.pagination.setPagesMax(materiels.total);
+          this.pagination.setButtonsStyle(materiels.data / length);
+          this.clientMateriel = materiels.data;
         },
         error: (err) => {
           console.log(err);

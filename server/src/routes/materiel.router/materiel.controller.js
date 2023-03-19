@@ -1,6 +1,9 @@
 const createMateriel = require("../../models/materiel.model.js/createMateriel");
 const deleteMateriel = require("../../models/materiel.model.js/deleteMateriel");
-const getClientMateriels = require("../../models/materiel.model.js/getClientMateriels");
+const {
+  getTotalClientMateriels,
+  getClientMateriels,
+} = require("../../models/materiel.model.js/getClientMateriels");
 const getOneMateriel = require("../../models/materiel.model.js/getOneMateriel");
 const {
   getMarqueList,
@@ -98,6 +101,7 @@ async function httpUpdateMateriel(req, res) {
 }
 
 async function httpGetClientMateriels(req, res) {
+  console.log("toto", req.query);
   const { page, limite, id } = req.query;
   if (
     !id ||
@@ -115,10 +119,11 @@ async function httpGetClientMateriels(req, res) {
       getPagination(+page, +limite),
       +limite
     );
+    const total = await getTotalClientMateriels(id);
     if (!clientMateriels) {
       return res.status(404).json({ message: noData });
     }
-    return res.status(200).json(clientMateriels);
+    return res.status(200).json({ total, data: clientMateriels });
   } catch (error) {
     return res.status(500).json({ message: serverIssue + error });
   }
