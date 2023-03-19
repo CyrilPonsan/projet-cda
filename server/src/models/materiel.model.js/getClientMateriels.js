@@ -25,4 +25,8 @@ async function getClientMateriels(clientId, offset, limite) {
   return false;
 }
 
-module.exports = getClientMateriels;
+async function getTotalClientMateriels(clientId) {
+  return await Materiel.count({ where: { clientId: clientId } });
+}
+
+module.exports = { getClientMateriels, getTotalClientMateriels };
