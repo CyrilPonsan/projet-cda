@@ -1,1 +1,149 @@
 <p>conseiller-details works!</p>
+
+<main class="flex flex-col justify-center items-center">
+    <section class="py-5 w-3/6">
+    
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Profil</h3>
+            <p class="mt-1 text-sm text-gray-600">
+              Modifiez ci-dessous vos informations personnelles liées à votre profil.
+            </p>
+       
+    </section>
+    
+    <section class=" w-3/6" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+      </div>
+    </section>
+    
+    <section class="bg-white overflow-hidden shadow sm:rounded-md w-3/6">
+      <form action="POST" class="">
+        <div class="px-4 py-5 sm:p-6 flex flex-col gap-5">
+          <div class="flex justify-between gap-5">
+            <div class="w-3/6">
+              <label
+                for="first_name"
+                class="block text-sm font-medium text-gray-700"
+                >Nom</label
+              >
+              <input
+                type="text"
+                name="first_name"
+                id="first_name"
+                autocomplete="given-name"
+                placeholder="Nom"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div class="w-3/6">
+              <label for="last_name" class="block text-sm font-medium text-gray-700"
+                >Prenom</label
+              >
+              <input
+                type="text"
+                name="last_name"
+                id="last_name"
+                autocomplete="family-name"
+                placeholder="Prenom"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Adresse Email</label
+            >
+            <input
+              id="email"
+              type="email"
+              class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+              placeholder="Email"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div class="flex flex-col mt-2">
+            <label for="password" class="block text-sm font-medium text-gray-700"
+              >Password</label
+            >
+            <input
+              id="password"
+              type="password"
+              class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+              placeholder="Password"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div class="flex flex-col mt-2">
+            <label
+              for="password_confirmation"
+              class="block text-sm font-medium text-gray-700"
+              >Confirmation Password</label
+            >
+            <input
+              id="password_confirmation"
+              type="password"
+              class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+              placeholder="Confirmation Password"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+    
+          <div class="flex flex-col mt-2">
+            <label for="address" class="block text-sm font-medium text-gray-700"
+              >Adresse</label
+            >
+            <input
+              id="address"
+              type="text"
+              class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+              placeholder="Adresse"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div class="flex flex-col mt-2">
+            <label for="city" class="block text-sm font-medium text-gray-700"
+              >Ville</label
+            >
+            <input
+              id="city"
+              type="text"
+              class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+              placeholder="Ville"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+    
+          <div class="flex flex-col mt-2">
+            <label for="postal_code" class="block text-sm font-medium text-gray-700"
+              >Code Postal</label
+            >
+            <input
+              id="postal_code"
+              type="text"
+              class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+              placeholder="Code Postal"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+            
+          </div>
+          <div class="flex flex-col mt-2">
+              <label for="phone" class="block text-sm font-medium text-gray-700"
+                >Telephone</label
+              >
+              <input
+                id="phone"
+                type="text"
+                class="px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
+                placeholder="Telephone"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+        </div>
+        <div class="footer-form px-4 py-3 text-right sm:px-6">
+          <button class="footer-button font-bold" type="submit">
+            <a href="#">Sauvegarder les modifications</a>
+          </button>
+        </div>
+      </form>
+    </section>
+    </main>
