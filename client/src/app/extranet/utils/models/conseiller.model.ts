@@ -4,4 +4,5 @@ export default interface Conseiller {
   nom: string;
   prenom: string;
   roles: Array<string>;
+  createdAt?: string;
 }

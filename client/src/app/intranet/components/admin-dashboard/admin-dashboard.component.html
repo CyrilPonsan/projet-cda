@@ -1,0 +1,21 @@
+<table class="min-w-[fit] table-auto text-xs md:text-lg">
+  <thead>
+    <tr class="bg-[#6941C6] text-white">
+      <th class="p-2 md:px-4 text-left">Nom</th>
+      <th class="p-2 md:px-4 text-left">Prenom</th>
+      <th class="p-2 md:px-4 text-left">Role 1</th>
+      <th class="p-2 md:px-4 text-left">Role 2</th>
+      <th class="p-2 md:px-4 text-left">Date de Création</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-[#6941c6be] hover:text-white"
+      *ngFor="let user of userList">
+      <td> {{user.nom | titlecase}} </td>
+      <td>{{user.prenom | titlecase}}</td>
+      <td>{{user.roles[0] | titlecase}}</td>
+      <td>{{user.roles[1] || "Aucun" | titlecase}}</td>
+      <td>{{user.createdAt! | date }}</td>
+    </tr>
+  </tbody>
+</table>
