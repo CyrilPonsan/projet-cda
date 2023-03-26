@@ -14,7 +14,7 @@ const ticketsRouter = express.Router();
 ticketsRouter.get("/", hasAccess, httpGetTickets);
 ticketsRouter.get("/details/:ref", hasAccess, httpGetTicketDetails);
 ticketsRouter.get("/statuts", hasAccess, httpGetTicketStatutsList);
-ticketsRouter.post("/new-intervention", hasAccess, httpCreateIntervention);
+ticketsRouter.post("/new-intervention", httpCreateIntervention);
 ticketsRouter.post("/new-ticket", hasAccess, httpCreateTicket);
 ticketsRouter.get("/client-tickets", hasAccess, httpGetClientTickets);
 

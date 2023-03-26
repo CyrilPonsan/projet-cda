@@ -53,4 +53,40 @@ function checkKnowledgeGPT(data) {
   );
 }
 
-module.exports = { checkClient, checkMateriel, checkKnowledgeGPT };
+function checkTicket(data) {
+  const { materielId, titre, resume } = data;
+
+  return (
+    !materielId ||
+    !regexNumber.test(materielId) ||
+    !titre ||
+    !regexGeneric.test(titre) ||
+    !resume ||
+    !regexGeneric.test(resume)
+  );
+}
+
+function checkIntervention(data) {
+  const { titre, statut, description, reponse, lieuIntervention } = data;
+
+  return (
+    !titre ||
+    !regexGeneric.test(titre) ||
+    !statut ||
+    !regexNumber.test(statut) ||
+    !description ||
+    !regexGeneric.test(description) ||
+    !reponse ||
+    !regexGeneric.test(reponse) ||
+    !lieuIntervention ||
+    !regexGeneric.test(lieuIntervention)
+  );
+}
+
+module.exports = {
+  checkClient,
+  checkMateriel,
+  checkKnowledgeGPT,
+  checkTicket,
+  checkIntervention,
+};
