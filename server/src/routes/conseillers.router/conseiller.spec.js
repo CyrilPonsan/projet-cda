@@ -18,16 +18,21 @@ describe("API", () => {
   // retourne la liste de tous les conseillers
   describe("Test GET /", () => {
     test("réponse attendue : 200", async () => {
-      await authenticatedSession
-        .get("/v1/conseillers?page=1&limit=5")
-        .expect(200);
+      await authenticatedSession.get("/v1/conseillers").expect(200);
+    });
+  });
+  /*
+  // retourne la liste de tous les conseillers en utilisant des données non conformes
+  describe("Test GET /", () => {
+    test("réponse attendue : 400", async () => {
+      await authenticatedSession.get("/v1/conseillers").expect(400);
     });
   });
   // retourne la liste de tous les conseillers en utilisant des données non conformes
   describe("Test GET /", () => {
     test("réponse attendue : 400", async () => {
       await authenticatedSession
-        .get("/v1/conseillers?page=toto&limit=5")
+        .get("/v1/conseillers")
         .expect(400);
     });
   });
@@ -35,15 +40,7 @@ describe("API", () => {
   describe("Test GET /", () => {
     test("réponse attendue : 400", async () => {
       await authenticatedSession
-        .get("/v1/conseillers?page=1&limit=bar")
-        .expect(400);
-    });
-  });
-  // retourne la liste de tous les conseillers en utilisant des données non conformes
-  describe("Test GET /", () => {
-    test("réponse attendue : 400", async () => {
-      await authenticatedSession
-        .get("/v1/conseillers?page=foo&limit=bar")
+        .get("/v1/conseillers")
         .expect(400);
     });
   });
@@ -62,7 +59,7 @@ describe("API", () => {
         .get("/v1/conseillers?page=1&bar=5")
         .expect(400);
     });
-  });
+  }); */
   // retourne les détails d'un conseiller
   describe("Test GET /:id", () => {
     test("réponse attendue : 200", async () => {

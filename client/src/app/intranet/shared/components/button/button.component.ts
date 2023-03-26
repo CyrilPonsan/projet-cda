@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styles: ['@media print { button { display: none; } }'],
 })
 export class ButtonComponent implements OnInit {
-  @Input() orange!: boolean; //  background color orange si "true"
+  @Input() warning!: boolean; //  background color orange si "true"
   @Input() label!: string; //  label du bouton
   @Input() fullSize!: boolean;
   @Input() type!: string;

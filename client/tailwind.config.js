@@ -21,7 +21,6 @@ module.exports = {
       darkgray: "#363535",
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-  ],
+  darkMode: "class",
+  plugins: [require("@tailwindcss/forms")],
 };

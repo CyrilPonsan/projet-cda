@@ -1,12 +1,9 @@
 const { Conseiller } = require("../../services/sequelize");
 
-async function getAllConseiller(offset, limit) {
+async function getAllConseiller() {
   const conseillers = await Conseiller.findAll({
-    attributes: ["id", "username", "prenom", "nom", "roles"],
+    attributes: ["id", "username", "prenom", "nom", "roles", "createdAt"],
     order: [["nom", "ASC"]],
-    offset: offset,
-    limit: limit,
-    subQuery: false,
   });
   return conseillers;
 }
