@@ -17,7 +17,7 @@
       <td class="p-2">{{user.roles[0] | titlecase}}</td>
       <td class=" p-2">{{user.roles[1] || "Aucun" | titlecase}}</td>
       <td class="p-2">{{user.createdAt! | date }}</td>
-      <td class="p-2 flex justify-around">
+      <td class="p-2 flex justify-around" (click)="handleDeleteUser(user.id)">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -27,3 +27,8 @@
     </tr>
   </tbody>
 </table>
+
+<app-modal *ngIf="showModal" [modal]="modal" (modalLeftClick)="handleModalLeftClick()"
+  (modalRightClick)="handleModalRightClick()"></app-modal>
+<app-modal *ngIf="showModalSuccess" [modal]="modalSuccess" (modalRightClick)="handleModalSuccessClick()"></app-modal>
+<app-modal *ngIf="showModalError" [modal]="modalError" (moadalRightClick)="handleModalErrorClick()"></app-modal>

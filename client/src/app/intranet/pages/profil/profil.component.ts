@@ -8,4 +8,8 @@ import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 })
 export class ProfilComponent {
   constructor(public profilService: ProfilService) {}
+
+  handleModalSuccesLeftClick(): void {}
+
+  handleModalSuccesRightClick(): void {}
 }
