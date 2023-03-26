@@ -13,6 +13,13 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private profilService: ProfilService) {}
 
   ngOnInit(): void {
+    this.getUserList();
+  }
+
+  handleDeleteUser(userId: number): void {}
+
+  // retourne la liste des conseillers
+  private getUserList(): void {
     this.profilService.httpGetUserList().subscribe({
       next: (response) => {
         this.userList = response;
