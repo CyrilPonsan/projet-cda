@@ -14,6 +14,6 @@ api.use("/clients", hasAccess, clientsRouter);
 api.use("/tickets", hasAccess, ticketsRouter);
 api.use("/materiel", materielRouter);
 api.use("/knowledge", hasAccess, knowledgeRouter);
-api.use("/conseillers", hasAccess, conseillerRouter);
+api.use("/conseillers", conseillerRouter);
 
 module.exports = api;

@@ -78,4 +78,22 @@ describe("API", () => {
       await authenticatedSession.get("/v1/conseillers/1000000").expect(404);
     });
   });
+  //  supprime un conseiller de la base de données
+  describe("Test DELETE /:conseillerId", () => {
+    test("réponse attendue : 200", async () => {
+      await authenticatedSession.delete("/v1/conseillers/3").expect(200);
+    });
+  });
+  //  supprime un conseiller de la base de données en utilisant un identifiant inexistant
+  describe("Test DELETE /:conseillerId", () => {
+    test("réponse attendue : 404", async () => {
+      await authenticatedSession.delete("/v1/conseillers/3").expect(404);
+    });
+  });
+  //  supprime un conseiller de la base de données en utilisant un identifiant non conforme
+  describe("Test DELETE /:conseillerId", () => {
+    test("réponse attendue : 400", async () => {
+      await authenticatedSession.delete("/v1/conseillers/foo").expect(400);
+    });
+  });
 });

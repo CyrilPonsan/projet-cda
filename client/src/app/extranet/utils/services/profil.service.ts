@@ -18,4 +18,8 @@ export class ProfilService {
       `${environment.baseUrl}/conseillers/`
     );
   }
+
+  httpDeleteUser(id: number): Observable<any> {
+    return this.http.delete<any>(`${environment.baseUrl}/conseillers/${id}`);
+  }
 }

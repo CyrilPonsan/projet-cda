@@ -23,6 +23,13 @@ async function createUsers() {
     nom: "francisco",
     prenom: "sam",
   });
+  users.push({
+    username: "tech2@atelier.eco",
+    password: hash,
+    roles: ["tech"],
+    nom: "durand",
+    prenom: "jacques",
+  });
   await Conseiller.bulkCreate(users);
 }
 
