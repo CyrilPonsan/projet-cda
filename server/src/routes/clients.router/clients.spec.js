@@ -287,15 +287,9 @@ describe("API", () => {
     });
   });
   // get tickets related to a client
-  describe("Test GET /tickets/16", () => {
+  describe("Test GET /tickets/2", () => {
     test("réponse attendue : 200", async () => {
-      await authenticatedSession.get("/v1/clients/tickets/16").expect(200);
-    });
-  });
-  // get tickets related to a client with non conform id
-  describe("Test GET /tickets/1", () => {
-    test("réponse attendue : 400", async () => {
-      await authenticatedSession.get("/v1/clients/tickets/foo").expect(400);
+      await authenticatedSession.get("/v1/clients/tickets/2").expect(200);
     });
   });
   // get tickets related to a client with non conform id
