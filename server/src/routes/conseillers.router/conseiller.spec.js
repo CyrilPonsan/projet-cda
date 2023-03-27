@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../../app");
 const session = require("supertest-session");
+const { Conseiller } = require("../../services/sequelize");
 
 describe("API", () => {
   let authenticatedSession;
@@ -81,13 +82,17 @@ describe("API", () => {
   //  supprime un conseiller de la base de données
   describe("Test DELETE /:conseillerId", () => {
     test("réponse attendue : 200", async () => {
-      await authenticatedSession.delete("/v1/conseillers/3").expect(200);
+      await authenticatedSession
+        .delete(`/v1/conseillers/${await _getLastConseillerId()}`)
+        .expect(200);
     });
   });
   //  supprime un conseiller de la base de données en utilisant un identifiant inexistant
   describe("Test DELETE /:conseillerId", () => {
     test("réponse attendue : 404", async () => {
-      await authenticatedSession.delete("/v1/conseillers/3").expect(404);
+      const id = (await _getLastConseillerId()) + 1;
+      console.log("id", id);
+      await authenticatedSession.delete(`/v1/conseillers/${id}`).expect(404);
     });
   });
   //  supprime un conseiller de la base de données en utilisant un identifiant non conforme
@@ -97,3 +102,8 @@ describe("API", () => {
     });
   });
 });
+
+async function _getLastConseillerId() {
+  const conseillers = await Conseiller.findAll({ order: [["id", "DESC"]] });
+  return parseInt(conseillers[0].id);
+}

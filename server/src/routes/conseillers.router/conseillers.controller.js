@@ -1,3 +1,4 @@
+const createConseiller = require("../../models/conseiller.model/createConseiller");
 const deleteConseiller = require("../../models/conseiller.model/deleteConseiller");
 const getAllConseiller = require("../../models/conseiller.model/getAllConseiller");
 const getConseillerDetail = require("../../models/conseiller.model/getConseillerDetail");
@@ -40,6 +41,7 @@ async function httpDeleteConseiller(req, res) {
   }
   try {
     const deletedConseiller = await deleteConseiller(conseillerId);
+    console.log("deletedConseiller", deletedConseiller);
     if (!deletedConseiller) {
       return res.status(404).json({ message: noData });
     }
@@ -52,8 +54,19 @@ async function httpDeleteConseiller(req, res) {
   }
 }
 
+async function httpCreateConseiller(req, res) {
+  console.log(req.body);
+  try {
+    const conseiller = await createConseiller(req.body);
+    return res.status(201).json(conseiller);
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
 module.exports = {
   httpGetAllConseiller,
   httpGetConseillerDetail,
   httpDeleteConseiller,
+  httpCreateConseiller,
 };

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Conseiller from 'src/app/extranet/utils/models/conseiller.model';
 import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 
@@ -33,7 +34,7 @@ export class AdminDashboardComponent implements OnInit {
 
   userList!: Array<Conseiller>;
 
-  constructor(private profilService: ProfilService) {}
+  constructor(private profilService: ProfilService, private router: Router) {}
 
   ngOnInit(): void {
     this.getUserList();
@@ -77,6 +78,10 @@ export class AdminDashboardComponent implements OnInit {
 
   handleModalErrorClick(): void {
     this.showModalError = false;
+  }
+
+  handleEditUser(id: number): void {
+    this.router.navigate(['/intranet/edit-user', id]);
   }
 
   // retourne la liste des conseillers

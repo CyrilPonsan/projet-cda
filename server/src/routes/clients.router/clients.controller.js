@@ -123,7 +123,7 @@ async function httpDeleteClient(req, res) {
 
 async function httpUpdateClient(req, res) {
   const clientId = req.params.id;
-  const clientToUpdate = req.body;
+  const clientToUpdate = req.body.client;
   if (checkClient(clientToUpdate) || !clientId || !regexNumber.test(clientId)) {
     return res.status(400).json({ message: badQuery });
   }

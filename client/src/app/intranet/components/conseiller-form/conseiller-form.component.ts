@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Conseiller from 'src/app/extranet/utils/models/conseiller.model';
 import { RegexService } from 'src/app/extranet/utils/services/regex.service';
@@ -10,6 +10,8 @@ import { RegexService } from 'src/app/extranet/utils/services/regex.service';
 })
 export class ConseillerFormComponent implements OnInit {
   @Output() userFormOutput = new EventEmitter<Conseiller>();
+  @Input() userToEdit!: Conseiller;
+  editedUser!: Conseiller;
   userForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private regex: RegexService) {}
@@ -32,8 +34,12 @@ export class ConseillerFormComponent implements OnInit {
         null,
         [Validators.required, Validators.pattern(this.regex.regexGeneric)],
       ],
-      roles: [Validators.required],
+      isAdmin: [false, [Validators.required]],
     });
+
+    if (this.userToEdit !== undefined && this.userToEdit !== null) {
+      this.userForm.patchValue(this.userToEdit);
+    }
   }
 
   handleSubmit(): void {

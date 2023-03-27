@@ -60,13 +60,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(201)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -77,13 +79,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "<hacked>Nouvelle entreprise<lol>",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "<hacked>Nouvelle entreprise<lol>",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -94,13 +98,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "<hacked>contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "<hacked>contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -111,13 +117,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "<hacked>" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "<hacked>" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -128,13 +136,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "<hacked>0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "<hacked>0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -145,13 +155,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "<hacked>13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "<hacked>13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -162,13 +174,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "<hacked>64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "<hacked>64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -179,13 +193,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "<hacked>San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "<hacked>San Francisco sur Adour",
+          },
         });
     });
   });
@@ -196,13 +212,15 @@ describe("API", () => {
         .put("/v1/clients/1")
         .expect(400)
         .send({
-          nom: "<hacked>Nouvelle entreprise",
-          email: "<hacked>contact_13@entreprise.com",
-          contrat: "<hacked>" + _setRandomNumber(10000, 100000),
-          telephone: "<hacked>0203040506",
-          adresse: "<hacked>13 rue Xavier Pinson",
-          codePostal: "<hacked>64000",
-          ville: "<hacked>San Francisco sur Adour",
+          client: {
+            nom: "<hacked>Nouvelle entreprise",
+            email: "<hacked>contact_13@entreprise.com",
+            contrat: "<hacked>" + _setRandomNumber(10000, 100000),
+            telephone: "<hacked>0203040506",
+            adresse: "<hacked>13 rue Xavier Pinson",
+            codePostal: "<hacked>64000",
+            ville: "<hacked>San Francisco sur Adour",
+          },
         });
     });
   });
@@ -213,13 +231,15 @@ describe("API", () => {
         .put("/v1/clients/foo")
         .expect(400)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
@@ -230,13 +250,15 @@ describe("API", () => {
         .put("/v1/clients/10000")
         .expect(404)
         .send({
-          nom: "Nouvelle entreprise",
-          email: "contact_13@entreprise.com",
-          contrat: "" + _setRandomNumber(10000, 100000),
-          telephone: "0203040506",
-          adresse: "13 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "San Francisco sur Adour",
+          client: {
+            nom: "Nouvelle entreprise",
+            email: "contact_13@entreprise.com",
+            contrat: "" + _setRandomNumber(10000, 100000),
+            telephone: "0203040506",
+            adresse: "13 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "San Francisco sur Adour",
+          },
         });
     });
   });
