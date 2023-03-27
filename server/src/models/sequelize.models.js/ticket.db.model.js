@@ -1,3 +1,5 @@
+const { Historique } = require("../../services/sequelize");
+
 function ticketModel(sequelize, DataTypes) {
   return sequelize.define(
     "ticket",
@@ -15,7 +17,18 @@ function ticketModel(sequelize, DataTypes) {
         allowNull: false,
       },
     },
-    { timestamps: false }
+    { timestamps: false },
+    {
+      hooks: {
+        afterCreate: (ticket) => {
+          Historique.create({
+            message: `Un nouveau ticket ref : ${
+              ticket.ref
+            } vient d'être créé le ${new Date().toLocaleDateString()} `,
+          });
+        },
+      },
+    }
   );
 }
 

@@ -9,22 +9,23 @@ async function createTicket(ticket, intervention, userId) {
         conseillerId: userId,
       });
 
-      const newTicket = await Ticket.create(
+      const ticketRecord = await Ticket.create(
         ticket,
         {
           transaction: t,
         },
         { raw: true }
       );
-      Object.assign(intervention, { ticketId: result.id });
+      Object.assign(intervention, { ticketId: ticketRecord.id });
       await Intervention.create(
         intervention,
         { transaction: t },
         { raw: true }
       );
-      console.log("result", result);
-      return newTicket;
+      console.log("result", ticketRecord);
+      return ticketRecord;
     });
+    return result;
   } catch (err) {
     console.log(err);
   }
