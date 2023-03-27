@@ -54,7 +54,7 @@ function checkKnowledgeGPT(data) {
 }
 
 function checkTicket(data) {
-  const { materielId, titre, resume } = data;
+  const { materielId, titre, resume, clientId } = data;
 
   return (
     !materielId ||
@@ -62,7 +62,9 @@ function checkTicket(data) {
     !titre ||
     !regexGeneric.test(titre) ||
     !resume ||
-    !regexGeneric.test(resume)
+    !regexGeneric.test(resume) ||
+    !clientId ||
+    !regexNumber.test(clientId)
   );
 }
 

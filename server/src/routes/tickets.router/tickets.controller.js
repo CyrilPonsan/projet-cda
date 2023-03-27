@@ -118,11 +118,20 @@ async function httpCreateTicket(req, res) {
   if (checkTicket(ticket)) {
     return res.status(400).json({ message: badQuery });
   }
+
+  const intervention = req.body.intervention;
+  if (checkTicket(ticket)) {
+    return res.status(400).json({ message: badQuery });
+  }
+
+  const userId = req.session.userId || 1;
+
   try {
-    const newTicket = await createTicket(data);
-    if (!newTicket) {
+    const newTicket = await createTicket(ticket, intervention, userId);
+    console.log("new ticket", newTicket);
+    /*     if (!newTicket) {
       throw new Error("Serveur injoignable...");
-    }
+    } */
     return res
       .status(201)
       .json({ message: "Ticket créé avec succès", data: newTicket });
