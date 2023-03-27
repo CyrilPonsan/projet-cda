@@ -121,6 +121,21 @@ Materiel.belongsTo(Marque, { as: "marque" });
 Modele.hasMany(Materiel, { as: "materiel" });
 Materiel.belongsTo(Modele, { as: "modele" });
 
+//  triggers
+Conseiller.addHook("afterCreate", async (conseiller) => {
+  await Historique.create({
+    message: `un nouveau conseiller a été créé le ${conseiller.createdAt}`,
+    categorie: "conseiller",
+  });
+});
+
+Ticket.addHook("afterCreate", async (ticket) => {
+  await Historique.create({
+    message: `un nouveau ticket n° ${ticket.ref} a été créé`,
+    categorie: "ticket",
+  });
+});
+
 //  initialisation de la bdd
 
 function initDB() {

@@ -4,6 +4,10 @@ function historiqueModel(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    categorie: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 }
 
