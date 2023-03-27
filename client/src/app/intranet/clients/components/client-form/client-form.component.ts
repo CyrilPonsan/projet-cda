@@ -58,9 +58,6 @@ export class ClientFormComponent implements OnInit {
     });
     if (this.clientToEdit !== undefined && this.clientToEdit !== null) {
       this.clientForm.patchValue(this.clientToEdit);
-      this.clientForm.valueChanges.subscribe((value) => {
-        this.editedClient = { ...value };
-      });
     }
   }
 
