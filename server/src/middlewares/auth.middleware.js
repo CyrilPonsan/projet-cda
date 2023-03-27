@@ -1,13 +1,11 @@
-const jwt = require("jsonwebtoken");
 const { noAccess } = require("../utils/data");
-const privateKey = process.env.PRIVATE_KEY;
 
 /**
- * vérifie que le token contenu dans les headers est valide
- * et que l'utilisateur a le rôle "client" qui lui permet d'accéder
- * aux endpoints de l'application client
- *
- * @param {*} req headers
+ * vérifie l'existence de la session et les permissions
+ * avant d'autoriser l'accès ou non à l'utilisateur
+ * si la session n'est pas valide ou que les permissions sont
+ * insuffisantes une erreur 403 est retournée
+ * @param {*} req
  * @param {*} res
  * @param {*} next
  */
