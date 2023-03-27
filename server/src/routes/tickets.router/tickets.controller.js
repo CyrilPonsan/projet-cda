@@ -128,10 +128,9 @@ async function httpCreateTicket(req, res) {
 
   try {
     const newTicket = await createTicket(ticket, intervention, userId);
-    console.log("new ticket", newTicket);
-    /*     if (!newTicket) {
+    if (!newTicket) {
       throw new Error("Serveur injoignable...");
-    } */
+    }
     return res
       .status(201)
       .json({ message: "Ticket créé avec succès", data: newTicket });
