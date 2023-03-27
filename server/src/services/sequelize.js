@@ -12,6 +12,7 @@ const RaisonSocialeModel = require("../models/sequelize.models.js/raisonSociale.
 const ModeleModel = require("../models/sequelize.models.js/modele.db.model");
 const MarqueModel = require("../models/sequelize.models.js/marque.db.model");
 const TypeMaterielModel = require("../models/sequelize.models.js/typeMateriel.db.model");
+const HistoriqueModel = require("../models/sequelize.models.js/historique.db.model");
 
 //  paramètres de connexion à la bdd
 
@@ -63,6 +64,7 @@ const RaisonSociale = RaisonSocialeModel(sequelize, DataTypes);
 const Modele = ModeleModel(sequelize, DataTypes);
 const Marque = MarqueModel(sequelize, DataTypes);
 const TypeMateriel = TypeMaterielModel(sequelize, DataTypes);
+const Historique = HistoriqueModel(sequelize, DataTypes);
 
 //  relations
 
@@ -123,7 +125,7 @@ Materiel.belongsTo(Modele, { as: "modele" });
 
 function initDB() {
   return sequelize
-    .sync()
+    .sync({ alt: true })
     .then(() => console.log("Base de données initialisée."))
     .catch((error) =>
       console.log(`La base de données n'a pas été initialisée: ${error}`)
@@ -155,4 +157,5 @@ module.exports = {
   TypeMateriel,
   Marque,
   Modele,
+  Historique,
 };
