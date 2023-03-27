@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddUserComponent } from './pages/add-user/add-user.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { IntranetHomeComponent } from './pages/intranet-home/intranet-home.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'profil', pathMatch: 'full' },
       { path: 'profil', component: ProfilComponent },
       { path: 'add-user', component: AddUserComponent },
+      { path: 'edit-user/:conseillerId', component: EditUserComponent },
       {
         path: 'tickets',
         loadChildren: () =>

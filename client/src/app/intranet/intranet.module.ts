@@ -8,6 +8,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { SharedModule } from './shared/shared.module';
 import { ConseillerFormComponent } from './components/conseiller-form/conseiller-form.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AddUserComponent } from './pages/add-user/add-user.component';
     AdminDashboardComponent,
     ConseillerFormComponent,
     AddUserComponent,
+    EditUserComponent,
   ],
   imports: [CommonModule, IntranetRoutingModule, SharedModule],
 })

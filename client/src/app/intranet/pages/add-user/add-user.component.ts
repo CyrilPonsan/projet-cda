@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
   styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent {
-  constructor(private profilService: ProfilService) {}
+  constructor(private profilService: ProfilService, private router: Router) {}
 
   handleSubmit(user: any): void {
     Object.assign(user, { roles: ['tech'] });
@@ -17,7 +18,7 @@ export class AddUserComponent {
     this.profilService.httpCreateUser(user).subscribe({
       next: (response) => console.log(response),
       error: (err) => console.log(err),
-      complete: () => console.log('complete'),
+      complete: () => this.router.navigateByUrl('/intranet/profil'),
     });
   }
 }
