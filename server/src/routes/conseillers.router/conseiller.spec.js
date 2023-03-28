@@ -101,6 +101,34 @@ describe("API", () => {
       await authenticatedSession.delete("/v1/conseillers/foo").expect(400);
     });
   });
+  describe("Test POST /", () => {
+    test("réponse attendue : 201", async () => {
+      await authenticatedSession
+        .post("/v1/conseillers")
+        .expect(201)
+        .send({
+          username: "toto@toto.fr",
+          password: "Abcd@1234",
+          prenom: "jean",
+          nom: "toto",
+          roles: ["tech", "admin"],
+        });
+    });
+  });
+  describe("Test POST /", () => {
+    test("réponse attendue : 400", async () => {
+      await authenticatedSession
+        .post("/v1/conseillers")
+        .expect(400)
+        .send({
+          username: "<hacked>",
+          password: "Abcd@1234",
+          prenom: "jean",
+          nom: "toto",
+          roles: ["tech", "admin"],
+        });
+    });
+  });
 });
 
 async function _getLastConseillerId() {

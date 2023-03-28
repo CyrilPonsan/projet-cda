@@ -1,4 +1,9 @@
-const { regexMail, regexGeneric, regexNumber } = require("../utils/data");
+const {
+  regexMail,
+  regexGeneric,
+  regexNumber,
+  regexPassword,
+} = require("../utils/data");
 
 function checkClient(data) {
   const { nom, email, contrat, telephone, adresse, codePostal, ville } = data;
@@ -85,10 +90,26 @@ function checkIntervention(data) {
   );
 }
 
+function checkConseiller(data) {
+  const { username, password, prenom, nom } = data;
+
+  return (
+    !username ||
+    !regexMail.test(username) ||
+    !password ||
+    !regexPassword.test(password) ||
+    !prenom ||
+    !regexGeneric.test(prenom) ||
+    !nom ||
+    !regexGeneric.test(nom)
+  );
+}
+
 module.exports = {
   checkClient,
   checkMateriel,
   checkKnowledgeGPT,
   checkTicket,
   checkIntervention,
+  checkConseiller,
 };
