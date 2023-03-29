@@ -61,13 +61,12 @@ async function httpCreateConseiller(req, res) {
   if (checkConseiller(req.body)) {
     return res.status(400).json({ message: badQuery });
   }
-  let result = true;
-  req.body.roles.forEach((role) => {
-    if (!regexGeneric.test(role)) {
-      result = false;
-    }
-  });
-  if (!result) {
+  if (
+    !req.body.roles ||
+    req.body.length === 0 ||
+    req.body.roles.length > 1 ||
+    !regexGeneric.test(req.body.roles[0])
+  ) {
     return res.status(400).json({ message: badQuery });
   }
   try {
@@ -81,9 +80,22 @@ async function httpCreateConseiller(req, res) {
   }
 }
 
+async function httpUpdateConseiller(req, res) {
+  try {
+    const updatedConseiller = await updateConseiller(req.body);
+    console.log(updatedConseiller);
+    return res
+      .status(201)
+      .json({ message: "Les données du conseiller ont été mises à jour." });
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
 module.exports = {
   httpGetAllConseiller,
   httpGetConseillerDetail,
   httpDeleteConseiller,
   httpCreateConseiller,
+  httpUpdateConseiller,
 };

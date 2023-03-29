@@ -11,9 +11,10 @@ export class AddUserComponent {
   constructor(private profilService: ProfilService, private router: Router) {}
 
   handleSubmit(user: any): void {
-    Object.assign(user, { roles: ['tech'] });
     if (user.isAdmin) {
-      user.roles.push('admin');
+      Object.assign(user, { roles: ['admin'] });
+    } else {
+      Object.assign(user, { roles: ['tech'] });
     }
     this.profilService.httpCreateUser(user).subscribe({
       next: (response) => console.log(response),

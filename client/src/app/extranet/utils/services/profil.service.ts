@@ -29,4 +29,14 @@ export class ProfilService {
       conseiller
     );
   }
+
+  httpGetConseillerDetail(id: string): Observable<Conseiller> {
+    return this.http.get<Conseiller>(
+      `${environment.baseUrl}/conseillers/${id}`
+    );
+  }
+
+  httpUpdateConseiller(conseiller: Conseiller): Observable<any> {
+    return this.http.put(`${environment.baseUrl}/conseillers/}`, conseiller);
+  }
 }
