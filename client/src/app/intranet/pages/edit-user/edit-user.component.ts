@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Conseiller from 'src/app/extranet/utils/models/conseiller.model';
 import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 
@@ -13,7 +13,7 @@ export class EditUserComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private profilService: ProfilService
+    private profilService: ProfilService, private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class EditUserComponent implements OnInit {
     this.profilService.httpUpdateConseiller(conseiller).subscribe({
       next: (response) => console.log(response),
       error: (err) => console.log(err),
-      complete: () => {},
+      complete: () => this.router.navigateByUrl('/intranet/profil'),
     });
   }
 }
