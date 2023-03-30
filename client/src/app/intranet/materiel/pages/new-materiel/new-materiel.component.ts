@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ClientsService } from 'src/app/intranet/clients/utils/services/clients.service';
+import { MaterielService } from '../../utils/services/materiel.service';
 
 @Component({
   selector: 'app-new-materiel',
@@ -36,9 +38,17 @@ export class NewMaterielComponent implements OnInit {
 
   typeAdded = false;
 
-  constructor() {}
+  constructor(
+  
+    private materielService: MaterielService,
+    private clientSerivce: ClientsService
+
+  ) {}
 
   ngOnInit() {
+
+    
+
     this.myControl.valueChanges.subscribe((value) => {
       console.log(value);
     });

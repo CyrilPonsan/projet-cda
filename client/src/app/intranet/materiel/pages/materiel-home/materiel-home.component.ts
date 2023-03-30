@@ -83,6 +83,7 @@ export class MaterielHomeComponent implements OnInit, AfterViewInit {
       (client) => client.nom === this.myControl.value
     )?.id;
     if (clientId) {
+      this.clientService.clientId = clientId;
       this.materielService.getClientMateriels(clientId).subscribe({
         next: (materiels) => {
           console.log('materiels', materiels);

@@ -10,6 +10,8 @@ import { ClientTicket, Inventaire } from '../models/models';
 export class ClientsService {
   client!: Client;
 
+  clientId! : number;
+
   constructor(private http: HttpClient, private pag: PaginationService) {}
 
   //  retourne la liste des clients en incluant la pagination
