@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Conseiller from 'src/app/extranet/utils/models/conseiller.model';
+import { ProfilService } from 'src/app/extranet/utils/services/profil.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -8,15 +9,32 @@ import Conseiller from 'src/app/extranet/utils/models/conseiller.model';
   styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  conseiller!: Conseiller;
+
+  constructor(
+    private route: ActivatedRoute,
+    private profilService: ProfilService
+  ) {}
 
   ngOnInit(): void {
     //  récupération de l'identifiant du conseiller dans l'url
     const conseillerId = this.route.snapshot.paramMap.get('conseillerId');
+    //  si un identifiant est présent dans l'url on récupère les données du conseiller
     if (conseillerId) {
       console.log(conseillerId);
+      this.profilService.httpGetConseillerDetail(conseillerId).subscribe({
+        next: (response) => (this.conseiller = response),
+        error: (err) => console.log(err),
+        complete: () => {},
+      });
     }
   }
 
-  handleSubmit(conseiller: Conseiller): void {}
+  handleSubmit(conseiller: Conseiller): void {
+    this.profilService.httpUpdateConseiller(conseiller).subscribe({
+      next: (response) => console.log(response),
+      error: (err) => console.log(err),
+      complete: () => {},
+    });
+  }
 }

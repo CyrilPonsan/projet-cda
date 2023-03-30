@@ -2,11 +2,14 @@ const createConseiller = require("../../models/conseiller.model/createConseiller
 const deleteConseiller = require("../../models/conseiller.model/deleteConseiller");
 const getAllConseiller = require("../../models/conseiller.model/getAllConseiller");
 const getConseillerDetail = require("../../models/conseiller.model/getConseillerDetail");
+const updateConseiller = require("../../models/conseiller.model/updateConseiller");
+const { checkConseiller } = require("../../services/checkData");
 const {
   serverIssue,
   regexNumber,
   badQuery,
   noData,
+  regexGeneric,
 } = require("../../utils/data");
 
 async function httpGetAllConseiller(req, res) {
@@ -56,9 +59,36 @@ async function httpDeleteConseiller(req, res) {
 
 async function httpCreateConseiller(req, res) {
   console.log(req.body);
+  if (checkConseiller(req.body)) {
+    return res.status(400).json({ message: badQuery });
+  }
+  if (
+    !req.body.roles ||
+    req.body.length === 0 ||
+    req.body.roles.length > 1 ||
+    !regexGeneric.test(req.body.roles[0])
+  ) {
+    return res.status(400).json({ message: badQuery });
+  }
   try {
     const conseiller = await createConseiller(req.body);
+    if (!conseiller) {
+      return res.status(404).json({ message: "Email non disponible." });
+    }
     return res.status(201).json(conseiller);
+  } catch (error) {
+    return res.status(500).json({ message: serverIssue + error });
+  }
+}
+
+async function httpUpdateConseiller(req, res) {
+  try {
+    console.log(req.body);
+    const updatedConseiller = await updateConseiller(req.body);
+    console.log(updatedConseiller);
+    return res
+      .status(201)
+      .json({ message: "Les données du conseiller ont été mises à jour." });
   } catch (error) {
     return res.status(500).json({ message: serverIssue + error });
   }
@@ -69,4 +99,5 @@ module.exports = {
   httpGetConseillerDetail,
   httpDeleteConseiller,
   httpCreateConseiller,
+  httpUpdateConseiller,
 };

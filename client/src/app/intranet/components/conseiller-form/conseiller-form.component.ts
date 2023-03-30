@@ -22,10 +22,7 @@ export class ConseillerFormComponent implements OnInit {
         null,
         [Validators.required, Validators.pattern(this.regex.regexMail)],
       ],
-      password: [
-        null,
-        [Validators.required, Validators.pattern(this.regex.regexPassword)],
-      ],
+      password: [null],
       prenom: [
         null,
         [Validators.required, Validators.pattern(this.regex.regexGeneric)],
@@ -44,8 +41,25 @@ export class ConseillerFormComponent implements OnInit {
 
   handleSubmit(): void {
     if (this.userForm.valid) {
-      console.log('well done!', this.userForm.value);
-      this.userFormOutput.emit(this.userForm.value);
+      if (!this.userToEdit) {
+        if (this.regex.regexPassword.test(this.userForm.value.password)) {
+          this.userFormOutput.emit(this.userForm.value);
+        } else {
+          return;
+        }
+      } else {
+        Object.assign(this.userForm.value, { id: this.userToEdit.id });
+        if (this.userForm.value.password) {
+          if (this.regex.regexPassword.test(this.userForm.value.password)) {
+            this.userFormOutput.emit(this.userForm.value);
+          } else {
+            return;
+          }
+        } else {
+          delete this.userForm.value.password;
+          this.userFormOutput.emit(this.userForm.value);
+        }
+      }
     }
   }
 }
