@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "development") {
       host: process.env.DB_HOST,
       dialect: "mariadb",
       dialectOptions: {
-        socketPath: {host : "localhost", port : 3308},
+        socketPath: "/var/run/mysqld/mysqld.sock",
       },
       logging: false,
     }
@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === "development") {
       host: process.env.DB_HOST,
       dialect: "mariadb",
       dialectOptions: {
-        socketPath: {host : "localhost", port : 3308},
+        socketPath: "/var/mysqld/mysqld.sock"
       },
       logging: false,
     }
