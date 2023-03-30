@@ -1,3 +1,5 @@
+const historiqueModel = require("./historique.db.model");
+
 function ticketModel(sequelize, DataTypes) {
   return sequelize.define(
     "ticket",
@@ -15,7 +17,19 @@ function ticketModel(sequelize, DataTypes) {
         allowNull: false,
       },
     },
-    { timestamps: false }
+    { timestamps: false },
+    {
+      hooks: {
+        afterCreate: async function (ticket, options) {
+          await historiqueModel.create(
+            {
+              message: `Un nouveau ticket ${ticket.ref} a été créé`,
+            },
+            { transaction: options.transaction }
+          );
+        },
+      },
+    }
   );
 }
 

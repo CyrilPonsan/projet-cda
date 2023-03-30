@@ -22,4 +22,21 @@ export class ProfilService {
   httpDeleteUser(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.baseUrl}/conseillers/${id}`);
   }
+
+  httpCreateUser(conseiller: Conseiller): Observable<any> {
+    return this.http.post<any>(
+      `${environment.baseUrl}/conseillers`,
+      conseiller
+    );
+  }
+
+  httpGetConseillerDetail(id: string): Observable<Conseiller> {
+    return this.http.get<Conseiller>(
+      `${environment.baseUrl}/conseillers/${id}`
+    );
+  }
+
+  httpUpdateConseiller(conseiller: Conseiller): Observable<any> {
+    return this.http.put(`${environment.baseUrl}/conseillers/`, conseiller);
+  }
 }
