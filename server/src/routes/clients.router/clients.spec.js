@@ -303,9 +303,9 @@ describe("API", () => {
     });
   });
   // get tickets related to a client who has no ticket
-  describe("Test GET /tickets/1", () => {
+  describe("Test GET /tickets/1000000", () => {
     test("réponse attendue : 404", async () => {
-      await authenticatedSession.get("/v1/clients/tickets/1").expect(404);
+      await authenticatedSession.get("/v1/clients/tickets/10000").expect(404);
     });
   });
   // get tickets related to a client
@@ -404,14 +404,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(201)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -422,14 +424,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: "non conforme",
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: "non conforme",
+          },
         });
     });
   });
@@ -440,14 +444,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "<hacked>Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "<hacked>Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -458,14 +464,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@f<hacked>oo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@f<hacked>oo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -476,14 +484,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "<hacked>001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "<hacked>001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -494,14 +504,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "<hacked>1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "<hacked>1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -512,14 +524,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "<hacked>64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "<hacked>64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -530,14 +544,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "<hacked>Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "<hacked>Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -548,14 +564,16 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "Foo",
-          email: _setRandomNumber(10000, 999999) + "@foo.bar",
-          contrat: "<hacked>" + _setRandomNumber(10000, 999999),
-          telephone: "001",
-          adresse: "1 rue Xavier Pinson",
-          codePostal: "64000",
-          ville: "Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "Foo",
+            email: _setRandomNumber(10000, 999999) + "@foo.bar",
+            contrat: "<hacked>" + _setRandomNumber(10000, 999999),
+            telephone: "001",
+            adresse: "1 rue Xavier Pinson",
+            codePostal: "64000",
+            ville: "Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
@@ -566,21 +584,37 @@ describe("API", () => {
         .post("/v1/clients/")
         .expect(400)
         .send({
-          nom: "<hacked>Foo",
-          email: _setRandomNumber(10000, 999999) + "<hacked>@foo.bar",
-          contrat: "<hacked>" + _setRandomNumber(10000, 999999),
-          telephone: "<hacked>001",
-          adresse: "<hacked>1 rue Xavier Pinson",
-          codePostal: "<hacked>64000",
-          ville: "<hacked>Bar City",
-          raisonSocialeId: 1,
+          client: {
+            nom: "<hacked>Foo",
+            email: _setRandomNumber(10000, 999999) + "<hacked>@foo.bar",
+            contrat: "<hacked>" + _setRandomNumber(10000, 999999),
+            telephone: "<hacked>001",
+            adresse: "<hacked>1 rue Xavier Pinson",
+            codePostal: "<hacked>64000",
+            ville: "<hacked>Bar City",
+            raisonSocialeId: 1,
+          },
         });
     });
   });
   // enregistre un nouveau client dans la bdd avec des doonées non conformes
   describe("Test POST /", () => {
     test("réponse attendue : 400", async () => {
-      await authenticatedSession.post("/v1/clients/").expect(400).send({});
+      await authenticatedSession
+        .post("/v1/clients/")
+        .expect(400)
+        .send({
+          client: {
+            nom: "<hacked>Foo",
+            email: _setRandomNumber(10000, 999999) + "<hacked>@foo.bar",
+            contrat: "<hacked>" + _setRandomNumber(10000, 999999),
+            telephone: "<hacked>001",
+            adresse: "<hacked>1 rue Xavier Pinson",
+            codePostal: "<hacked>64000",
+            ville: "<hacked>Bar City",
+            raisonSocialeId: null,
+          },
+        });
     });
   });
   // get materiels related to a client

@@ -82,10 +82,14 @@ async function httpCreateConseiller(req, res) {
 }
 
 async function httpUpdateConseiller(req, res) {
+  if (checkConseiller(req.body)) {
+    return res.status(400).json({ message: badQuery });
+  }
   try {
-    console.log(req.body);
     const updatedConseiller = await updateConseiller(req.body);
-    console.log(updatedConseiller);
+    if (updatedConseiller[0] === 0) {
+      return res.status(404).json({ message: noData });
+    }
     return res
       .status(201)
       .json({ message: "Les données du conseiller ont été mises à jour." });
