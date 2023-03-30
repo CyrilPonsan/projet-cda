@@ -303,9 +303,9 @@ describe("API", () => {
     });
   });
   // get tickets related to a client who has no ticket
-  describe("Test GET /tickets/1", () => {
+  describe("Test GET /tickets/1000000", () => {
     test("réponse attendue : 404", async () => {
-      await authenticatedSession.get("/v1/clients/tickets/1").expect(404);
+      await authenticatedSession.get("/v1/clients/tickets/10000").expect(404);
     });
   });
   // get tickets related to a client
@@ -600,7 +600,21 @@ describe("API", () => {
   // enregistre un nouveau client dans la bdd avec des doonées non conformes
   describe("Test POST /", () => {
     test("réponse attendue : 400", async () => {
-      await authenticatedSession.post("/v1/clients/").expect(400).send({});
+      await authenticatedSession
+        .post("/v1/clients/")
+        .expect(400)
+        .send({
+          client: {
+            nom: "<hacked>Foo",
+            email: _setRandomNumber(10000, 999999) + "<hacked>@foo.bar",
+            contrat: "<hacked>" + _setRandomNumber(10000, 999999),
+            telephone: "<hacked>001",
+            adresse: "<hacked>1 rue Xavier Pinson",
+            codePostal: "<hacked>64000",
+            ville: "<hacked>Bar City",
+            raisonSocialeId: null,
+          },
+        });
     });
   });
   // get materiels related to a client

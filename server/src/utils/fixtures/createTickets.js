@@ -10,8 +10,8 @@ async function createTickets() {
   const materiels = await Materiel.findAll();
   let ref = 5000;
   const tickets = [];
-  for (let i = 1; i <= 25; i++) {
-    const materielId = _setRandomNumber(1, 1500);
+  for (let i = 1; i <= 1500; i++) {
+    const materielId = i;
     tickets.push({
       ref: ref,
       materielId: materielId,
@@ -23,7 +23,7 @@ async function createTickets() {
   }
   const newTickets = await Ticket.bulkCreate(tickets);
   const interventions = [];
-  for (let i = 1; i <= 25; i++) {
+  for (let i = 1; i <= 1500; i++) {
     interventions.push({
       date: _addDays(date, day++),
       description:
