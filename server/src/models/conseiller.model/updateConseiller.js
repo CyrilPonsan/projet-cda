@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const { throwError } = require("rxjs");
 
 const { Conseiller } = require("../../services/sequelize");
 

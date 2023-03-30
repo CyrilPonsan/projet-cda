@@ -96,8 +96,7 @@ function checkConseiller(data) {
   return (
     !username ||
     !regexMail.test(username) ||
-    !password ||
-    !regexPassword.test(password) ||
+    (password && !regexPassword.test(password)) ||
     !prenom ||
     !regexGeneric.test(prenom) ||
     !nom ||
