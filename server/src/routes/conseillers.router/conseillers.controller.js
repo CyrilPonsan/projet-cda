@@ -2,6 +2,7 @@ const createConseiller = require("../../models/conseiller.model/createConseiller
 const deleteConseiller = require("../../models/conseiller.model/deleteConseiller");
 const getAllConseiller = require("../../models/conseiller.model/getAllConseiller");
 const getConseillerDetail = require("../../models/conseiller.model/getConseillerDetail");
+const updateConseiller = require("../../models/conseiller.model/updateConseiller");
 const { checkConseiller } = require("../../services/checkData");
 const {
   serverIssue,
@@ -82,6 +83,7 @@ async function httpCreateConseiller(req, res) {
 
 async function httpUpdateConseiller(req, res) {
   try {
+    console.log(req.body);
     const updatedConseiller = await updateConseiller(req.body);
     console.log(updatedConseiller);
     return res

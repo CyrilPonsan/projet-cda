@@ -37,6 +37,6 @@ export class ProfilService {
   }
 
   httpUpdateConseiller(conseiller: Conseiller): Observable<any> {
-    return this.http.put(`${environment.baseUrl}/conseillers/}`, conseiller);
+    return this.http.put(`${environment.baseUrl}/conseillers/`, conseiller);
   }
 }
