@@ -24,11 +24,21 @@
     </article>
   </section>
 
-  <section class="py-5 w-3/6" *ngIf="profilService.user.roles.includes('admin')">
+   <!-- separator -->
+
+  <section class=" w-4/6" aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
+
+  <section class="py-5 w-4/6" *ngIf="profilService.user.roles.includes('admin')">
     <app-admin-dashboard></app-admin-dashboard>
   </section>
 
-  <section class=" w-3/6" aria-hidden="true">
+   <!-- separator -->
+
+  <section class=" w-4/6" aria-hidden="true">
     <div class="py-5">
       <div class="border-t border-gray-200"></div>
     </div>
