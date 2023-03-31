@@ -8,7 +8,7 @@ import { ClientTicket, Inventaire } from '../models/models';
 
 @Injectable()
 export class ClientsService {
-  client!: Client;
+  client!: Client | null;
 
   constructor(private http: HttpClient, private pag: PaginationService) {}
 

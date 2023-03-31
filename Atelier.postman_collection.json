@@ -1,0 +1,3692 @@
+{
+	"info": {
+		"_postman_id": "8c36d13d-b8b8-4533-a42b-5e6cb0f4a604",
+		"name": "Atelier",
+		"description": "API du projet CDA, une application pour la gestion des interventions à distance ou sur site sur les parcs informatiques des clients de l'Atelier, une activité Step.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20253740"
+	},
+	"item": [
+		{
+			"name": "POST / auth / login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzY5MjUyNTMsImV4cCI6MTY3Njk2MTI1M30.BiULNwrzuXpqp2TZkE-YRpT2euK9UzbdjVBfCryUQ54",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"tech@atelier.eco\",\n    \"password\": \"Abcd@1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"auth",
+						""
+					]
+				},
+				"description": "**Vérifie les identifiants envoyés dans le corps de la requête.**\n\n> 200: retourne un accessToken et un refreshToken et des données sur l'utilisateur qui se connecte\n> \n> 400: identifiants incorrects"
+			},
+			"response": []
+		},
+		{
+			"name": "GET / getTickets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzY5MjYyMDAsImV4cCI6MTY3Njk2MjIwMH0.5M5hZF_709JftlO_r7kXN_FmISNEFdKMWQ4IblesQQ8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzQ5Nzc4MDMsImV4cCI6MTY3NDk4NTAwM30.ccHxglV1xD0St4F8FHAGqD0U93gCYYC6m_N1qJQy-tk",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/v1/tickets?page=1&lmt=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "lmt",
+							"value": "10"
+						}
+					]
+				},
+				"description": "**Retourne une quantité limitée de tickets définie dans la l'url de la requête.**\n\n> 200: un tableau de tickets est retourné  \n>   \n> 400: les paramètres de la requête ne sont pas conformes"
+			},
+			"response": [
+				{
+					"name": "GET / getTickets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzQ5Nzc4MDMsImV4cCI6MTY3NDk4NTAwM30.ccHxglV1xD0St4F8FHAGqD0U93gCYYC6m_N1qJQy-tk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/v1/tickets?page=1&lmt=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "lmt",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11357"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c5d-pV5VgoDmhNagigl8gSVxa0Ciu5I\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Feb 2023 20:57:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"tickets récupérés avec succès\",\n    \"data\": [\n        {\n            \"id\": 25,\n            \"ref\": \"5024\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-04-09T22:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 97,\n                    \"date\": \"2021-04-06T22:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 25,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 977,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 33\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"toto company\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 2,\n                    \"type\": \"terminal\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 2,\n                    \"modele\": \"toto-book 3000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 24,\n            \"ref\": \"5023\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-04-05T22:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 93,\n                    \"date\": \"2021-04-02T22:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 24,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 576,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 20\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"funk society\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 2,\n                    \"type\": \"terminal\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 2,\n                    \"modele\": \"toto-book 3000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 23,\n            \"ref\": \"5022\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-04-01T22:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 89,\n                    \"date\": \"2021-03-29T22:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 23,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 621,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 21\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"funk society\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 2,\n                    \"type\": \"terminal\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 2,\n                    \"modele\": \"toto-book 3000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 22,\n            \"ref\": \"5021\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-28T22:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 85,\n                    \"date\": \"2021-03-25T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 22,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 1401,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 47\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"funk society\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 1,\n                    \"type\": \"serveur\"\n                },\n                \"marque\": {\n                    \"id\": 2,\n                    \"marque\": \"tata\"\n                },\n                \"modele\": {\n                    \"id\": 1,\n                    \"modele\": \"mega coffee server\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 21,\n            \"ref\": \"5020\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-24T23:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 81,\n                    \"date\": \"2021-03-21T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 21,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 1498,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 50\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"funk society\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 2,\n                    \"type\": \"terminal\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 2,\n                    \"modele\": \"toto-book 3000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 20,\n            \"ref\": \"5019\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-20T23:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 77,\n                    \"date\": \"2021-03-17T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 20,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 1016,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 34\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"toto company\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 2,\n                    \"type\": \"terminal\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 2,\n                    \"modele\": \"toto-book 3000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 19,\n            \"ref\": \"5018\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-16T23:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 73,\n                    \"date\": \"2021-03-13T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 19,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 536,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 18\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"toto company\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 3,\n                    \"type\": \"imprimante\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 3,\n                    \"modele\": \"super printer 4000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 18,\n            \"ref\": \"5017\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-12T23:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 69,\n                    \"date\": \"2021-03-09T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 18,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 908,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 31\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"funk society\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 3,\n                    \"type\": \"imprimante\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 3,\n                    \"modele\": \"super printer 4000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 17,\n            \"ref\": \"5016\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-08T23:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 65,\n                    \"date\": \"2021-03-05T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 17,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 242,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 9\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"toto company\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 1,\n                    \"type\": \"serveur\"\n                },\n                \"marque\": {\n                    \"id\": 2,\n                    \"marque\": \"tata\"\n                },\n                \"modele\": {\n                    \"id\": 1,\n                    \"modele\": \"mega coffee server\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        },\n        {\n            \"id\": 16,\n            \"ref\": \"5015\",\n            \"titre\": \"en panne\",\n            \"resume\": \"lorem lorem\",\n            \"code\": 5,\n            \"date\": \"2021-03-04T23:00:00.000Z\",\n            \"intervention\": [\n                {\n                    \"id\": 61,\n                    \"date\": \"2021-03-01T23:00:00.000Z\",\n                    \"description\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"reponse\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, eaque facere? Ab necessitatibus ducimus vel quod eaque quis excepturi natus reiciendis id nam ea nobis nostrum magni voluptatum, iste alias ratione accusantium delectus.\",\n                    \"titre\": \"depannage 1\",\n                    \"lieuIntervention\": \"distance\",\n                    \"ticketId\": 16,\n                    \"conseillerId\": 1,\n                    \"statutId\": 1,\n                    \"statut\": {\n                        \"id\": 1,\n                        \"code\": 1,\n                        \"label\": \"ouvert\"\n                    }\n                }\n            ],\n            \"materiel\": {\n                \"id\": 734,\n                \"client\": {\n                    \"nom\": \"Entreprise n° 25\",\n                    \"raisonSociale\": {\n                        \"raisonSociale\": \"toto company\"\n                    }\n                },\n                \"typeMateriel\": {\n                    \"id\": 2,\n                    \"type\": \"terminal\"\n                },\n                \"marque\": {\n                    \"id\": 1,\n                    \"marque\": \"toto\"\n                },\n                \"modele\": {\n                    \"id\": 2,\n                    \"modele\": \"toto-book 3000\",\n                    \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n                }\n            }\n        }\n    ],\n    \"total\": 25\n}"
+				}
+			]
+		},
+		{
+			"name": "POST / new-intervention",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item\": {\n    \"ticket_id\" : 26,\n    \"titre\" : \"toto-book batterie HS\",\n    \"lieuIntervention\": \"sur site\",\n    \"description\": \"la batterie ne se recharge pas.\",\n    \"reponse\": \"j'ai suggéré un changement de chargeur pour vérifier que le problème de chargement provienne bien de la batterie.\",\n    \"statut\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/tickets/new-intervention",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"tickets",
+						"new-intervention"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET / search-clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/search?type=contrat&value=1023",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"search"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "contrat"
+						},
+						{
+							"key": "value",
+							"value": "1023"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST / createTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticket\":\n    {\n        \"titre\": \"bok mark toto en panne\",\n        \"resume\": \"ca ne marche pas\",\n        \"materielId\": 1,\n        \"clientId\": 1\n    },\n    \"intervention\":\n    {\n        \"titre\" : \"toto-book batterie HS\",\n        \"lieuIntervention\": \"sur site\",\n        \"description\": \"la batterie ne se recharge pas.\",\n        \"reponse\": \"j ai suggéré un changement de chargeur pour vérifier que le problème de chargement provienne bien de la batterie.\",\n        \"statutId\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/tickets/new-ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"tickets",
+						"new-ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET / clients",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzY5Nzk2MDUsImV4cCI6MTY3NzAxNTYwNX0.qUniX7akEG38ynLz1lOOoQCCXPopz_BayKC1eHj5bG8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients?page=1&lmt=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "lmt",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET / client-tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/tickets/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"tickets",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getClientTickets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzY5MjUyNTMsImV4cCI6MTY3Njk2MTI1M30.BiULNwrzuXpqp2TZkE-YRpT2euK9UzbdjVBfCryUQ54",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/tickets/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"tickets",
+						"18"
+					]
+				},
+				"description": "**Retourne un tableau de tickets associés à un client dont l'identifiant est transmis dans les paramètres de la requête.**\n\n> 200: un tableau de tickets est retourné  \n>   \n> 404: aucun ticket n'est associé au client, un tableau vide est retourné"
+			},
+			"response": [
+				{
+					"name": "getClientTickets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/tickets/18",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"tickets",
+								"18"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "882"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"372-XKSr4nv83N1BdwfPrY1fb1NafyM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Feb 2023 20:35:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 19,\n        \"titre\": \"en panne\",\n        \"ref\": \"5018\",\n        \"resume\": \"lorem lorem\",\n        \"intervention\": [\n            {\n                \"id\": 76,\n                \"date\": \"2021-03-16T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"clôturé\"\n                }\n            },\n            {\n                \"id\": 75,\n                \"date\": \"2021-03-15T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"niveau 2\"\n                }\n            },\n            {\n                \"id\": 74,\n                \"date\": \"2021-03-14T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"traitement\"\n                }\n            },\n            {\n                \"id\": 73,\n                \"date\": \"2021-03-13T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"ouvert\"\n                }\n            }\n        ],\n        \"materiel\": {\n            \"ref\": \"2535\",\n            \"typeMateriel\": {\n                \"type\": \"imprimante\"\n            }\n        }\n    },\n    {\n        \"id\": 4,\n        \"titre\": \"en panne\",\n        \"ref\": \"5003\",\n        \"resume\": \"lorem lorem\",\n        \"intervention\": [\n            {\n                \"id\": 16,\n                \"date\": \"2021-01-15T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"clôturé\"\n                }\n            },\n            {\n                \"id\": 15,\n                \"date\": \"2021-01-14T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"niveau 2\"\n                }\n            },\n            {\n                \"id\": 14,\n                \"date\": \"2021-01-13T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"traitement\"\n                }\n            },\n            {\n                \"id\": 13,\n                \"date\": \"2021-01-12T23:00:00.000Z\",\n                \"statut\": {\n                    \"label\": \"ouvert\"\n                }\n            }\n        ],\n        \"materiel\": {\n            \"ref\": \"2524\",\n            \"typeMateriel\": {\n                \"type\": \"terminal\"\n            }\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "deleteClient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzY5Mjc1NjEsImV4cCI6MTY3Njk2MzU2MX0.L6Zi4AkV13uYbkHQXLM8L84oVKRHj0tsNags7FcKiDY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/delete/50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"delete",
+						"50"
+					]
+				},
+				"description": "**Supprime le client dont l'identifiant est transmis en paramètres de la requête. Supprime en cascade les matériels, tickets et interventions associés au client. Ce endpoint n'est accessible qu'à un utilisateur qui a le rôle: \"admin\".**\n\n> 200: Ressources supprimées\n> \n> 400: Paramètres de requête non conformes\n> \n> 403: L'utilisateur n'a pas la permission d'effectuer cette requête"
+			},
+			"response": [
+				{
+					"name": "deleteClient",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/delete/50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"delete",
+								"50"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4c-tT2eWYKTw92L3HLJTJGVyxlWmp8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Feb 2023 22:09:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le client avec l'identifiant: 50 a été supprimé de la bddd.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "put updateClient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzY5Nzk2MDUsImV4cCI6MTY3NzAxNTYwNX0.qUniX7akEG38ynLz1lOOoQCCXPopz_BayKC1eHj5bG8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"nom\": \"Nouvelle entreprise\",\n            \"email\": \"contact_13@entreprise.com\",\n            \"contrat\": \"5000\",\n            \"telephone\": \"0203040506\",\n            \"adresse\": \"13 rue Xavier Pinson\",\n            \"codePostal\": \"64000\",\n            \"ville\": \"San Francisco sur Adour\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"10000"
+					]
+				},
+				"description": "**Met à jour les informations d'un client dont l'identifiant a été transmis dans les paramètres de la requête.**\n\n> 201: Mise à jour réussie  \n\n> 400: Paramètres de requête non conformes"
+			},
+			"response": [
+				{
+					"name": "put updateClient",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"nom\": \"Nouvelle entreprise\",\n            \"email\": \"contact_13@entreprise.com\",\n            \"contrat\": \"1012\",\n            \"telephone\": \"0203040506\",\n            \"adresse\": \"13 rue Xavier Pinson\",\n            \"codePostal\": \"64000\",\n            \"ville\": \"San Francisco sur Adour\"\n            }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"update",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "79"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4f-jLyIV83QKwTSBJL12ZBIKjXxG3s\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Feb 2023 12:07:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le client avec l'identifiant: 1 a été mis à jour avec succès.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get raisonsSociales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/raisons-sociales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"raisons-sociales"
+					]
+				},
+				"description": "**Retourne la liste des raisons sociales. Si aucune raison sociale n'est trouvée, un tableau vide est retourné.**\n\n> 200: la liste des raisons sociales"
+			},
+			"response": [
+				{
+					"name": "get raisonsSociales",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/raisons-sociales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"raisons-sociales"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "133"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"85-Pg+R9W2bMMAkGNaZ1k1fOYGC4OE\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A7bXIdTzSos6VOmWYtcSMFjlOc-Xv7LjI.jihKWrKDy5hMp3gv5%2B8EuE9dMv6TTBNj4yiS4S6P3fA; Path=/; Expires=Wed, 22 Feb 2023 08:02:04 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Feb 2023 08:01:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Raisons sociales récupérées\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"raisonSociale\": \"funk society\"\n        },\n        {\n            \"id\": 2,\n            \"raisonSociale\": \"toto company\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST addRaisonSociale",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"raisonSociale\": \"Hero Corp\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/raisons-sociales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"raisons-sociales"
+					]
+				},
+				"description": "**Enregistre une raison sociale dans la base de données. Une vérification est effectuée au préalable au cas où la raison sociale existerait déjà dans la base de données.**\n\n> 201: raison sociale enregistrée avec succès\n\n> 400: requête non conforme\n> \n> 418: la raison sociale existe déjà"
+			},
+			"response": [
+				{
+					"name": "POST addRaisonSociale",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"raisonSociale\": \"NanoSoft\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/raisons-sociales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"raisons-sociales"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "106"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6a-OduISSPu1sZXt/TPHLAcG59oaCg\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A2Zv3CBmbHTTkr9oCUXTBW-ggf6qbXg_t.HqiIVojho0eP5KtP2L%2BBeV5foDWkoeVfTSTPyAM%2BXF0; Path=/; Expires=Wed, 22 Feb 2023 08:47:53 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Feb 2023 08:47:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Raison sociale ajoutée avec succès.\",\n    \"newRaisonSociale\": {\n        \"id\": 5,\n        \"raisonSociale\": \"NanoSoft\"\n    }\n}"
+				},
+				{
+					"name": "POST addRaisonSociale",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"raisonSociale\": \"NanoSoft\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/raisons-sociales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"raisons-sociales"
+							]
+						}
+					},
+					"status": "I'm a Teapot",
+					"code": 418,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-hrWaT/u6MQEuhYudlI+DeYaU/Wg\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3ARGZGHkUqztxxXBM8gA2EesVHjBM62Anf.8oUuMfmueoy0meDiavtO%2FL3WmbYZz1zmH4w7Me23xZc; Path=/; Expires=Wed, 22 Feb 2023 08:52:24 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Feb 2023 08:52:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le nom NanoSoft existe déjà.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST createClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nom\": \"Entreprise n 1\",\n    \"email\": \"contact_1@entreprise.com\",\n    \"telephone\": \"001\",\n    \"adresse\": \"1 rue Xavier Pinson\",\n    \"codePostal\": \"64000\",\n    \"ville\": \"San Francisco sur Adour\",\n    \"raisonSocialeId\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET getOneMateriel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzcxNjAwMzEsImV4cCI6MTY3NzE2MDkzMX0.IM2ImpOFiRFyhoKURX-EPrhSqoYPKpFMCjw7Nh_Jlh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/3499",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"3499"
+					]
+				},
+				"description": "**Retourne un materiel ( type de matériel, marque et modèle inclus), identifié par sa référence transmise en paramètre d'url.**\n\n> 200: les infos sur un matériel sont retournées  \n> 404: le matériel n'a pas été trouvé en bdd  \n> 400: la ref transmise dans l'url n'est pas une valeur numérique ou est absente"
+			},
+			"response": [
+				{
+					"name": "GET getOneMateriel",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/3499",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"3499"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "424"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1a8-JJmDyp7RkC0qI2i5p5gdr4g86i0\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 13:59:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"materiel\": {\n        \"id\": 1500,\n        \"miseEnService\": \"2023-02-23T08:06:39.000Z\",\n        \"ref\": \"3499\",\n        \"createdAt\": \"2023-02-23T08:06:39.000Z\",\n        \"updatedAt\": \"2023-02-23T08:06:39.000Z\",\n        \"clientId\": 50,\n        \"typeMaterielId\": 1,\n        \"marqueId\": 2,\n        \"modeleId\": 1,\n        \"typeMateriel\": {\n            \"id\": 1,\n            \"type\": \"serveur\"\n        },\n        \"marque\": {\n            \"id\": 2,\n            \"marque\": \"tata\"\n        },\n        \"modele\": {\n            \"id\": 1,\n            \"modele\": \"mega coffee server\",\n            \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE deleteMateriel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzcxNjE2OTAsImV4cCI6MTY3NzE2NTI5MH0.of-j_1uWQK6rx9xoqqONykL4lFYQ-AafWUcSTIZzT5M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/3497",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"3497"
+					]
+				},
+				"description": "**Supprime un matériel identifié par sa référence transmise en paramètres d'url de la bdd.**\n\n> 201: le matériel a été supprimé  \n> 404: le matériel n'a pas été trouvé en bdd  \n> 400: la ref transmise dans l'url n'est pas une valeur numérique ou est absente"
+			},
+			"response": [
+				{
+					"name": "DELETE deleteMateriel",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/3497",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"3497"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"51-v5/ls5DV+8respOhg69vBINtq2U\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 14:22:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le matériel avec la référence: 3497 a été supprimé de la bdd.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST / createMateriel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzcxNjE2OTAsImV4cCI6MTY3NzE2NTI5MH0.of-j_1uWQK6rx9xoqqONykL4lFYQ-AafWUcSTIZzT5M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"miseEnService\": \"2023-02-23T08:06:39.000Z\",\n    \"clientId\": 100000,\n    \"typeMaterielId\": 1,\n    \"marqueId\": 2,\n    \"modeleId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						""
+					]
+				},
+				"description": "**Enregistre un nouveau materiel dans la base de données à partir des informations envoyées dans le corps de la requête.**\n\n> 201: matériel enregistré, message de confirmation  \n> 400: une ou plusieurs valeurs sont absentes ou mal formées"
+			},
+			"response": [
+				{
+					"name": "POST / createMateriel",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"miseEnService\": \"2023-02-23T08:06:39.000Z\",\n    \"clientId\": 50,\n    \"typeMaterielId\": 1,\n    \"marqueId\": 2,\n    \"modeleId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "260"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"104-2zjq4TE7MYybFX9qgEMdCOhEaBA\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 14:58:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Nouveau matériel enregistré\",\n    \"newMateriel\": {\n        \"id\": 1501,\n        \"miseEnService\": \"2023-02-23T08:06:39.000Z\",\n        \"clientId\": 50,\n        \"typeMaterielId\": 1,\n        \"marqueId\": 2,\n        \"modeleId\": 1,\n        \"ref\": 3497,\n        \"updatedAt\": \"2023-02-23T14:58:13.236Z\",\n        \"createdAt\": \"2023-02-23T14:58:13.236Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT updateMateriel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2NzczNTcxMTcsImV4cCI6MTY3NzM2MDcxN30.hS1DnciBJZp2BLQ_H9PVOssONem1yN7TzSQ9zsFHsqM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"miseEnService\": \"2023-02-23T08:06:39.000Z\",\n    \"clientId\": 50,\n    \"typeMaterielId\": 1,\n    \"marqueId\": 2,\n    \"modeleId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"1"
+					]
+				},
+				"description": "**Met à jour un matériel à partir des informations contenues dans le corps de la requête. Le matériel est identifié par l'identifiant passé en paramètres d'url.**\n\n> 201: le matériel a été mias à jour\n\n> 400: la requête est mal fomulée\n> \n> 404: aucun matériel ne correspond à l'identifiant"
+			},
+			"response": [
+				{
+					"name": "PUT updateMateriel",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"miseEnService\": \"2023-02-23T08:06:39.000Z\",\n    \"clientId\": 50,\n    \"typeMaterielId\": 1,\n    \"marqueId\": 2,\n    \"modeleId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-2HVvtUFVNDmn4udix3h6wFqf3Sk\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 20:32:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le matériel avec l'identifiant: 1 a été mis à jour.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET getClientMateriels",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsidGVjaCJdLCJpYXQiOjE2Nzc3NTgxODAsImV4cCI6MTY3Nzc2MTc4MH0.u94opfkDBoN2jaQkus-J6C4EUr6hFZebnflnAMCC1fA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/client?page=1&limite=5&id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"client"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limite",
+							"value": "5"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "**Retourne la liste de tous les matériels associés au client dont l'identifiant est transmis dans l'url. Les paramètres de pagination sont également transmis via l'url.**\n\n> 200: reoturne la liste des matériels  \n> 400:: les données présentes dans la query ne sont pas valides  \n> 404: aucun matériel n'a été trouvé pour l'identifiant transmis dans l'url"
+			},
+			"response": [
+				{
+					"name": "GET getClientMateriels",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/client?page=1&limite=5&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"client"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limite",
+									"value": "5"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1262"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4ee-vik1spP/mPGebvtvyXdVOwOxocY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Mar 2023 12:12:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"ref\": \"2000\",\n        \"miseEnService\": \"2023-03-02T12:12:09.000Z\",\n        \"typeMateriel\": {\n            \"type\": \"imprimante\"\n        },\n        \"marque\": {\n            \"marque\": \"toto\"\n        },\n        \"modele\": {\n            \"modele\": \"super printer 4000\",\n            \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"ref\": \"2001\",\n        \"miseEnService\": \"2023-03-02T12:12:09.000Z\",\n        \"typeMateriel\": {\n            \"type\": \"serveur\"\n        },\n        \"marque\": {\n            \"marque\": \"tata\"\n        },\n        \"modele\": {\n            \"modele\": \"mega coffee server\",\n            \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"ref\": \"2002\",\n        \"miseEnService\": \"2023-03-02T12:12:09.000Z\",\n        \"typeMateriel\": {\n            \"type\": \"imprimante\"\n        },\n        \"marque\": {\n            \"marque\": \"toto\"\n        },\n        \"modele\": {\n            \"modele\": \"super printer 4000\",\n            \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"ref\": \"2003\",\n        \"miseEnService\": \"2023-03-02T12:12:09.000Z\",\n        \"typeMateriel\": {\n            \"type\": \"imprimante\"\n        },\n        \"marque\": {\n            \"marque\": \"toto\"\n        },\n        \"modele\": {\n            \"modele\": \"super printer 4000\",\n            \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"ref\": \"2004\",\n        \"miseEnService\": \"2023-03-02T12:12:09.000Z\",\n        \"typeMateriel\": {\n            \"type\": \"terminal\"\n        },\n        \"marque\": {\n            \"marque\": \"toto\"\n        },\n        \"modele\": {\n            \"modele\": \"toto-book 3000\",\n            \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "chatGPT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"def\": \"ne démarre plus\",\n    \"type\": \"laptop\",\n    \"marque\": \"lenovo\",\n    \"modele\": \"thinkpad\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/knowledge",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"knowledge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET typeMaterielList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/type-materiel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"type-materiel"
+					]
+				},
+				"description": "**Retourne la liste des différents types de matériel.**\n\n> 200: retourne un tableau d'objets. Si la liste est vide retourne un tableau vide."
+			},
+			"response": [
+				{
+					"name": "GET typeMaterielList",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/type-materiel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"type-materiel"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"53-1dzHg6ZNvN4rLSTnVgHDquIZiP0\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AYeXCWjo0Ajn40WT3wH3G-uVXOe2-_7RR.MDpA0vUPdFgm9n0T7OhQCmQbdydO456xG%2B8g5cBZ650; Path=/; Expires=Fri, 03 Mar 2023 10:11:55 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 09:51:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"type\": \"serveur\"\n    },\n    {\n        \"id\": 2,\n        \"type\": \"terminal\"\n    },\n    {\n        \"id\": 3,\n        \"type\": \"imprimante\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "POST postTypeMaterielList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"souris\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/type-materiel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"type-materiel"
+					]
+				},
+				"description": "**Enregistre un nouveau type de matériel dans la base de données.**\n\n> 201: le nouveau type de matériel a été enregistré avec succès. L'identifiant du nouveau type de matériel est retourné.\n> \n> 404: le type de matériel que l'utilisateur cherche à enregistrer est déjà présent dans la base de données.\n> \n> 400: les données présentes dans le corps de la requêtes sont invalides."
+			},
+			"response": [
+				{
+					"name": "POST postTypeMaterielList",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"souris\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/type-materiel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"type-materiel"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"49-ZkZ1zQWuO1a4Lh7iDXYj7vJxJd0\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3ALodcykoxiXoVBnsJssJ-oXufEL8uurpl.djqyHaxW7mzaCgY6QQ14LFb4WLixftDoORGOLtItRcc; Path=/; Expires=Fri, 03 Mar 2023 10:49:13 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 10:29:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Nouveau type de matériel enregistré avec l'identifiant: 8\"\n}"
+				},
+				{
+					"name": "POST postTypeMaterielList",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"souris\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/type-materiel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"type-materiel"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-PWm2fPLmFiymi5zDmrR+HHLz9rA\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3ALodcykoxiXoVBnsJssJ-oXufEL8uurpl.djqyHaxW7mzaCgY6QQ14LFb4WLixftDoORGOLtItRcc; Path=/; Expires=Fri, 03 Mar 2023 10:54:25 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 10:34:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le type de matériel souris existe déjà.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET marqueList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/marque",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"marque"
+					]
+				},
+				"description": "**Retourne la liste des différentes marques de matériel.**\n\n> 200: retourne un tableau d'objets. Si la liste est vide retourne un tableau vide."
+			},
+			"response": [
+				{
+					"name": "GET marqueList",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/marque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"marque"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-W68LIdr1xrm/RG4lzhDFE+b0ubo\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AYeXCWjo0Ajn40WT3wH3G-uVXOe2-_7RR.MDpA0vUPdFgm9n0T7OhQCmQbdydO456xG%2B8g5cBZ650; Path=/; Expires=Fri, 03 Mar 2023 10:15:31 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 09:55:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"marque\": \"toto\"\n    },\n    {\n        \"id\": 2,\n        \"marque\": \"tata\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET modeleList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/materiel/modele",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"materiel",
+						"modele"
+					]
+				},
+				"description": "**Retourne la liste des différents modèles de matériel.**\n\n> 200: retourne un tableau d'objets. Si la liste est vide retourne un tableau vide."
+			},
+			"response": [
+				{
+					"name": "GET modeleList",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/materiel/modele",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"materiel",
+								"modele"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "366"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16e-1ys+jYIJA2nQqljiH53bFHDgiKM\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AYeXCWjo0Ajn40WT3wH3G-uVXOe2-_7RR.MDpA0vUPdFgm9n0T7OhQCmQbdydO456xG%2B8g5cBZ650; Path=/; Expires=Fri, 03 Mar 2023 10:16:29 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 09:56:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"modele\": \"mega coffee server\",\n        \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n    },\n    {\n        \"id\": 2,\n        \"modele\": \"toto-book 3000\",\n        \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n    },\n    {\n        \"id\": 3,\n        \"modele\": \"super printer 4000\",\n        \"url\": \"https://worldofwarcraft.com/fr-fr/character/eu/dalaran/bab%C3%B8ul%C3%AFnet\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET getClients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/clients/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"clients",
+						"clients"
+					]
+				},
+				"description": "**Retourne la liste de tous les clients sans pagination.**\n\n> 200: Retourne un tableau de clients, retourne un tableau vide si aucun client n'est trouvé."
+			},
+			"response": [
+				{
+					"name": "GET getClients",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/clients/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"clients",
+								"clients"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "14615"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3917-oHyUipKYxgAeQ3SYYz2cYlbVK5I\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AAWn5UgH7ywGLcJaTTQDSvS9H6MNv1yWE.q9k5K21QqGD2%2BKTkWkMwaaDitUfY1A8kOR2iKYlJNHA; Path=/; Expires=Fri, 03 Mar 2023 13:35:59 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 13:15:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"nom\": \"Entreprise n° 1\",\n        \"email\": \"contact_1@entreprise.com\",\n        \"contrat\": \"1000\",\n        \"telephone\": \"001\",\n        \"adresse\": \"1 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 2,\n        \"nom\": \"Entreprise n° 2\",\n        \"email\": \"contact_2@entreprise.com\",\n        \"contrat\": \"1001\",\n        \"telephone\": \"002\",\n        \"adresse\": \"2 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 3,\n        \"nom\": \"Entreprise n° 3\",\n        \"email\": \"contact_3@entreprise.com\",\n        \"contrat\": \"1002\",\n        \"telephone\": \"003\",\n        \"adresse\": \"3 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 4,\n        \"nom\": \"Entreprise n° 4\",\n        \"email\": \"contact_4@entreprise.com\",\n        \"contrat\": \"1003\",\n        \"telephone\": \"004\",\n        \"adresse\": \"4 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 5,\n        \"nom\": \"Entreprise n° 5\",\n        \"email\": \"contact_5@entreprise.com\",\n        \"contrat\": \"1004\",\n        \"telephone\": \"005\",\n        \"adresse\": \"5 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 6,\n        \"nom\": \"Entreprise n° 6\",\n        \"email\": \"contact_6@entreprise.com\",\n        \"contrat\": \"1005\",\n        \"telephone\": \"006\",\n        \"adresse\": \"6 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 7,\n        \"nom\": \"Entreprise n° 7\",\n        \"email\": \"contact_7@entreprise.com\",\n        \"contrat\": \"1006\",\n        \"telephone\": \"007\",\n        \"adresse\": \"7 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 8,\n        \"nom\": \"Entreprise n° 8\",\n        \"email\": \"contact_8@entreprise.com\",\n        \"contrat\": \"1007\",\n        \"telephone\": \"008\",\n        \"adresse\": \"8 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 9,\n        \"nom\": \"Entreprise n° 9\",\n        \"email\": \"contact_9@entreprise.com\",\n        \"contrat\": \"1008\",\n        \"telephone\": \"009\",\n        \"adresse\": \"9 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 10,\n        \"nom\": \"Entreprise n° 10\",\n        \"email\": \"contact_10@entreprise.com\",\n        \"contrat\": \"1009\",\n        \"telephone\": \"010\",\n        \"adresse\": \"10 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 11,\n        \"nom\": \"Entreprise n° 11\",\n        \"email\": \"contact_11@entreprise.com\",\n        \"contrat\": \"1010\",\n        \"telephone\": \"011\",\n        \"adresse\": \"11 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 12,\n        \"nom\": \"Entreprise n° 12\",\n        \"email\": \"contact_12@entreprise.com\",\n        \"contrat\": \"1011\",\n        \"telephone\": \"012\",\n        \"adresse\": \"12 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 13,\n        \"nom\": \"Entreprise n° 13\",\n        \"email\": \"contact_13@entreprise.com\",\n        \"contrat\": \"1012\",\n        \"telephone\": \"013\",\n        \"adresse\": \"13 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 14,\n        \"nom\": \"Entreprise n° 14\",\n        \"email\": \"contact_14@entreprise.com\",\n        \"contrat\": \"1013\",\n        \"telephone\": \"014\",\n        \"adresse\": \"14 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 15,\n        \"nom\": \"Entreprise n° 15\",\n        \"email\": \"contact_15@entreprise.com\",\n        \"contrat\": \"1014\",\n        \"telephone\": \"015\",\n        \"adresse\": \"15 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 16,\n        \"nom\": \"Entreprise n° 16\",\n        \"email\": \"contact_16@entreprise.com\",\n        \"contrat\": \"1015\",\n        \"telephone\": \"016\",\n        \"adresse\": \"16 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 17,\n        \"nom\": \"Entreprise n° 17\",\n        \"email\": \"contact_17@entreprise.com\",\n        \"contrat\": \"1016\",\n        \"telephone\": \"017\",\n        \"adresse\": \"17 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 18,\n        \"nom\": \"Entreprise n° 18\",\n        \"email\": \"contact_18@entreprise.com\",\n        \"contrat\": \"1017\",\n        \"telephone\": \"018\",\n        \"adresse\": \"18 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 19,\n        \"nom\": \"Entreprise n° 19\",\n        \"email\": \"contact_19@entreprise.com\",\n        \"contrat\": \"1018\",\n        \"telephone\": \"019\",\n        \"adresse\": \"19 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 20,\n        \"nom\": \"Entreprise n° 20\",\n        \"email\": \"contact_20@entreprise.com\",\n        \"contrat\": \"1019\",\n        \"telephone\": \"020\",\n        \"adresse\": \"20 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 21,\n        \"nom\": \"Entreprise n° 21\",\n        \"email\": \"contact_21@entreprise.com\",\n        \"contrat\": \"1020\",\n        \"telephone\": \"021\",\n        \"adresse\": \"21 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 22,\n        \"nom\": \"Entreprise n° 22\",\n        \"email\": \"contact_22@entreprise.com\",\n        \"contrat\": \"1021\",\n        \"telephone\": \"022\",\n        \"adresse\": \"22 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 23,\n        \"nom\": \"Entreprise n° 23\",\n        \"email\": \"contact_23@entreprise.com\",\n        \"contrat\": \"1022\",\n        \"telephone\": \"023\",\n        \"adresse\": \"23 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 24,\n        \"nom\": \"Entreprise n° 24\",\n        \"email\": \"contact_24@entreprise.com\",\n        \"contrat\": \"1023\",\n        \"telephone\": \"024\",\n        \"adresse\": \"24 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 25,\n        \"nom\": \"Entreprise n° 25\",\n        \"email\": \"contact_25@entreprise.com\",\n        \"contrat\": \"1024\",\n        \"telephone\": \"025\",\n        \"adresse\": \"25 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 26,\n        \"nom\": \"Entreprise n° 26\",\n        \"email\": \"contact_26@entreprise.com\",\n        \"contrat\": \"1025\",\n        \"telephone\": \"026\",\n        \"adresse\": \"26 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 27,\n        \"nom\": \"Entreprise n° 27\",\n        \"email\": \"contact_27@entreprise.com\",\n        \"contrat\": \"1026\",\n        \"telephone\": \"027\",\n        \"adresse\": \"27 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 28,\n        \"nom\": \"Entreprise n° 28\",\n        \"email\": \"contact_28@entreprise.com\",\n        \"contrat\": \"1027\",\n        \"telephone\": \"028\",\n        \"adresse\": \"28 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 29,\n        \"nom\": \"Entreprise n° 29\",\n        \"email\": \"contact_29@entreprise.com\",\n        \"contrat\": \"1028\",\n        \"telephone\": \"029\",\n        \"adresse\": \"29 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 30,\n        \"nom\": \"Entreprise n° 30\",\n        \"email\": \"contact_30@entreprise.com\",\n        \"contrat\": \"1029\",\n        \"telephone\": \"030\",\n        \"adresse\": \"30 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 31,\n        \"nom\": \"Entreprise n° 31\",\n        \"email\": \"contact_31@entreprise.com\",\n        \"contrat\": \"1030\",\n        \"telephone\": \"031\",\n        \"adresse\": \"31 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 32,\n        \"nom\": \"Entreprise n° 32\",\n        \"email\": \"contact_32@entreprise.com\",\n        \"contrat\": \"1031\",\n        \"telephone\": \"032\",\n        \"adresse\": \"32 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 33,\n        \"nom\": \"Entreprise n° 33\",\n        \"email\": \"contact_33@entreprise.com\",\n        \"contrat\": \"1032\",\n        \"telephone\": \"033\",\n        \"adresse\": \"33 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 34,\n        \"nom\": \"Entreprise n° 34\",\n        \"email\": \"contact_34@entreprise.com\",\n        \"contrat\": \"1033\",\n        \"telephone\": \"034\",\n        \"adresse\": \"34 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 35,\n        \"nom\": \"Entreprise n° 35\",\n        \"email\": \"contact_35@entreprise.com\",\n        \"contrat\": \"1034\",\n        \"telephone\": \"035\",\n        \"adresse\": \"35 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 36,\n        \"nom\": \"Entreprise n° 36\",\n        \"email\": \"contact_36@entreprise.com\",\n        \"contrat\": \"1035\",\n        \"telephone\": \"036\",\n        \"adresse\": \"36 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 37,\n        \"nom\": \"Entreprise n° 37\",\n        \"email\": \"contact_37@entreprise.com\",\n        \"contrat\": \"1036\",\n        \"telephone\": \"037\",\n        \"adresse\": \"37 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 38,\n        \"nom\": \"Entreprise n° 38\",\n        \"email\": \"contact_38@entreprise.com\",\n        \"contrat\": \"1037\",\n        \"telephone\": \"038\",\n        \"adresse\": \"38 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 39,\n        \"nom\": \"Entreprise n° 39\",\n        \"email\": \"contact_39@entreprise.com\",\n        \"contrat\": \"1038\",\n        \"telephone\": \"039\",\n        \"adresse\": \"39 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 40,\n        \"nom\": \"Entreprise n° 40\",\n        \"email\": \"contact_40@entreprise.com\",\n        \"contrat\": \"1039\",\n        \"telephone\": \"040\",\n        \"adresse\": \"40 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 41,\n        \"nom\": \"Entreprise n° 41\",\n        \"email\": \"contact_41@entreprise.com\",\n        \"contrat\": \"1040\",\n        \"telephone\": \"041\",\n        \"adresse\": \"41 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    },\n    {\n        \"id\": 42,\n        \"nom\": \"Entreprise n° 42\",\n        \"email\": \"contact_42@entreprise.com\",\n        \"contrat\": \"1041\",\n        \"telephone\": \"042\",\n        \"adresse\": \"42 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 43,\n        \"nom\": \"Entreprise n° 43\",\n        \"email\": \"contact_43@entreprise.com\",\n        \"contrat\": \"1042\",\n        \"telephone\": \"043\",\n        \"adresse\": \"43 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 44,\n        \"nom\": \"Entreprise n° 44\",\n        \"email\": \"contact_44@entreprise.com\",\n        \"contrat\": \"1043\",\n        \"telephone\": \"044\",\n        \"adresse\": \"44 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 45,\n        \"nom\": \"Entreprise n° 45\",\n        \"email\": \"contact_45@entreprise.com\",\n        \"contrat\": \"1044\",\n        \"telephone\": \"045\",\n        \"adresse\": \"45 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 46,\n        \"nom\": \"Entreprise n° 46\",\n        \"email\": \"contact_46@entreprise.com\",\n        \"contrat\": \"1045\",\n        \"telephone\": \"046\",\n        \"adresse\": \"46 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 47,\n        \"nom\": \"Entreprise n° 47\",\n        \"email\": \"contact_47@entreprise.com\",\n        \"contrat\": \"1046\",\n        \"telephone\": \"047\",\n        \"adresse\": \"47 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 48,\n        \"nom\": \"Entreprise n° 48\",\n        \"email\": \"contact_48@entreprise.com\",\n        \"contrat\": \"1047\",\n        \"telephone\": \"048\",\n        \"adresse\": \"48 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 49,\n        \"nom\": \"Entreprise n° 49\",\n        \"email\": \"contact_49@entreprise.com\",\n        \"contrat\": \"1048\",\n        \"telephone\": \"049\",\n        \"adresse\": \"49 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 2\n    },\n    {\n        \"id\": 50,\n        \"nom\": \"Entreprise n° 50\",\n        \"email\": \"contact_50@entreprise.com\",\n        \"contrat\": \"1049\",\n        \"telephone\": \"050\",\n        \"adresse\": \"50 rue Xavier Pinson\",\n        \"codePostal\": \"64000\",\n        \"ville\": \"San Francisco sur Adour\",\n        \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n        \"updatedAt\": \"2023-03-03T13:03:49.000Z\",\n        \"raisonSocialeId\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET getAllConseiller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/conseillers?page=1&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"conseillers"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				},
+				"description": "**Retourne une partie de la liste des clients en fonctions des paramètres de pagination présents dans l'url.**\n\n> 200: retourne un tableau d'objets. Si aucun conseiller n'est trouvé, retoune un tableau vide  \n> 400: les données présentes dans l'url sont invalides"
+			},
+			"response": [
+				{
+					"name": "GET getAllConseiller",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers?page=1&limit=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "185"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b9-UwcLZva31IQTC6x7IUBVaNRJMh8\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A6-xHifc5YV09zfSSC6WoZXVh4d9680m1.BmESWbfo5mv%2FTleVy%2FQ5qRGQyoSrf4bo%2BoPP1fpwAsA; Path=/; Expires=Fri, 03 Mar 2023 15:21:07 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 15:01:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"tech@atelier.eco\",\n        \"prenom\": \"bob\",\n        \"nom\": \"dupont\",\n        \"roles\": [\n            \"tech\"\n        ]\n    },\n    {\n        \"id\": 2,\n        \"username\": \"admin@atelier.eco\",\n        \"prenom\": \"sam\",\n        \"nom\": \"francisco\",\n        \"roles\": [\n            \"tech\",\n            \"admin\"\n        ]\n    }\n]"
+				},
+				{
+					"name": "GET getAllConseiller",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers?page=1&limit=toto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "toto"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-IWilT/73tZBJddBUKiU0Q7U3Ceo\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A6-xHifc5YV09zfSSC6WoZXVh4d9680m1.BmESWbfo5mv%2FTleVy%2FQ5qRGQyoSrf4bo%2BoPP1fpwAsA; Path=/; Expires=Fri, 03 Mar 2023 15:21:46 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 15:01:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Paramètres de requête non conformes.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET getConseillerDetail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/conseillers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"conseillers",
+						"1"
+					]
+				},
+				"description": "**Retourne les informations personnelles d'un Conseiller dont l'identifiant est transmis en paramètres d'url.**\n\n> 200: retourne un objet.  \n> 404: aucun enregistrement trouvé pour l'identifiant transmis en paramètres d'url  \n> 400: paramètres invalides"
+			},
+			"response": [
+				{
+					"name": "GET getConseillerDetail",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "146"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"92-MavNmrjW//8nK2HAIxfxA06N+ys\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A6-xHifc5YV09zfSSC6WoZXVh4d9680m1.BmESWbfo5mv%2FTleVy%2FQ5qRGQyoSrf4bo%2BoPP1fpwAsA; Path=/; Expires=Fri, 03 Mar 2023 15:41:54 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 15:21:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"prenom\": \"bob\",\n    \"nom\": \"dupont\",\n    \"username\": \"tech@atelier.eco\",\n    \"createdAt\": \"2023-03-03T13:03:49.000Z\",\n    \"updatedAt\": \"2023-03-03T13:03:49.000Z\"\n}"
+				},
+				{
+					"name": "GET getConseillerDetail",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers/toto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers",
+								"toto"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-IWilT/73tZBJddBUKiU0Q7U3Ceo\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A6-xHifc5YV09zfSSC6WoZXVh4d9680m1.BmESWbfo5mv%2FTleVy%2FQ5qRGQyoSrf4bo%2BoPP1fpwAsA; Path=/; Expires=Fri, 03 Mar 2023 15:42:22 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Mar 2023 15:22:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Paramètres de requête non conformes.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE / deleteConseiller",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1/conseillers/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"conseillers",
+						"2"
+					]
+				},
+				"description": "**Supprime un conseiler de la base de données. L'identifiant du conseiller à supprimer est passé en paramètre dans l'url.**\n\n> 200: le conseiller a été supprimé avec succès.  \n400: l'identifiant n'est pas conforme.  \n404: aucun conseiller ne correspond à l'identifiant."
+			},
+			"response": [
+				{
+					"name": "DELETE / deleteConseiller",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"55-BCBMoWd1pH8sZRql+vgk/gtgjWY\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3ArNzsQl0NtGPGZRe2kcSNz6onWMtUooS_.J6u47prOhMmy2xTLyHbrlaTa%2BycLOUqJnutPXRnhEG0; Path=/; Expires=Sun, 26 Mar 2023 11:40:58 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Mar 2023 11:20:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Le conseiller avec l'identifiant n°: 2 a été supprimé avec succès.\"\n}"
+				},
+				{
+					"name": "DELETE / deleteConseiller",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers",
+								"2"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"24-98lRY/dQj13JpEifHEAOfPZw6hw\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3ArNzsQl0NtGPGZRe2kcSNz6onWMtUooS_.J6u47prOhMmy2xTLyHbrlaTa%2BycLOUqJnutPXRnhEG0; Path=/; Expires=Sun, 26 Mar 2023 11:45:25 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Mar 2023 11:25:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Ressource inexistante.\"\n}"
+				},
+				{
+					"name": "DELETE / deleteConseiller",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers/foo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers",
+								"foo"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-IWilT/73tZBJddBUKiU0Q7U3Ceo\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3ArNzsQl0NtGPGZRe2kcSNz6onWMtUooS_.J6u47prOhMmy2xTLyHbrlaTa%2BycLOUqJnutPXRnhEG0; Path=/; Expires=Sun, 26 Mar 2023 11:45:53 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Mar 2023 11:25:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Paramètres de requête non conformes.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST / createConseiller",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"toto@toto.fr\",\n    \"password\": \"Abcd@1234\",\n    \"prenom\": \"jean\",\n    \"nom\": \"toto\",\n    \"roles\": [\"tech\", \"admin\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/v1/conseillers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1",
+						"conseillers"
+					]
+				},
+				"description": "**Enregistre un nouveau conseiller dans la base de données. Les données sont envoyées dans le corps de la requête.**\n\n> 201: le conseiller est bien enregistré.  \n400: les données ne sont pas conformes.  \n404: l'email n'est pas disponible."
+			},
+			"response": [
+				{
+					"name": "POST / createConseiller",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"toto@toto.fr\",\n    \"password\": \"Abcd@1234\",\n    \"prenom\": \"jean\",\n    \"nom\": \"toto\",\n    \"roles\": [\"tech\", \"admin\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "189"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bd-szFCxccCGALqNAPYP6jQDu4OoN8\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AQyz_XEVONkuEmv7zZkmyi-tOWWcFGI4o.A50yPqfkHqfPOJJKmMyEYpKSjWxrr7oaFXE5Qypy%2BuI; Path=/; Expires=Tue, 28 Mar 2023 11:03:11 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Mar 2023 10:43:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"username\": \"toto@toto.fr\",\n    \"password\": \"Abcd@1234\",\n    \"prenom\": \"jean\",\n    \"nom\": \"toto\",\n    \"roles\": [\n        \"tech\",\n        \"admin\"\n    ],\n    \"updatedAt\": \"2023-03-28T10:43:11.510Z\",\n    \"createdAt\": \"2023-03-28T10:43:11.510Z\"\n}"
+				},
+				{
+					"name": "POST / createConseiller",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"<hacked>\",\n    \"password\": \"Abcd@1234\",\n    \"prenom\": \"jean\",\n    \"nom\": \"toto\",\n    \"roles\": [\"tech\", \"admin\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-IWilT/73tZBJddBUKiU0Q7U3Ceo\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AQyz_XEVONkuEmv7zZkmyi-tOWWcFGI4o.A50yPqfkHqfPOJJKmMyEYpKSjWxrr7oaFXE5Qypy%2BuI; Path=/; Expires=Tue, 28 Mar 2023 11:27:55 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Mar 2023 11:07:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Paramètres de requête non conformes.\"\n}"
+				},
+				{
+					"name": "POST / createConseiller",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"toto@toto.fr\",\n    \"password\": \"Abcd@1234\",\n    \"prenom\": \"jean\",\n    \"nom\": \"toto\",\n    \"roles\": [\"tech\", \"admin\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/conseillers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"conseillers"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"23-2Hhgx17M1qYbRIky0DJ27pQSCTo\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AQyz_XEVONkuEmv7zZkmyi-tOWWcFGI4o.A50yPqfkHqfPOJJKmMyEYpKSjWxrr7oaFXE5Qypy%2BuI; Path=/; Expires=Tue, 28 Mar 2023 11:31:51 GMT; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Mar 2023 11:11:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Email non disponible.\"\n}"
+				}
+			]
+		}
+	]
+}

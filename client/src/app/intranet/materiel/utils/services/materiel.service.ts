@@ -28,8 +28,10 @@ export class MaterielService {
     );
   }
 
-  getMateriel(ref: string): Observable<any> {
-    return this.http.get<any>(`${environment.baseUrl}/materiel/${ref}`);
+  getMateriel(ref: string, clientId: string): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/materiel/${ref}/${clientId}`
+    );
   }
 
   addMateriel(materiel: string): Observable<string> {

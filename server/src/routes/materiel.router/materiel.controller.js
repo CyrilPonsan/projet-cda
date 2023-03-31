@@ -27,17 +27,23 @@ const {
 
 async function httpGetOneMateriel(req, res) {
   const ref = req.params.ref;
-  if (!ref || !regexNumber.test(ref)) {
+  const clientId = req.params.clientId;
+  if (
+    !ref ||
+    !regexNumber.test(ref) ||
+    !clientId ||
+    !regexNumber.test(clientId)
+  ) {
     return res.status(400).json({ message: badQuery });
   }
   try {
-    const materiel = await getOneMateriel(ref);
-    if (!materiel) {
+    const result = await getOneMateriel(ref, clientId);
+    if (!result) {
       return res.status(404).json({ message: noData });
     }
-    return res.status(200).json({ materiel });
+    return res.status(200).json({ data: result });
   } catch (error) {
-    return res.status(500).json({ message: serverIssue });
+    return res.status(500).json({ message: serverIssue + error });
   }
 }
 
