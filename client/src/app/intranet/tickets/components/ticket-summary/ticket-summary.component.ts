@@ -17,9 +17,6 @@ export class TicketSummaryComponent {
   constructor(public tck: TicketsService, public profil: ProfilService) {}
 
   showFormHandler(): void {
-    console.log(this.profil.user.roles);
-    console.log(this.ticket);
-
     this.showForm = !this.showForm;
     this.tck.isSidebarOpen = true;
   }
