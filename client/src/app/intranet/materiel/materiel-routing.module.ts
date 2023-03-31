@@ -7,7 +7,7 @@ import { NewMaterielComponent } from './pages/new-materiel/new-materiel.componen
 const routes: Routes = [
   { path: '', component: MaterielHomeComponent },
   { path: 'new-materiel', component: NewMaterielComponent },
-  { path: 'detail/:ref', component: MaterielDetailComponent },
+  { path: 'detail/:ref/:clientId', component: MaterielDetailComponent },
 ];
 
 @NgModule({

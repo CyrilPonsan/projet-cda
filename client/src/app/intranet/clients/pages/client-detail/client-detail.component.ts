@@ -22,52 +22,62 @@ export class ClientDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const contrat = this.route.snapshot.paramMap.get('contrat'); // Get contrat from url
-    if (contrat !== null) { // If contrat is not null
-      this.clientsService.httpSearchClients('contrat', contrat).subscribe({ // Search client by contrat
-        next: (response) => { // If response is ok
+    if (contrat !== null) {
+      // If contrat is not null
+      this.clientsService.httpSearchClients('contrat', contrat).subscribe({
+        // Search client by contrat
+        next: (response) => {
+          // If response is ok
           console.log(response); // Log response
           this.client = response[0]; // Set client to first element of response
         },
         error: (err) => {
-          console.log(err); 
+          console.log(err);
+          this.clientsService.client = null;
         },
-        complete: () => { // When response is complete
+        complete: () => {
+          // When response is complete
           this.clientsService.client = this.client; // Set client to client service
-          console.log(this.clientsService.client); // Log client 
-          this.getClientTickets(); // Get client tickets 
+          console.log(this.clientsService.client); // Log client
+          this.getClientTickets(); // Get client tickets
           this.getClientMateriels(); // Get client materiels
         },
       });
     }
   }
 
-  editClientHandler(): void { 
+  editClientHandler(): void {
     this.router.navigateByUrl('/intranet/clients/editer'); // Navigate to edit client page
   }
 
   getClientTickets(): void {
-    this.clientsService.httpGetClientTickets(this.client.id).subscribe({ // Get client tickets by client id 
-      next: (response) => { // If response is ok
+    this.clientsService.httpGetClientTickets(this.client.id).subscribe({
+      // Get client tickets by client id
+      next: (response) => {
+        // If response is ok
         this.clientTicket = response; // Set client tickets to response
       },
       error: (err) => {
         console.log(err);
       },
-      complete: () => { // When response is complete
+      complete: () => {
+        // When response is complete
         console.log(this.clientTicket); // Log client tickets
       },
     });
   }
 
-  getClientMateriels(): void { 
-    this.clientsService.httpGetClientMateriels(this.client.id).subscribe({ // Get client materiels by client id 
-      next: (response) => {  // If response is ok
+  getClientMateriels(): void {
+    this.clientsService.httpGetClientMateriels(this.client.id).subscribe({
+      // Get client materiels by client id
+      next: (response) => {
+        // If response is ok
         this.listeClientMateriels = response; // Set client materiels to response
       },
       error: (err) => {
         console.log(err);
       },
-      complete: () => {}, 
+      complete: () => {},
     });
   }
 }

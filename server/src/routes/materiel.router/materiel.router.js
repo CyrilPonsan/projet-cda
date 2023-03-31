@@ -20,7 +20,7 @@ materielRouter.get("/type-materiel", httpGetTypesList);
 materielRouter.post("/type-materiel", httpCreateTypeMateriel);
 materielRouter.get("/marque", httpGetMarqueList);
 materielRouter.get("/modele", httpGetModeleList);
-materielRouter.get("/:ref", httpGetOneMateriel);
+materielRouter.get("/:ref/:clientId", httpGetOneMateriel);
 materielRouter.delete("/:ref", httpDeleteMateriel);
 
 module.exports = materielRouter;
