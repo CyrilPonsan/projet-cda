@@ -10,36 +10,54 @@ import { ClientsService } from '../../utils/services/clients.service';
   styleUrls: ['./client-form.component.scss'],
 })
 export class ClientFormComponent implements OnInit {
-  @Output() newClient = new EventEmitter<Client>();
-  @Input() clientToEdit!: Client;
-  editedClient!: Client;
-  clientForm!: FormGroup;
-  raisonsSociales!: Array<RaisonSociale>;
-  showNewRaisonSociale!: boolean;
+  @Output() newClient = new EventEmitter<Client>(); // Emit new client
+  @Input() clientToEdit!: Client; // Client to edit
+  editedClient!: Client; // Edited client
+  clientForm!: FormGroup; // Client form group (reactive form) to edit or create a new client
+  raisonsSociales!: Array<RaisonSociale>; // Raisons sociales list to select
+  showNewRaisonSociale!: boolean; // Show new raison sociale input field (true) or not (false)
 
   constructor(
-    private formBuilder: FormBuilder,
-    private regex: RegexService,
-    private clientService: ClientsService
+    private formBuilder: FormBuilder, // Form builder to create the form group
+    private regex: RegexService, // Regex service to use regex patterns
+    private clientService: ClientsService // Client service to get and add new raison sociale
   ) {}
 
   ngOnInit(): void {
     this.getRaisonsSociales();
     this.clientForm = this.formBuilder.group({
       raisonSocialeId: [null],
-      nom: [null, [Validators.pattern(this.regex.regexGeneric)]],
-      email: [null, [Validators.pattern(this.regex.regexMail)]],
-      contrat: [null, [Validators.pattern(this.regex.regexGeneric)]],
-      adresse: [null, [Validators.pattern(this.regex.regexGeneric)]],
-      codePostal: [null, [Validators.pattern(this.regex.regexGeneric)]],
-      ville: [null, [Validators.pattern(this.regex.regexGeneric)]],
-      telephone: [null, [Validators.pattern(this.regex.regexGeneric)]],
+      nom: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
+      ],
+      email: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexMail)],
+      ],
+      contrat: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
+      ],
+      adresse: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
+      ],
+      codePostal: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
+      ],
+      ville: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
+      ],
+      telephone: [
+        null,
+        [Validators.required, Validators.pattern(this.regex.regexGeneric)],
+      ],
     });
     if (this.clientToEdit !== undefined && this.clientToEdit !== null) {
       this.clientForm.patchValue(this.clientToEdit);
-      this.clientForm.valueChanges.subscribe((value) => {
-        this.editedClient = { ...value };
-      });
     }
   }
 

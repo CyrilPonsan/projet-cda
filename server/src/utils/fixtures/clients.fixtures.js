@@ -31,7 +31,6 @@ async function createClients() {
       ville: "San Francisco sur Adour",
       raisonSocialeId: _setRandomNumber(1, 2),
     };
-    console.log(client.nom);
     clients.push(client);
   }
 }

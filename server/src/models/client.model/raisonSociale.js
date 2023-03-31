@@ -8,7 +8,6 @@ async function addRaisonSociale(raisonSociale) {
   const tmp = await RaisonSociale.findOne({
     where: { raisonSociale: raisonSociale.raisonSociale },
   });
-  console.log(tmp);
   if (tmp) {
     return false;
   }
@@ -19,4 +18,11 @@ async function addRaisonSociale(raisonSociale) {
   return false;
 }
 
-module.exports = { getRaisonsSociales, addRaisonSociale };
+async function deleteRaisonScoiale(raisonSocialeId) {
+  const result = await RaisonSociale.destroy({
+    where: { id: raisonSocialeId },
+  });
+  return result;
+}
+
+module.exports = { getRaisonsSociales, addRaisonSociale, deleteRaisonScoiale };

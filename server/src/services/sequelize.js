@@ -1,3 +1,6 @@
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+
 const { Sequelize, DataTypes } = require("sequelize");
 const ConseillerModel = require("../models/sequelize.models.js/conseiller.db.model");
 const ClientModel = require("../models/sequelize.models.js/client.db.model");
@@ -9,12 +12,13 @@ const RaisonSocialeModel = require("../models/sequelize.models.js/raisonSociale.
 const ModeleModel = require("../models/sequelize.models.js/modele.db.model");
 const MarqueModel = require("../models/sequelize.models.js/marque.db.model");
 const TypeMaterielModel = require("../models/sequelize.models.js/typeMateriel.db.model");
+const HistoriqueModel = require("../models/sequelize.models.js/historique.db.model");
 
 //  paramètres de connexion à la bdd
 
 let sequelize;
 
-if (process.env.NODE8ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   console.log("dev environment");
   sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -23,7 +27,10 @@ if (process.env.NODE8ENV === "development") {
     {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
-      dialect: "mysql",
+      dialect: "mariadb",
+      dialectOptions: {
+        socketPath: "/var/run/mysqld/mysqld.sock",
+      },
       logging: false,
     }
   );
@@ -36,7 +43,10 @@ if (process.env.NODE8ENV === "development") {
     {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
-      dialect: "mysql",
+      dialect: "mariadb",
+      dialectOptions: {
+        socketPath: "/var/run/mysqld/mysqld.sock",
+      },
       logging: false,
     }
   );
@@ -54,6 +64,7 @@ const RaisonSociale = RaisonSocialeModel(sequelize, DataTypes);
 const Modele = ModeleModel(sequelize, DataTypes);
 const Marque = MarqueModel(sequelize, DataTypes);
 const TypeMateriel = TypeMaterielModel(sequelize, DataTypes);
+const Historique = HistoriqueModel(sequelize, DataTypes);
 
 //  relations
 
@@ -63,7 +74,11 @@ const TypeMateriel = TypeMaterielModel(sequelize, DataTypes);
  * une intervention ne peut être associée qu'à un
  * seul ticket
  */
-Ticket.hasMany(Intervention, { as: "intervention", onDelete: "CASCADE" });
+Ticket.hasMany(Intervention, {
+  as: "intervention",
+  allowNull: false,
+  onDelete: "CASCADE",
+});
 Intervention.belongsTo(Ticket, { as: "ticket" });
 
 /**
@@ -71,10 +86,14 @@ Intervention.belongsTo(Ticket, { as: "ticket" });
  * un materiel peut avoir plusieurs tickets
  * un ticket n'est rattaché qu'à un seul materiel
  */
-Materiel.hasMany(Ticket, { as: "ticket", onDelete: "CASCADE" });
+Materiel.hasMany(Ticket, {
+  as: "ticket",
+  allowNull: false,
+  onDelete: "CASCADE",
+});
 Ticket.belongsTo(Materiel, { as: "materiel" });
 
-Client.hasMany(Ticket, { as: "ticket", onDelete: "CASCADE" });
+Client.hasMany(Ticket, { as: "ticket", allowNull: false, onDelete: "CASCADE" });
 Ticket.belongsTo(Client, { as: "client" });
 
 /**
@@ -82,7 +101,11 @@ Ticket.belongsTo(Client, { as: "client" });
  * un client peut avoir plusieurs materiel
  * un materiel n'est rattaché qu'à un seul client
  */
-Client.hasMany(Materiel, { as: "materiel", onDelete: "CASCADE" });
+Client.hasMany(Materiel, {
+  as: "materiel",
+  allowNull: false,
+  onDelete: "CASCADE",
+});
 Materiel.belongsTo(Client, { as: "client" });
 
 /**
@@ -90,31 +113,46 @@ Materiel.belongsTo(Client, { as: "client" });
  * un Conseiller peut avoir plusieurs interventions
  * une intervention n'est rattaché qu'à un seul client
  */
-Conseiller.hasMany(Intervention, { as: "intervention" });
+Conseiller.hasMany(Intervention, { as: "intervention", allowNull: false });
 Intervention.belongsTo(Conseiller, { as: "conseiller" });
 
 /**
  * relation OneToOne entre statut et intervention
  */
-Intervention.belongsTo(Statut, { as: "statut" });
+Intervention.belongsTo(Statut, { as: "statut", allowNull: false });
 
-RaisonSociale.hasMany(Client, { as: "client" });
+RaisonSociale.hasMany(Client, { as: "client", allowNull: false });
 Client.belongsTo(RaisonSociale);
 
-TypeMateriel.hasMany(Materiel, { as: "materiel" });
+TypeMateriel.hasMany(Materiel, { as: "materiel", allowNull: false });
 Materiel.belongsTo(TypeMateriel, { as: "typeMateriel" });
 
-Marque.hasMany(Materiel, { as: "materiel" });
+Marque.hasMany(Materiel, { as: "materiel", allowNull: false });
 Materiel.belongsTo(Marque, { as: "marque" });
 
-Modele.hasMany(Materiel, { as: "materiel" });
+Modele.hasMany(Materiel, { as: "materiel", allowNull: false });
 Materiel.belongsTo(Modele, { as: "modele" });
+
+//  triggers
+Conseiller.addHook("afterCreate", async (conseiller) => {
+  await Historique.create({
+    message: `un nouveau conseiller a été créé le ${conseiller.createdAt}`,
+    categorie: "conseiller",
+  });
+});
+
+Ticket.addHook("afterCreate", async (ticket) => {
+  await Historique.create({
+    message: `un nouveau ticket n° ${ticket.ref} a été créé`,
+    categorie: "ticket",
+  });
+});
 
 //  initialisation de la bdd
 
 function initDB() {
   return sequelize
-    .sync({ alter: true })
+    .sync({ alt: true })
     .then(() => console.log("Base de données initialisée."))
     .catch((error) =>
       console.log(`La base de données n'a pas été initialisée: ${error}`)
@@ -146,4 +184,5 @@ module.exports = {
   TypeMateriel,
   Marque,
   Modele,
+  Historique,
 };

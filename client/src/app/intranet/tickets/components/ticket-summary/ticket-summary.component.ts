@@ -17,15 +17,12 @@ export class TicketSummaryComponent {
   constructor(public tck: TicketsService, public profil: ProfilService) {}
 
   showFormHandler(): void {
-    console.log(this.profil.user.roles);
-    console.log(this.ticket);
-
     this.showForm = !this.showForm;
     this.tck.isSidebarOpen = true;
   }
 
   onSubmitHandler(item: any): void {
-    Object.assign(item, { ticket_id: this.ticket.id });
+    Object.assign(item, { ticketId: this.ticket.id });
     this.showForm = false;
     this.submit.emit(item);
   }

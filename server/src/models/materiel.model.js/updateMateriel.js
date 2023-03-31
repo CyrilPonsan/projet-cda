@@ -4,10 +4,7 @@ async function updateMateriel(materielToUpdate, materielId) {
   const updatedMateriel = await Materiel.update(materielToUpdate, {
     where: { id: materielId },
   });
-  if (updatedMateriel) {
-    return updatedMateriel;
-  }
-  return false;
+  return updatedMateriel;
 }
 
 module.exports = updateMateriel;

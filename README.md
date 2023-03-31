@@ -48,3 +48,20 @@ admin :
 > node src/utils/scripts/createUser.js 'email@exemple.fr' 'password' 'admin'
 
 les noms d'utilisateurs (emails) doivent être uniques
+
+
+# installation sur windows 
+dans server/src/services/sequelize.js
+ dans dialect : 'mysql' remplacer par dialect : 'mariadb'
+ dialiectOptions : { host : "localhost", port : 3308 }  ici specifiez le port de votre serveur mariadb
+
+
+ ## dans package.json du server
+
+    "watch": "nodemon src/server.js",
+
+ ## dans package.json du client 
+
+    "start": "ng serve -o",
+
+

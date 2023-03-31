@@ -9,6 +9,7 @@ const {
 async function getClientTickets(clientId) {
   const client = await Client.findByPk(clientId);
   if (client) {
+    console.log(client);
     const tickets = await client.getTicket({
       include: [
         {
@@ -33,6 +34,7 @@ async function getClientTickets(clientId) {
       ],
     });
     if (tickets.length !== 0) {
+      console.log("ticket", tickets.length);
       return tickets;
     }
   }

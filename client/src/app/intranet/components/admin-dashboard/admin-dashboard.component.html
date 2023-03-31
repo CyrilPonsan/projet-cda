@@ -1,0 +1,64 @@
+<section class="flex flex-col gap-y-4">
+  <table class="min-w-[fit] table-auto text-xs md:text-lg">
+    <thead>
+      <tr class="bg-[#6941C6] text-white">
+        <th class="w-fit whitespace-nowrap p-2 md:px-4 text-left">Nom</th>
+        <th class="w-fit whitespace-nowrap p-2 md:px-4 text-left">Prenom</th>
+        <th class="w-fit whitespace-nowrap p-2 md:px-4 text-left">Rôle</th>
+        <th class="w-fit whitespace-nowrap p-2 md:px-4 text-left">Date de Création</th>
+        <th class="w-fit whitespace-nowrap p-2 md:px-4 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="even:bg-stone-300 my-auto cursor-pointer hover:bg-[#6941c6be] hover:text-white"
+        *ngFor="let user of userList">
+        <td class="p-2"> {{user.nom | titlecase}} </td>
+        <td class=" p-2">{{user.prenom | titlecase}}</td>
+        <td class="p-2">{{user.roles[0] | titlecase}}</td>
+        <td class="p-2">{{user.createdAt! | date }}</td>
+        <td class="p-2 flex justify-start gap-x-6">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="43.34" height="43.36" viewBox="0 0 43.34 43.36" class="w-6 h-6"
+            (click)="handleEditUser(user.id)">
+            <g id="Calque_2" data-name="Calque 2">
+              <g id="Calque_1-2" data-name="Calque 1">
+                <g id="Stylo">
+                  <path id="Tracé_659" data-name="Tracé 659"
+                    d="M1.84,43.36a1.84,1.84,0,0,1-1.78-2.3l2.28-8.9a1.88,1.88,0,0,1,.47-.85L33.59.53a1.85,1.85,0,0,1,2.6,0l6.62,6.62a1.85,1.85,0,0,1,0,2.6L12,40.54a1.82,1.82,0,0,1-.84.48L2.29,43.3a2.31,2.31,0,0,1-.46.05Zm3.93-9.81L4.41,39l5.41-1.38L39,8.47,34.89,4.41Z"
+                    style="fill: #140a82" />
+                  <path id="Tracé_660" data-name="Tracé 660"
+                    d="M35.83,16a1.84,1.84,0,0,1-1.29-.56L27.93,8.82a1.84,1.84,0,0,1,2.49-2.71l.11.11,6.61,6.61A1.84,1.84,0,0,1,35.84,16Z"
+                    style="fill: #140a82" />
+                  <path id="Tracé_661" data-name="Tracé 661"
+                    d="M34.46,43.36H19.56a1.84,1.84,0,0,1,0-3.68h14.9a1.84,1.84,0,0,1,0,3.68Z" style="fill: #140a82" />
+                </g>
+              </g>
+            </g>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6" *ngIf="!user.roles.includes('inactif')"
+            (click)="handleDeleteUser(user.id)">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+          </svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <a routerLink="/intranet/add-user" class="w-fit flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+      <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+        </svg>
+      </span>Ajouter un conseiller
+    </a>
+  </div>
+</section>
+
+<app-modal *ngIf="showModal" [modal]="modal" (modalLeftClick)="handleModalLeftClick()"
+  (modalRightClick)="handleModalRightClick()"></app-modal>
+<app-modal *ngIf="showModalSuccess" [modal]="modalSuccess" (modalRightClick)="handleModalSuccessClick()"></app-modal>
+<app-modal *ngIf="showModalError" [modal]="modalError" (moadalRightClick)="handleModalErrorClick()"></app-modal>

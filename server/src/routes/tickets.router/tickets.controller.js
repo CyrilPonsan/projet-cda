@@ -13,6 +13,7 @@ const {
 const {
   getTicketsStatutsList,
 } = require("../../models/ticket.model/getTicketStatutsList");
+const { checkTicket, checkIntervention } = require("../../services/checkData");
 const { getPagination } = require("../../services/queryService");
 const { testNewInterventionData } = require("../../services/ticketsService");
 const {
@@ -24,7 +25,7 @@ const {
 } = require("../../utils/data");
 
 async function httpGetTickets(req, res) {
-  const userId = req.auth.userId;
+  const userId = req.session.userId;
   const page = req.query.page;
   const limit = req.query.lmt;
 
@@ -83,25 +84,13 @@ async function httpGetTicketStatutsList(req, res) {
 }
 
 async function httpCreateIntervention(req, res) {
-  console.log(req.body);
-  const userId = req.auth.userId;
-  const { titre, ticket_id, statut, lieuIntervention, description, reponse } =
+  const userId = req.session.userId;
+  const { titre, ticketId, statut, lieuIntervention, description, reponse } =
     req.body.item;
 
-  console.log(req.body.item);
-  console.log(titre, ticket_id, statut, description, reponse);
-  if (
-    !titre ||
-    !regexGeneric.test(titre) ||
-    !statut ||
-    !regexNumber.test(statut) ||
-    !description ||
-    !regexGeneric.test(description) ||
-    !reponse ||
-    !regexGeneric.test(reponse) ||
-    !lieuIntervention ||
-    !regexGeneric.test(lieuIntervention)
-  ) {
+  console.log("item", req.body.item);
+  console.log(titre, ticketId, statut, description, reponse);
+  if (checkIntervention(req.body.item)) {
     return res.status(400).json({ message: badQuery });
   }
 
@@ -125,19 +114,20 @@ async function httpCreateIntervention(req, res) {
 }
 
 async function httpCreateTicket(req, res) {
-  const data = req.body;
-  if (
-    !data.materiel_id ||
-    !regexNumber.test(data.materiel_id) ||
-    !data.titre ||
-    !regexGeneric.test(data.titre) ||
-    !data.resume ||
-    !regexGeneric.test(data.resume)
-  ) {
+  const ticket = req.body.ticket;
+  if (checkTicket(ticket)) {
     return res.status(400).json({ message: badQuery });
   }
+
+  const intervention = req.body.intervention;
+  if (checkTicket(ticket)) {
+    return res.status(400).json({ message: badQuery });
+  }
+
+  const userId = req.session.userId || 1;
+
   try {
-    const newTicket = await createTicket(data);
+    const newTicket = await createTicket(ticket, intervention, userId);
     if (!newTicket) {
       throw new Error("Serveur injoignable...");
     }

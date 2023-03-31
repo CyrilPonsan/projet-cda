@@ -1,12 +1,34 @@
-const { Ticket } = require("../../services/sequelize");
+const { Ticket, Intervention, sequelize } = require("../../services/sequelize");
 
-async function createTicket(data) {
-  Object.assign(data, { ref: await _getLastTicketRef() });
-  const newTicket = await Ticket.create(data);
-  if (!newTicket) {
-    return false;
+async function createTicket(ticket, intervention, userId) {
+  try {
+    const transaction = await sequelize.transaction(async (t) => {
+      Object.assign(ticket, { ref: await _getLastTicketRef() });
+      Object.assign(intervention, {
+        date: new Date(),
+        conseillerId: userId,
+      });
+
+      const result = await Ticket.create(
+        ticket,
+        {
+          transaction: t,
+        },
+        { raw: true }
+      );
+      Object.assign(intervention, { ticketId: result.id });
+      await Intervention.create(
+        intervention,
+        { transaction: t },
+        { raw: true }
+      );
+      console.log("result", result);
+      return result;
+    });
+    return transaction;
+  } catch (err) {
+    console.log(err);
   }
-  return newTicket;
 }
 
 async function _getLastTicketRef() {

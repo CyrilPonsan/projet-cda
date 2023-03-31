@@ -1,1 +1,61 @@
-<p>materiel-detail works!</p>
+<main>
+
+
+  <!-- titre de la page et bouton d'ajout -->
+  <section class="py-5 flex justify-between items-start">
+    <article class="flex flex-col gap-2">
+      <div class="font-bold text-3xl">
+        <h2>Parc informatique</h2>
+      </div>
+      <div>
+        <p>Détails du Matériel </p>
+      </div>
+    </article>
+
+  </section>
+  <!-- separator -->
+  <section aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </section>
+
+  <section class="py-5 w-96">
+    <app-client [client]="client"></app-client>
+  </section>
+
+  <section class="py-5 w-96">
+    <app-materiel [materiel]="materiel"></app-materiel>
+  </section>
+
+  <section class="py-5 w-96">
+    <div>
+      <button class=" flex bg-[#6941C6] text-white px-4 py-2 rounded-md"> <span><svg xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+          </svg>
+        </span> Ajouter un ticket</button>
+    </div>
+  </section>
+
+
+  <!-- no data -->
+
+  <section *ngIf="noDataError" class="py-5 w-96">
+    <h2 class="text-lg font-medium leading-6 text-gray-900">
+      Aucun matériel appartenant à ce client n'a été trouvé avec la référence: {{materiel.ref}}
+    </h2>
+    <div class="py-5">
+      <div class="border-t flex border-gray-200 justify-end">
+        <article class="mt-4">
+          <div>
+            <button (click)="backToClient()" class="flex bg-[#6941C6] text-white px-4 py-2 rounded-md">
+              Retour à la page du client
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>

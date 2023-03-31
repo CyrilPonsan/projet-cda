@@ -1,4 +1,9 @@
-const { regexMail, regexGeneric, regexNumber } = require("../utils/data");
+const {
+  regexMail,
+  regexGeneric,
+  regexNumber,
+  regexPassword,
+} = require("../utils/data");
 
 function checkClient(data) {
   const { nom, email, contrat, telephone, adresse, codePostal, ville } = data;
@@ -21,12 +26,14 @@ function checkClient(data) {
 }
 
 function checkMateriel(data) {
-  const { miseEnService, ref, typeMaterielId, marqueId, modeleId } = data;
+  const { miseEnService, ref, typeMaterielId, marqueId, modeleId, clientId } =
+    data;
 
   return (
     !miseEnService ||
     !regexGeneric.test(miseEnService) ||
     (ref && !regexNumber.test(ref)) ||
+    (clientId && !regexNumber.test(clientId)) ||
     !typeMaterielId ||
     !regexNumber.test(typeMaterielId) ||
     !marqueId ||
@@ -36,4 +43,72 @@ function checkMateriel(data) {
   );
 }
 
-module.exports = { checkClient, checkMateriel };
+function checkKnowledgeGPT(data) {
+  const { def, type, marque, modele } = data;
+
+  return (
+    !def ||
+    !regexGeneric.test(def) ||
+    !type ||
+    !regexGeneric.test(type) ||
+    !marque ||
+    !regexGeneric.test(marque) ||
+    !modele ||
+    !regexGeneric.test(modele)
+  );
+}
+
+function checkTicket(data) {
+  const { materielId, titre, resume, clientId } = data;
+
+  return (
+    !materielId ||
+    !regexNumber.test(materielId) ||
+    !titre ||
+    !regexGeneric.test(titre) ||
+    !resume ||
+    !regexGeneric.test(resume) ||
+    !clientId ||
+    !regexNumber.test(clientId)
+  );
+}
+
+function checkIntervention(data) {
+  const { titre, statut, description, reponse, lieuIntervention } = data;
+
+  return (
+    !titre ||
+    !regexGeneric.test(titre) ||
+    !statut ||
+    !regexNumber.test(statut) ||
+    !description ||
+    !regexGeneric.test(description) ||
+    !reponse ||
+    !regexGeneric.test(reponse) ||
+    !lieuIntervention ||
+    !regexGeneric.test(lieuIntervention)
+  );
+}
+
+function checkConseiller(data) {
+  const { username, password, prenom, nom } = data;
+
+  return (
+    !username ||
+    !regexMail.test(username) ||
+    (password && !regexPassword.test(password)) ||
+    !prenom ||
+    !regexGeneric.test(prenom) ||
+    !nom ||
+    !regexGeneric.test(nom)
+  );
+}
+
+module.exports = {
+  checkClient,
+  checkMateriel,
+  checkKnowledgeGPT,
+  checkTicket,
+  checkIntervention,
+  checkConseiller,
+};

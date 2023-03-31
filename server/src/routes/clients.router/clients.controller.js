@@ -21,10 +21,12 @@ const {
 const {
   getRaisonsSociales,
   addRaisonSociale,
+  deleteRaisonScoiale,
 } = require("../../models/client.model/raisonSociale");
 const createClient = require("../../models/client.model/createClient");
 const getClientMateriels = require("../../models/client.model/getClientMateriels");
 const { countMateriels } = require("../../services/countMateriels");
+const getClients = require("../../models/client.model/getClients");
 
 async function httpGetAllClients(req, res) {
   const { page, lmt } = req.query;
@@ -32,7 +34,6 @@ async function httpGetAllClients(req, res) {
     return res.status(400).json({ message: badQuery });
   }
   try {
-    console.log(req.query);
     const clients = await getAllClients(getPagination(+page, +lmt), +lmt);
     const total = await getTotalClients();
     if (!clients) {
@@ -56,7 +57,6 @@ async function httpSearchClient(req, res) {
     return res.status(400).json({ message: badQuery });
   }
   try {
-    console.log("hello", type, value);
     let clients;
     switch (type) {
       case "contrat":
@@ -66,14 +66,12 @@ async function httpSearchClient(req, res) {
         clients = await getClientByNom(value);
         break;
       default:
-        console.log("coucou");
         return res.status(400).json({ message: badQuery });
         break;
     }
     if (!clients) {
       return res.status(404).json({ message: noData });
     }
-    console.log(clients);
     return res.status(200).json(clients);
   } catch (err) {
     return res.status(500).json({ message: serverIssue + err });
@@ -111,7 +109,10 @@ async function httpDeleteClient(req, res) {
     return res.status(400).json({ message: badQuery });
   }
   try {
-    await deleteClient(clientId);
+    const response = await deleteClient(clientId);
+    if (response === 0) {
+      return res.status(404).json({ message: noData });
+    }
     return res.status(200).json({
       message: `Le client avec l'identifiant: ${clientId} a été supprimé de la bddd.`,
     });
@@ -123,13 +124,12 @@ async function httpDeleteClient(req, res) {
 async function httpUpdateClient(req, res) {
   const clientId = req.params.id;
   const clientToUpdate = req.body.client;
-  console.log(req.body);
   if (checkClient(clientToUpdate) || !clientId || !regexNumber.test(clientId)) {
     return res.status(400).json({ message: badQuery });
   }
   try {
     const updatedClient = await updateClient(clientId, clientToUpdate);
-    if (!updatedClient) {
+    if (updatedClient[0] === 0) {
       return res.status(404).json({ message: noData });
     }
     return res.status(201).json({
@@ -143,7 +143,6 @@ async function httpUpdateClient(req, res) {
 async function httpCreateClient(req, res) {
   const clientToAdd = req.body.client;
   const raisonSocialeId = clientToAdd.raisonSocialeId;
-  console.log(clientToAdd);
   if (checkClient(clientToAdd)) {
     return res.status(400).json({ message: badQuery });
   }
@@ -183,7 +182,7 @@ async function httpAddRaisonSociale(req, res) {
     const newRaisonSociale = await addRaisonSociale(req.body);
     if (!newRaisonSociale) {
       return res
-        .status(418)
+        .status(404)
         .json({ message: `Le nom ${raisonSociale} existe déjà.` });
     }
     return res.status(201).json({
@@ -198,7 +197,7 @@ async function httpAddRaisonSociale(req, res) {
 async function httpGetClientMateriels(req, res) {
   const clientId = req.params.clientId;
   if (!clientId || isNaN(clientId)) {
-    return res.status(403).json({ message: badQuery });
+    return res.status(400).json({ message: badQuery });
   }
   try {
     const materiels = await getClientMateriels(+clientId);
@@ -206,6 +205,32 @@ async function httpGetClientMateriels(req, res) {
       return res.status(404).json({ message: noData });
     }
     return res.status(200).json(countMateriels(materiels));
+  } catch (err) {
+    return res.status(500).json({ message: serverIssue + err });
+  }
+}
+
+async function httpGetClients(req, res) {
+  try {
+    const clients = await getClients();
+    return res.status(200).json(clients);
+  } catch (err) {
+    return res.status(500).json({ message: serverIssue + err });
+  }
+}
+
+//  fonction utilisée dans le cadre des tests unitaires
+async function httpDeleteRaisonSociale(req, res) {
+  const raisonSocialeId = req.params.id;
+  if (!raisonSocialeId || isNaN(raisonSocialeId)) {
+    return res.status(400).json({ message: badQuery });
+  }
+  try {
+    const result = await deleteRaisonScoiale(raisonSocialeId);
+    if (result === 0) {
+      return res.status(404).json({ message: noData });
+    }
+    return res.status(200).json({ message: "Raison sociale supprimée." });
   } catch (err) {
     return res.status(500).json({ message: serverIssue + err });
   }
@@ -221,4 +246,6 @@ module.exports = {
   httpAddRaisonSociale,
   httpCreateClient,
   httpGetClientMateriels,
+  httpGetClients,
+  httpDeleteRaisonSociale,
 };
