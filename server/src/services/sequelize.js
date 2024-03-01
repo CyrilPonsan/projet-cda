@@ -28,9 +28,6 @@ if (process.env.NODE_ENV === "development") {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
       dialect: "mariadb",
-      dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock",
-      },
       logging: false,
     }
   );
@@ -44,9 +41,6 @@ if (process.env.NODE_ENV === "development") {
       define: { freezeTableName: true },
       host: process.env.DB_HOST,
       dialect: "mariadb",
-      dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock",
-      },
       logging: false,
     }
   );
